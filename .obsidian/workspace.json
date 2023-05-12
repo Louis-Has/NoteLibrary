@@ -4,23 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "12ac3ce58d62f7e5",
+        "id": "fa1f1dfb14ebe1ec",
         "type": "tabs",
         "children": [
           {
-            "id": "a54c775de5a4a12b",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "code/Golang/Gin.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "06917e9818ccb15a",
+            "id": "0e53210a8b96c24f",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -31,8 +19,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -158,11 +145,12 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "06917e9818ccb15a",
+  "active": "0e53210a8b96c24f",
   "lastOpenFiles": [
+    "code/Golang/GC.md",
     "code/Golang/Golang.md",
     "code/Golang/Gin.md",
-    "code/Golang/GC.md",
+    "未命名.canvas",
     "code/Golang",
     "code/Database/MongoDb.md",
     "code/Database/mysql.md",
