@@ -4,17 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "6422524fbabb97fc",
+        "id": "12ac3ce58d62f7e5",
         "type": "tabs",
         "children": [
           {
-            "id": "cf67361f3649b8fe",
+            "id": "a54c775de5a4a12b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
-                "mode": "source",
+                "file": "GC.md",
+                "mode": "preview",
                 "source": false
               }
             }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
+                "file": "GC.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "README.md",
+                "file": "GC.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "README.md"
+                "file": "GC.md"
               }
             }
           }
@@ -146,8 +146,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "cf67361f3649b8fe",
+  "active": "a54c775de5a4a12b",
   "lastOpenFiles": [
-    "README.md"
+    "README.md",
+    "GC.md",
+    "().md"
   ]
 }
