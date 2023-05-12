@@ -19,6 +19,14 @@
 
 ### GC 实现方式
 
+#### -   追踪式 GC
+
+    从根对象出发，根据对象之间的引用信息，一步步推进直到扫描完毕整个堆并确定需要保留的对象，从而回收所有可回收的对象。Go、 Java、V8 对 JavaScript 的实现等均为追踪式 GC。
+
+#### -   引用计数式 GC
+
+    每个对象自身包含一个被引用的计数器，当计数器归零时自动得到回收。因为此方法缺陷较多，在追求高性能时通常不被应用。Python、Objective-C 等均为引用计数式 GC。
+
 #### Go V1.3 标记-清除(mark and sweep)算法
 
 mark and sweep算法在执行的时候，需要程序暂停！即 `STW(stop the world)`，STW的过程中，CPU不执行用户代码，全部用于垃圾回收，这个过程的影响很大，所以STW也是一些回收机制最大的难题和希望优化的点。
@@ -65,6 +73,33 @@ mark and sweep算法在执行的时候，需要程序暂停！即 `STW(stop the 
 `满足`: 变形的**弱三色不变式**.
 
 Go V1.8版本引入了混合写屏障机制（hybrid write barrier），避免了对栈re-scan的过程，极大的减少了STW的时间。结合了两者的优点。
+
+### 触发 GC 的时机是什么？
+
+Go 语言中对 GC 的触发时机存在两种形式：
+
+1.  **主动触发**，通过调用 runtime.GC 来触发 GC，此调用阻塞式地等待当前 GC 运行完毕。
+    
+2.  **被动触发**，分为两种方式：
+    
+    -   使用系统监控，当超过两分钟没有产生任何 GC 时，强制触发 GC。
+        
+    -   使用步调（Pacing）算法，其核心思想是控制内存增长的比例。
+
+### Go 的垃圾回收器有哪些相关的 API
+
+-   *runtime.GC*：手动触发 GC
+-   *runtime.ReadMemStats*：读取内存相关的统计信息，其中包含部分 GC 相关的统计信息
+-   debug.FreeOSMemory：手动将内存归还给操作系统
+-   debug.ReadGCStats：读取关于 GC 的相关统计信息
+-   debug.SetGCPercent：设置 GOGC 调步变量
+-   debug.SetMaxHeap（尚未发布[10]）：设置 Go 程序堆的上限值
+
+### Go 语言的 GC 需要优化的地方
+
+充分考虑*内存分配的必要性*，减少过多申请内存带给垃圾回收器的压力。
+
+峰值流量后，大量 goroutine 由于任务等待被休眠，从而运行时不断创建新的 goroutine， 旧的 goroutine 由于休眠未被销毁且得不到复用，导致 GC 需要扫描的执行栈越来越多，进而完成 GC 所需的时间越来越长。 一个解决办法是*使用 goroutine 池来限制创建的 goroutine 数量*。
 
 参考文章：
 1. [垃圾回收的认识](https://golang.design/go-questions/memgc/principal/)
