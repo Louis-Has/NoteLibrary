@@ -13,6 +13,8 @@
 2.  执行栈：每个 goroutine 都包含自己的执行栈，这些执行栈上包含栈上的变量及指向分配的堆内存区块的指针。
 3.  寄存器：寄存器的值可能表示一个指针，参与计算的这些指针可能指向某些赋值器分配的堆内存区块。
 
+afdsfksd
+
 参考文章：
 1. [垃圾回收的认识](https://golang.design/go-questions/memgc/principal/)
 2. [刘丹冰Aceld三色标记混合写屏障](https://www.yuque.com/aceld/golang/zhzanb)
