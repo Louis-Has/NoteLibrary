@@ -1,0 +1,7 @@
+-   [比较MongoDB和PostgreSQL](https://jiagoushi.pro/book/export/html/1138)
+-   [手机号验证](https://blog.csdn.net/itbrand/article/details/109239620)
+-   [root 用户登陆](https://github.com/lmk123/blog/issues/64)
+-   [nginx中location、rewrite用法总结](https://www.cnblogs.com/dadonggg/p/7797281.html)
+-   [linux ssh端口转发的三种方式](https://cloud.tencent.com/developer/article/1721686)
+-   [基于gin的golang web开发：访问mysql数据库](https://www.huaface.com/article/17)
+-   nest g resource information

@@ -13,13 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "GC.md",
-                "mode": "preview",
+                "file": "code/Golang/Gin.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "06917e9818ccb15a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "code/Golang/Gin.md",
+                "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -33,7 +46,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "b84cba8907fd378f",
+            "id": "6144904758183b72",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "GC.md",
+                "file": "code/Golang/Gin.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "GC.md",
+                "file": "code/Golang/Gin.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "GC.md"
+                "file": "code/Golang/Gin.md"
               }
             }
           }
@@ -141,15 +154,26 @@
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
-      "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
       "command-palette:打开命令面板": false
     }
   },
-  "active": "a54c775de5a4a12b",
+  "active": "06917e9818ccb15a",
   "lastOpenFiles": [
+    "code/Golang/Golang.md",
+    "code/Golang/GC.md",
+    "code/Golang/Gin.md",
+    "code/Golang",
+    "code/Database/MongoDb.md",
+    "code/Database/mysql.md",
+    "code/Database/redis.md",
+    "code/Database",
+    "upset/learning.md",
+    "upset/env.md",
+    "upset",
+    "upset/Mac.md",
+    "code",
     "README.md",
-    "GC.md",
     "().md"
   ]
 }
