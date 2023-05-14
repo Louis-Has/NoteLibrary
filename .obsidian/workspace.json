@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "code/Golang/GPM.md",
+                "file": "code/Golang/Interview questions.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "code/Golang/GPM.md",
+                "file": "code/Golang/Interview questions.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "code/Golang/GPM.md",
+                "file": "code/Golang/Interview questions.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "code/Golang/GPM.md"
+                "file": "code/Golang/Interview questions.md"
               }
             }
           }
@@ -145,18 +145,19 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "6144904758183b72",
+  "active": "fcfcc6eace565d81",
   "lastOpenFiles": [
-    "static/Goroutine Pool.png",
+    "code/Golang/内存管理.md",
+    "code/Golang/Interview questions.md",
     "code/Golang/GC.md",
     "code/Golang/GPM.md",
+    "code/Database/mysql.md",
+    "static/Goroutine Pool.png",
     "static",
     "static/GMP.png",
     "code/Database/redis.md",
     "code/Database/MongoDb.md",
-    "code/Database/mysql.md",
     "code/Golang/Golang.md",
-    "code/Golang/make & new.md",
     "code/Golang/Gin.md",
     "configure/env.md",
     "未命名.canvas",
