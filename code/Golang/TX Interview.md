@@ -20,6 +20,7 @@ F
 ##### context包的用途
 - 主要用来在 goroutine 之间**传递上下文信息**，包括：请求特定数据、取消信号以及处理请求的截止日期。在多个 Goroutine 组成的树中同步取消信号以减少对资源的消耗和占用。
 - 协程之间：需要共享一些全局变量、有共同的 deadline 等，而且可以同时被关闭。
+- [Context](https://www.topgoer.cn/docs/golang/chapter11-10)
 ##### client如何实现长连接
 -  TCP协议的`KeepAlive`机制
 - 长：数据库的连接
