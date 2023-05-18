@@ -18,15 +18,28 @@ F
 ##### select可以用于什么
 - -   `select` 主要用于**监听多个`channel`是否可以收发消息**，`select会尝试执行case语句`。当任何一个case满足条件则会执行，若没有可执行的case，就会执行**default分支**。如果default也不满足，程序会跳出select语句块。
 ##### context包的用途
-- 主要用来在 goroutine 之间**传递上下文信息**，包括：请求特定数据、取消信号以及处理请求的截止日期。
+- 主要用来在 goroutine 之间**传递上下文信息**，包括：请求特定数据、取消信号以及处理请求的截止日期。在多个 Goroutine 组成的树中同步取消信号以减少对资源的消耗和占用。
 - 协程之间：需要共享一些全局变量、有共同的 deadline 等，而且可以同时被关闭。
 ##### client如何实现长连接
-- 
+-  TCP协议的`KeepAlive`机制
+- 长：数据库的连接
+- 短：web ajax 请求
 ##### -   主协程如何等其余协程完再操作
+- wg sync.WaitGroup
+	- wg.Add(2)
+	- wg.Done()
+	- wg.Wait()
 ##### -   slice，len，cap，共享，扩容
+- 当slice的`len==cap`后，再向slice中追加元素时，会发生扩容
+- [你不知道的 Go 之 slice](https://darjun.github.io/2021/05/09/youdontknowgo/slice/)
 ##### -   map如何顺序读取
+- map底层使用hash表实现,插入数据位置是随机的
+- 将 map 的 key 全部拿出来，放到一个数组中，
+- 然后对这个数组排序后对有序数组遍历，再间接取 map 里的值
 ##### -   实现set
+- set := make(map[string]void)
 ##### -   实现消息队列（多生产者，多消费者）
+- 
 ##### -   大文件排序
 ##### -   基本排序，哪些是稳定的
 ##### -   http get跟head
