@@ -77,10 +77,12 @@ F
 	- 流媒体 实时游戏 物联网
 ##### -   time-wait的作用
 - time-wait就是四次挥手后主动关闭方的状态
+- net.ipv4.tcp_tw_recycle
 - [为什么 TCP 协议有 TIME_WAIT 状态](https://draveness.me/whys-the-design-tcp-time-wait/)
 ##### -   数据库如何建索引
-- 
+- CREATE [UNIQUE] INDEX [indexName] ON mytable;
 ##### -   孤儿进程，僵尸进程
+- 
 ##### -   死锁条件，如何避免
 ##### -   linux命令，查看端口占用，cpu负载，内存占用，如何发送信号给一个进程
 ##### -   git文件版本，使用顺序，merge跟rebase
