@@ -68,9 +68,18 @@ F
 ##### -   http能不能一次连接多次请求，不等后端返回
 - HTTP 1.1 版本使用长连接
 - HTTP 2.0 版本，支持复用
-##### -   tcp与udp区别，udp优点，适用场景
+##### -   tcp与udp区别，udp优点，适用场景[总结](https://www.developers.pub/article/1026813)
+- tcp
+	- 通过严格握手过程保证可靠
+	- HTTP SSH FTP SMTP
+- udp
+	- 效率高，可以保证低延迟
+	- 流媒体 实时游戏 物联网
 ##### -   time-wait的作用
+- time-wait就是四次挥手后主动关闭方的状态
+- [为什么 TCP 协议有 TIME_WAIT 状态](https://draveness.me/whys-the-design-tcp-time-wait/)
 ##### -   数据库如何建索引
+- 
 ##### -   孤儿进程，僵尸进程
 ##### -   死锁条件，如何避免
 ##### -   linux命令，查看端口占用，cpu负载，内存占用，如何发送信号给一个进程
