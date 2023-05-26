@@ -13,13 +13,38 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "code/Golang/TX Interview.md",
+                "file": "code/Go/TX Interview.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "73dd82385690baad",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "code/Go/Golang.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "f612ad36b0acd395",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "code/Database/redis.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "code/Golang/TX Interview.md",
+                "file": "code/Go/Golang.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "code/Golang/TX Interview.md",
+                "file": "code/Go/Golang.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "code/Golang/TX Interview.md"
+                "file": "code/Go/Golang.md"
               }
             }
           }
@@ -145,24 +170,25 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "d09a0663ab656c77",
+  "active": "73dd82385690baad",
   "lastOpenFiles": [
-    "code/Golang/GPM.md",
-    "code/Golang/TX Interview.md",
-    "code/Golang/Interview questions.md",
-    "code/Golang/GC.md",
-    "code/Golang/内存管理.md",
+    "code/Database/redis.md",
+    "code/Go/Golang.md",
+    "code/Go/TX Interview.md",
+    "code/Network",
+    "code/Go/Interview questions.md",
+    "code/Go/GPM.md",
+    "code/Go/Gin.md",
+    "code/Go/内存管理.md",
+    "code/Go/GC.md",
     "code/Database/mysql.md",
     "static/Goroutine Pool.png",
     "static",
     "static/GMP.png",
-    "code/Database/redis.md",
     "code/Database/MongoDb.md",
-    "code/Golang/Golang.md",
-    "code/Golang/Gin.md",
     "configure/env.md",
     "未命名.canvas",
-    "code/Golang",
+    "code/Go",
     "code/Database",
     "configure/learning.md",
     "configure",
