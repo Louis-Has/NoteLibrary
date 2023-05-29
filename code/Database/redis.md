@@ -28,3 +28,13 @@
 
 10.  缓存击穿
 	1.  永不过期
+
+
+
+
+# Redis分布式锁
+1. 高并发下的超卖问题
+2. 使用 SetNX(key string, value interface{}, expiration time.Duration) 实现分布式锁
+3. 加入 uuid 保证 unlock 的是相应的锁。开个后台线程，延长锁的时间。
+4. [Redsync.go](https://github.com/hjr265/redsync.go)
+5. 
