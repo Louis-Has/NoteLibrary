@@ -1,7 +1,10 @@
 1.  string
-	1.  SET SETNX 不存在则设置
-		1.  setex 设置过期时间 分布式锁常用
-	1.  incr incrby decr decrby
+	1.  Set 
+		1. SetNX 不存在则设置 
+			1. 用来分布式锁
+			2. Del 释放锁
+		2. Setex 设置过期时间 分布式锁常用
+	3.  incr incrby decr decrby
 
 3.  list列表类型
 	1.  1,最新消息排行等功能(比如朋友圈的时间线) 2,消息队列
