@@ -58,8 +58,16 @@
 
 ### Redis分布式锁
 1. 高并发下的超卖问题
-2. [Redsync.go](https://github.com/hjr265/redsync.go)
+2. [redsync/v4](https://github.com/go-redsync/redsync)
 	1. 使用 SetNX(key string, value interface{}, expiration time.Duration) 实现分布式锁
 	2. 加入 random(uuid) 保证 unlock 的是相应的锁。
 	3. 开个后台线程，延长锁的时间。
 	4. 使用 lua 脚本保证原子性 
+	5. Redlock 算法
+		1. tfinal=texpect−tdelta
+		2. 从大多数 Redis 节点（即：超过 Quorum>=N2+1 台）成功获取到了锁
+		3. 获取锁失败了应该立即向所有 Redis 节点发起释放锁的操作
+
+
+
+1. [# 分布式锁：使用 Redis 实现](https://pandaychen.github.io/2020/06/01/REDIS-DISTRIBUTED-LOCK/)
