@@ -30,11 +30,36 @@
 	1.  永不过期
 
 
+### redis事务
+- 不保证原子性
+- 开启事务(multi) 命令入队 执行事务(exec)  取消事务：discard
 
+### redis持久化
+- rdb方式（redis database）
+	- 先将数据读取到一个临时文件，持久化都结束了，再替换上个版本的持久化文件
+	- 不进行i/o操作
+	- 可能存在数据丢失
+- aof方式(append only file)
+	- 将所有命令都记录下来，恢复的时候再把所有命令都全部执行一遍。
+	- 修复速度慢
+		- aof 默认文件追加，文件会越来越大，如果文件太大，fork一个新的进程进行重写
 
-# Redis分布式锁
+### 三种集群方案
+
+- 主从复制模式
+	- 一个是读写分离，分担 "master" 的读写压力
+	- 一个是方便做容灾恢复
+- Sentinel（哨兵）模式
+	- 主从可以自动切换，系统更健壮，可用性更高
+- Cluster 模式
+	- 所有的 redis 节点彼此互联(PING-PONG机制)，内部使用二进制协议优化传输速度和带宽。
+	- 节点的 fail 是通过集群中超过半数的节点检测失效时才生效。
+	- 客户端与 Redis 节点直连，不需要中间代理层.客户端不需要连接集群所有节点，连接集群中任何一个可用节点即可。
+
+### Redis分布式锁
 1. 高并发下的超卖问题
-2. 使用 SetNX(key string, value interface{}, expiration time.Duration) 实现分布式锁
-3. 加入 uuid 保证 unlock 的是相应的锁。开个后台线程，延长锁的时间。
-4. [Redsync.go](https://github.com/hjr265/redsync.go)
-5. 
+2. [Redsync.go](https://github.com/hjr265/redsync.go)
+	1. 使用 SetNX(key string, value interface{}, expiration time.Duration) 实现分布式锁
+	2. 加入 random(uuid) 保证 unlock 的是相应的锁。
+	3. 开个后台线程，延长锁的时间。
+	4. 使用 lua 脚本保证原子性 
