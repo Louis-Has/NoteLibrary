@@ -1,9 +1,10 @@
 1.  string
 	1.  Set 
-		1. SetNX 不存在则设置 
+		1. 基本格式：\[业务名称]:\[数据名]:\[id]
+		2. SetNX 不存在则设置 
 			1. 用来分布式锁
 			2. Del 释放锁
-		2. Setex 设置过期时间 分布式锁常用
+		3. Setex 设置过期时间 分布式锁常用
 	3.  incr incrby decr decrby
 
 3.  list列表类型
@@ -64,10 +65,13 @@
 	3. 开个后台线程，延长锁的时间。
 	4. 使用 lua 脚本保证原子性 
 	5. Redlock 算法
-		1. tfinal=texpect−tdelta
+		1. tfinal = texpect − tdelta
 		2. 从大多数 Redis 节点（即：超过 Quorum>=N2+1 台）成功获取到了锁
 		3. 获取锁失败了应该立即向所有 Redis 节点发起释放锁的操作
-
+	6. Zookeeper
 
 
 1. [# 分布式锁：使用 Redis 实现](https://pandaychen.github.io/2020/06/01/REDIS-DISTRIBUTED-LOCK/)
+2. [# Golang中的本地锁和分布式锁](https://www.xiaoyeshiyu.com/2022/lock/)
+3. [# Redis学习笔记之实用篇](https://www.xiaoyeshiyu.com/2022/Redis-adv/)
+4. 
