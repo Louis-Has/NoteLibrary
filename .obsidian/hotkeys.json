@@ -106,5 +106,14 @@
       ],
       "key": "H"
     }
+  ],
+  "obsidian-git:list-changed-files": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "L"
+    }
   ]
 }
