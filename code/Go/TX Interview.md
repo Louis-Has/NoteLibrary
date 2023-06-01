@@ -6,13 +6,6 @@ F
 - 每一个goroutine是一个独立的执行单元，**goroutine的栈采取了动态扩容方式， 初始时仅为2KB，随着任务执行按需增长**，**G存储Goroutine的运行堆栈、状态以及任务函数**。
 
 
-
-##### client如何实现长连接
--  TCP协议的`KeepAlive`机制
-- 长：数据库的连接
-- 短：web ajax 请求
-
-
 ##### -   实现消息队列（多生产者，多消费者）
 - main
 	-  ch := make(chan int)
