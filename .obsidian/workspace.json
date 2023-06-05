@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "code/Go/Golang.md",
+                "file": "code/Database/redis.md",
                 "mode": "source",
                 "source": false
               }
@@ -49,14 +49,14 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "code/Go/mods.md",
+                "file": "code/Go/import Mods.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -122,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "code/development/gRPC.md",
+                "file": "code/Go/import Mods.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "code/development/gRPC.md",
+                "file": "code/Go/import Mods.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -162,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "code/development/gRPC.md"
+                "file": "code/Go/import Mods.md"
               }
             }
           }
@@ -182,16 +182,17 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "f612ad36b0acd395",
+  "active": "1c33868fa09aac1d",
   "lastOpenFiles": [
-    "code/Go/Golang.md",
     "code/development/gRPC.md",
-    "code/Go/内存管理.md",
     "code/Database/redis.md",
-    "code/Go/mods.md",
-    "code/development/Backend.md",
+    "code/Go/import Mods.md",
     "code/Go/TX Interview.md",
     "code/Go/Interview questions.md",
+    "configure/learning.md",
+    "code/Go/Golang.md",
+    "code/Go/内存管理.md",
+    "code/development/Backend.md",
     "code/development/Network.md",
     "code/Go/GPM.md",
     "code/Go/Gin.md",
@@ -207,7 +208,6 @@
     "未命名.canvas",
     "code/Go",
     "code/Database",
-    "configure/learning.md",
     "configure",
     "configure/Mac.md",
     "code",

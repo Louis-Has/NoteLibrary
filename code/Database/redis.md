@@ -94,3 +94,4 @@
 1. [# 分布式锁：使用 Redis 实现](https://pandaychen.github.io/2020/06/01/REDIS-DISTRIBUTED-LOCK/)
 2. [# Golang中的本地锁和分布式锁](https://www.xiaoyeshiyu.com/2022/lock/)
 3. [# Redis学习笔记之实用篇](https://www.xiaoyeshiyu.com/2022/Redis-adv/)
+4. [# Redis基本数据类型代码示例](https://www.cnblogs.com/jiujuan/p/17215125.html)
