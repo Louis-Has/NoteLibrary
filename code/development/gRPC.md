@@ -9,4 +9,3 @@ brew install grpc protobuf protoc-gen-go protoc-gen-go-grpc
 ```bash
 go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 ```
-
