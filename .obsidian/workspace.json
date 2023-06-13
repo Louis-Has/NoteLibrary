@@ -56,7 +56,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -122,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "code/development/Backend.md",
+                "file": "code/Go/go-zero.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "code/development/Backend.md",
+                "file": "code/Go/go-zero.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -162,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "code/development/Backend.md"
+                "file": "code/Go/go-zero.md"
               }
             }
           }
@@ -182,12 +182,12 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "1c33868fa09aac1d",
+  "active": "f612ad36b0acd395",
   "lastOpenFiles": [
-    "code/Go/go-zero.md",
-    "code/development/gRPC.md",
     "code/development/Backend.md",
     "code/development/Network.md",
+    "code/Go/go-zero.md",
+    "code/development/gRPC.md",
     "code/Go/Gin & Gorm.md",
     "code/Go/import Mods.md",
     "code/Database/redis.md",
