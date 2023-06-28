@@ -2,6 +2,14 @@
 
 ### Cron
 
+### Time, Ticker
+[golang 定時器(一) Time, Ticker 基本用法整理](https://davidleitw.github.io/posts/time01/)
+
+### time/rate
+[Golang 标准库限流器 time/rate 实现剖析](https://www.cyhone.com/articles/analisys-of-golang-rate/)
+
+### redsync
+
 ### zap
 
 ```bash
@@ -47,3 +55,6 @@ go get github.com/spf13/viper
 - viper.ReadInConfig()
 - viper.Unmarshal(&config)
 	- viper.Get("app_name")
+	- 
+
+[Go 每日一库之 viper](https://darjun.github.io/2020/01/18/godailylib/viper/)

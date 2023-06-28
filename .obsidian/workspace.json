@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "code/Go/TX Interview.md",
+                "file": "code/Go/import Mods.md",
                 "mode": "source",
                 "source": false
               }
@@ -55,8 +55,7 @@
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -122,7 +121,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "code/Go/go-zero.md",
+                "file": "code/Go/import Mods.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +138,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "code/Go/go-zero.md",
+                "file": "code/Go/import Mods.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -162,7 +161,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "code/Go/go-zero.md"
+                "file": "code/Go/import Mods.md"
               }
             }
           }
@@ -182,17 +181,17 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "f612ad36b0acd395",
+  "active": "d09a0663ab656c77",
   "lastOpenFiles": [
+    "code/Go/TX Interview.md",
     "code/development/Backend.md",
-    "code/development/Network.md",
     "code/Go/go-zero.md",
+    "code/Go/Interview questions.md",
+    "code/Go/import Mods.md",
+    "code/development/Network.md",
     "code/development/gRPC.md",
     "code/Go/Gin & Gorm.md",
-    "code/Go/import Mods.md",
     "code/Database/redis.md",
-    "code/Go/TX Interview.md",
-    "code/Go/Interview questions.md",
     "configure/learning.md",
     "code/Go/Golang.md",
     "code/Go/内存管理.md",
