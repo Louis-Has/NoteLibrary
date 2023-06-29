@@ -45,7 +45,6 @@ go get gopkg.in/natefinch/lumberjack.v2
 2. [在Go语言项目中使用Zap日志库](https://www.liwenzhou.com/posts/Go/zap/#autoid-1-2-1)
 
 
-
 ### viper
 
 ```bash
@@ -55,6 +54,5 @@ go get github.com/spf13/viper
 - viper.ReadInConfig()
 - viper.Unmarshal(&config)
 	- viper.Get("app_name")
-	- 
 
 [Go 每日一库之 viper](https://darjun.github.io/2020/01/18/godailylib/viper/)
