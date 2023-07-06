@@ -43,10 +43,25 @@
 ### 实现set
 - set := make(map[string]void)
 
+### fmt.Printf 的 格式化占位符
+
+1. `%v`：通用的格式化占位符，根据值的类型选择合适的默认格式。
+2. `%+v`：输出结构体各成员的**名称**和**值**；
+3. `%#v`：输出结构体名称和结构体各成员的名称和值
+4. `%s`：字符串。
+5. `%t`：布尔值，打印 `true` 或 `false`。
+6. `%T`：于打印值的类型信息
+
 ### go struct能不能比较
--  可比较：_Integer_，_Floating-point_，_String_，_Boolean_，_Complex(复数型)_，_Pointer_，_Channel_，_Interface_，_Array_
--  不可比较：_Slice_，_Map_，_Function_
-- 所以 struct 当结构不包含不可直接比较成员变量时可直接比较，否则不可直接比较
+
+在 Go 语言中，结构体是可比较的，前提是结构体的字段都是可比较的类型。
+
+可比较的类型包括基本类型（如整数、浮点数、布尔值等）、字符串、指针、数组、切片和结构体。如果**结构体的所有字段都是可比较的类型**，并且**字段的类型和顺序在两个结构体中完全相同**，并且**对应字段的值也相等**，那么这两个结构体就是**可比较且相等**的。
+
+需要注意的是，如果**结构体中包含不可比较的类型，如切片、映射或函数等**，或者结构体中包含指针类型的字段，那么比较操作**将会引发编译错误**。如果需要深度比较结构体，可以使用其他库或自定义函数来实现。
+
+综上所述，结构体是可比较的，但需要注意字段类型的可比较性和字段值的相等性。
+
 - reflect.DeepEqual 函数用来判断两个值是否深度一致
 
 ### go defer（for defer）
@@ -86,3 +101,36 @@
     
 
 总之，结构体字段的tag为开发者提供了一种扩展和附加元数据的机制，可以在运行时通过反射读取和解析这些tag，用于实现各种功能和处理逻辑。
+
+### 如何获取一个结构体的所有tag
+
+```go
+type User struct {
+	ID   int    `json:"id"`
+	Name string `json:"name"`
+	Age  int    `json:"age"`
+}
+
+func main() {
+	user := User{
+		ID:   1,
+		Name: "John Doe",
+		Age:  30,
+	}
+
+	// 获取结构体类型
+	userType := reflect.TypeOf(user)
+
+	// 遍历结构体的字段
+	for i := 0; i < userType.NumField(); i++ {
+		field := userType.Field(i)
+
+		// 获取字段的tag
+		tag := field.Tag
+
+		// 打印字段名和对应的tag值
+		fmt.Printf("Field: %s, Tag: %s\n", field.Name, tag)
+	}
+}
+
+```
