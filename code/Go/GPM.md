@@ -35,6 +35,7 @@
 
 实现了一个高性能的Goroutine Pool，较好地**解决了上述的大规模调度和资源占用的问题**，在执行速度和内存占用方面相较于原生goroutine并发占有明显的优势，尤其是内存占用，因为复用，所以规避了无脑启动大规模goroutine的弊端，可以**节省大量的内存**。
 
-参考文章：
+### 参考文章：
 1. [GM到GMP，Golang经历了什么？](https://learnku.com/articles/57177)
 2. [讲解Go中如何实现一个协程池](https://toutiao.io/posts/e48co5x/preview)
+3. [Golang的协程调度器原理及GMP设计思想](https://www.yuque.com/aceld/golang/srxd6d)

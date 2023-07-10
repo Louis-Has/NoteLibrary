@@ -44,31 +44,19 @@
             }
           },
           {
-            "id": "c10880e3ec9a478e",
+            "id": "9cc9c2d71186f797",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "code/Go/TX Interview.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "1c33868fa09aac1d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "code/Go/内存管理.md",
+                "file": "code/development/Backend.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -134,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "code/Go/Golang.md",
+                "file": "code/development/Backend.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -151,7 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "code/Go/Golang.md",
+                "file": "code/development/Backend.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -174,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "code/Go/Golang.md"
+                "file": "code/development/Backend.md"
               }
             }
           }
@@ -194,37 +182,38 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "f612ad36b0acd395",
+  "active": "9cc9c2d71186f797",
   "lastOpenFiles": [
-    "code/Go/TX Interview.md",
-    "code/Go/Interview questions.md",
+    "code/development/gRPC.md",
+    "code/Go/GPM.md",
     "code/Go/Golang.md",
+    "code/Go/垃圾回收.md",
     "code/Go/内存管理.md",
-    "code/Go/go-zero.md",
-    "code/Go/import Mods.md",
-    "code/Go/Gin & Gorm.md",
-    "code/Go/GC.md",
+    "code/development/Sort排序.md",
+    "code/Go/TX Interview.md",
+    "code/Database/mysql.md",
+    "README.md",
+    "().md",
+    "configure/Mac.md",
+    "configure/env.md",
+    "configure/learning.md",
     "code/development/Backend.md",
+    "code/Go/import Mods.md",
+    "code/Go/Interview questions.md",
+    "code/Go/go-zero.md",
+    "code/Go/Gin & Gorm.md",
     "code/Database/redis.md",
     "code/development/Network.md",
-    "code/development/gRPC.md",
-    "configure/learning.md",
-    "code/Go/GPM.md",
     "code/development",
     "code/Network",
-    "code/Database/mysql.md",
     "static/Goroutine Pool.png",
     "static",
     "static/GMP.png",
     "code/Database/MongoDb.md",
-    "configure/env.md",
     "未命名.canvas",
     "code/Go",
     "code/Database",
     "configure",
-    "configure/Mac.md",
-    "code",
-    "README.md",
-    "().md"
+    "code"
   ]
 }
