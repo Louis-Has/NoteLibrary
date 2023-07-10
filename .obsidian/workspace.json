@@ -49,7 +49,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "code/development/Backend.md",
+                "file": "code/Go/垃圾回收.md",
                 "mode": "source",
                 "source": false
               }
@@ -184,12 +184,12 @@
   },
   "active": "f612ad36b0acd395",
   "lastOpenFiles": [
+    "code/Go/垃圾回收.md",
+    "code/Go/内存管理.md",
     "code/development/Backend.md",
     "code/Go/Golang.md",
     "code/development/gRPC.md",
     "code/Go/GPM.md",
-    "code/Go/垃圾回收.md",
-    "code/Go/内存管理.md",
     "code/development/Sort排序.md",
     "code/Go/TX Interview.md",
     "code/Database/mysql.md",
