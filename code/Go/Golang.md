@@ -130,6 +130,58 @@ P 层的存在是为了**解决 M-N 模型中的线程切换和调度问题**。
 
 总之，避免竞态条件的关键是确保对共享资源的访问是同步和互斥的。通过合适的锁、原子操作、通道通信和同步机制，可以保证程序的正确性和可靠性，避免竞态条件带来的问题。
 
+
+### channel 死锁的场景
+
+在Go中，死锁通常发生在以下场景：
+
+1. 单向通道的双向使用
+2. 无缓冲通道的阻塞
+3. 缓冲通道的填满与清空
+4. 向已关闭的通道发送数据
+
+这些场景中，如果发生了死锁，程序将被永久阻塞，无法继续执行。为了避免死锁，需要仔细设计和管理goroutine之间的通信和同步操作，确保发送和接收操作能够匹配，以及通道的缓冲区大小适当设置。同时，使用`select`语句可以避免阻塞和死锁情况的发生，通过在多个通道上进行非阻塞的发送和接收操作，选择可用的通道进行通信。
+
+### atomic 使用
+
+[Go语言的原子操作atomic](https://www.programminghunter.com/article/37392193442/)
+
+在Go语言中，`atomic`包提供了一组函数用于对基本类型进行原子操作。这些原子操作函数能够确保操作的原子性，避免竞态条件和数据不一致问题。以下是一些常用的`atomic`包函数及其用法：
+
+1. `atomic.LoadInt32` 和 `atomic.LoadInt64`：用于原子地加载（读取）一个32位或64位整数值。
+
+```go
+value := atomic.LoadInt32(&num)
+```
+
+2. `atomic.StoreInt32` 和 `atomic.StoreInt64`：用于原子地存储（写入）一个32位或64位整数值。
+
+```go
+atomic.StoreInt32(&num, value)
+```
+
+3. `atomic.AddInt32` 和 `atomic.AddInt64`：用于原子地对一个32位或64位整数值进行加法操作。
+
+```go
+atomic.AddInt32(&num, 1)
+```
+
+4. `atomic.CompareAndSwapInt32` 和 `atomic.CompareAndSwapInt64`：用于原子地比较并交换一个32位或64位整数值。
+
+```go
+old := atomic.LoadInt32(&num)
+new := 100
+if atomic.CompareAndSwapInt32(&num, old, new) {
+    // 操作成功
+} else {
+    // 操作失败
+}
+```
+
+除了上述函数，`atomic`包还提供了其他原子操作函数，如递增和递减操作（`atomic.AddInt32`、`atomic.AddInt64`）、位操作（`atomic.LoadUint32`、`atomic.StoreUint32`）等。使用这些原子操作函数时，需要注意在多个goroutine之间正确同步和协调访问共享资源。
+
+需要注意的是，`atomic`包只能用于基本类型的原子操作，对于复杂的数据结构，需要使用其他的同步机制，如互斥锁（`sync.Mutex`）或读写锁（`sync.RWMutex`）来保证线程安全性。
+
 ### panic（使用多值返回来返回错误
 1. 函数立刻停止执行 (注意是函数本身，不是应用程序停止)
 2. defer函数被执行
