@@ -28,6 +28,14 @@
 
 总结来说，阿里云容器服务是一种容器化应用管理服务，而 Go-Zero 是一种微服务框架，您可以在阿里云容器服务上部署和管理使用 Go-Zero 开发的微服务应用。
 
+### etcd怎么搭建的，具体怎么用的
+
+### 熔断怎么做的
+
+### 服务降级怎么搞
+
+
+
 
 1. [go-zero微服务实战系列（四、CRUD热热身）](https://www.cnblogs.com/kevinwan/p/16380728.html)
 2. [goctl template 模板定制化](https://go-zero.dev/docs/tutorials/customization/template)

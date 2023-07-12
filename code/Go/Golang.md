@@ -25,6 +25,7 @@ Go 语言虽然没有像其他一些面向对象编程语言那样提供传统�
 总的来说，Go 语言的面向对象编程风格通过结构体、方法和接口等机制来实现。虽然与传统的面向对象编程语言有所不同，但它依然提供了一种灵活、简洁和高效的方式来组织和管理代码。
 
 ### GO Error
+
 - [Golang 中的错误处理](https://pandaychen.github.io/2022/05/30/HOW-TO-DEAL-WITH-GOLANG-ERRORS/)
 - [Golang error 的突围](https://www.cnblogs.com/qcrao-2018/p/11538387.html)
 
