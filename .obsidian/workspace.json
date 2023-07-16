@@ -44,12 +44,12 @@
             }
           },
           {
-            "id": "9cc9c2d71186f797",
+            "id": "d363d204ab33d34f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "code/development/etcd.md",
+                "file": "code/development/Nginx.md",
                 "mode": "source",
                 "source": false
               }
@@ -122,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "code/development/etcd.md",
+                "file": "code/development/Nginx.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "code/development/etcd.md",
+                "file": "code/development/Nginx.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -162,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "code/development/etcd.md"
+                "file": "code/development/Nginx.md"
               }
             }
           }
@@ -182,17 +182,19 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "9cc9c2d71186f797",
+  "active": "d363d204ab33d34f",
   "lastOpenFiles": [
-    "code/Go/go-zero.md",
+    "code/development/Sort.md",
+    "code/development/Nginx.md",
+    "code/development/Algorithm.md",
     "code/development/etcd.md",
+    "code/Go/go-zero.md",
     "code/Go/Golang.md",
     "code/development/Backend.md",
     "code/development/gRPC.md",
     "code/Go/垃圾回收.md",
     "code/Go/内存管理.md",
     "code/Go/GPM.md",
-    "code/development/Sort排序.md",
     "code/Go/TX Interview.md",
     "code/Database/mysql.md",
     "README.md",
