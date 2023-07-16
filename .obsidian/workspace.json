@@ -32,6 +32,18 @@
             }
           },
           {
+            "id": "d363d204ab33d34f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "code/development/mq.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
             "id": "f612ad36b0acd395",
             "type": "leaf",
             "state": {
@@ -44,19 +56,19 @@
             }
           },
           {
-            "id": "d363d204ab33d34f",
+            "id": "9b5e8b9b5b8d30ef",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "code/development/Nginx.md",
+                "file": "code/Go/Golang.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -122,7 +134,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "code/development/Nginx.md",
+                "file": "code/Go/Golang.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +151,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "code/development/Nginx.md",
+                "file": "code/Go/Golang.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -162,7 +174,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "code/development/Nginx.md"
+                "file": "code/Go/Golang.md"
               }
             }
           }
@@ -182,16 +194,17 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "d363d204ab33d34f",
+  "active": "9b5e8b9b5b8d30ef",
   "lastOpenFiles": [
-    "code/development/Sort.md",
-    "code/development/Nginx.md",
-    "code/development/Algorithm.md",
-    "code/development/etcd.md",
-    "code/Go/go-zero.md",
+    "code/development/mq.md",
     "code/Go/Golang.md",
     "code/development/Backend.md",
     "code/development/gRPC.md",
+    "code/development/Nginx.md",
+    "code/Go/go-zero.md",
+    "code/development/Sort.md",
+    "code/development/Algorithm.md",
+    "code/development/etcd.md",
     "code/Go/垃圾回收.md",
     "code/Go/内存管理.md",
     "code/Go/GPM.md",

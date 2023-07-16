@@ -143,6 +143,59 @@ P 层的存在是为了**解决 M-N 模型中的线程切换和调度问题**。
 
 这些场景中，如果发生了死锁，程序将被永久阻塞，无法继续执行。为了避免死锁，需要仔细设计和管理goroutine之间的通信和同步操作，确保发送和接收操作能够匹配，以及通道的缓冲区大小适当设置。同时，使用`select`语句可以避免阻塞和死锁情况的发生，通过在多个通道上进行非阻塞的发送和接收操作，选择可用的通道进行通信。
 
+### 设计一个阻塞队列
+
+在Go语言中，可以使用内置的`channel`类型来设计一个阻塞队列。`channel`本身就具有阻塞和同步的特性，非常适合实现这样的队列。以下是一个简单的阻塞队列实现示例：
+
+```go
+package main
+
+import "fmt"
+
+type BlockingQueue struct {
+    queue chan interface{}
+}
+
+func NewBlockingQueue(capacity int) *BlockingQueue {
+    return &BlockingQueue{
+        queue: make(chan interface{}, capacity),
+    }
+}
+
+func (q *BlockingQueue) Enqueue(item interface{}) {
+    q.queue <- item
+}
+
+func (q *BlockingQueue) Dequeue() interface{} {
+    return <-q.queue
+}
+
+func main() {
+    // 创建容量为3的阻塞队列
+    queue := NewBlockingQueue(3)
+
+    // 启动一个消费者协程
+    go func() {
+        for {
+            item := queue.Dequeue()
+            fmt.Println("消费:", item)
+        }
+    }()
+
+    // 生产一些数据并入队
+    for i := 1; i <= 5; i++ {
+        fmt.Println("生产:", i)
+        queue.Enqueue(i)
+    }
+}
+```
+
+在这个例子中，`BlockingQueue`结构体包含一个带有指定容量的`channel`。`Enqueue`方法将元素放入`channel`中，如果`channel`已满，将会阻塞直到有空间可用。`Dequeue`方法从`channel`中取出元素，如果`channel`为空，将会阻塞直到有新的元素可用。
+
+在`main`函数中，我们创建了一个容量为3的阻塞队列，并启动一个消费者协程来消费队列中的元素。然后，我们通过调用`Enqueue`方法向队列中生产一些数据。由于队列的容量是3，其中2个元素会立即被消费，而后续的元素将会阻塞直到有空间可用。
+
+请注意，这只是一个简单的阻塞队列实现示例，实际情况可能需要更多的方法和逻辑来满足具体需求。
+
 ### atomic 使用
 
 [Go语言的原子操作atomic](https://www.programminghunter.com/article/37392193442/)
