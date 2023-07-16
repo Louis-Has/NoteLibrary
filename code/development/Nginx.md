@@ -420,7 +420,37 @@ http {
 
 ###  7-4 Nginx常见的负载均衡策略解析-上
 
+Nginx支持多种负载均衡策略，可以根据实际需求选择适合的策略。下面是常见的Nginx负载均衡策略的解析：
 
+1. 轮询（Round Robin）负载均衡：
+    
+    - 默认的负载均衡策略，按照后端服务器的顺序逐个分配请求。
+    - 当后端服务器的处理能力相近时，轮询是一种简单且公平的负载均衡策略。
+2. 加权轮询（Weighted Round Robin）负载均衡：
+    
+    - 可以为每个后端服务器分配一个权重，根据权重比例分配请求。
+    - 权重高的后端服务器将接收到更多的请求负载。
+    - 可以根据服务器的性能和处理能力分配不同的权重，以实现负载均衡的调优。
+3. IP哈希（IP Hash）负载均衡：
+    
+    - 根据客户端IP地址的哈希值将请求转发到后端服务器。
+    - 相同IP地址的客户端将被定向到同一台后端服务器。
+    - 适用于需要保持会话状态的应用，确保同一客户端的请求都发送到同一台服务器，以避免会话丢失。
+4. 最少连接（Least Connections）负载均衡：
+    
+    - 将请求发送到当前连接数最少的后端服务器。
+    - 适用于后端服务器的处理能力不均衡的情况，能够更加智能地分配请求负载。
+    - 可能需要实时地跟踪每个后端服务器的连接数。
+5. 随机（Random）负载均衡：
+    
+    - 随机选择一个后端服务器来处理请求。
+    - 是一种简单的负载均衡策略，但无法保证后端服务器的负载均衡性。
+6. URL哈希（URL Hash）负载均衡：
+    
+    - 根据请求的URL进行哈希计算，将相同URL的请求发送到同一台后端服务器。
+    - 适用于特定URL请求需要精确的会话保持或缓存的情况。
+
+这些是常见的Nginx负载均衡策略。根据实际需求，可以根据后端服务器的性能、负载情况、应用类型和会话保持等因素选择合适的负载均衡策略。在配置负载均衡时，可以结合使用多个负载均衡策略，以满足不同的需求。
 
 ###  7-5 Nginx常见的负载均衡策略解析-下
 
@@ -428,27 +458,396 @@ http {
 
 ###  7-6 高级篇幅-Nginx后端节点可用性探测和配置实操
 
+在Nginx中，可以使用可用性探测（Health Checks）来检测后端节点的可用性，并根据节点的状态进行负载均衡配置。下面是关于Nginx后端节点可用性探测和配置的实操步骤：
 
+1. 配置可用性探测：
+    
+    - 在`http`块中，定义一个名为`upstream`的后端服务器组，指定各个后端服务器的IP地址和端口。
+    - 使用`health_check`指令来启用可用性探测，并配置相关参数。例如：
+        
+ ```nginx
+ http {
+  upstream backend {
+    server backend1.example.com:8080;
+    server backend2.example.com:8080;
+    health_check interval=5s;
+  }
+}
+```
+        
+2. 配置负载均衡：
+    
+    - 在`server`块中，配置请求的转发规则，并指定后端服务器组。例如：
+        
+```nginx
+server {
+  location / {
+    proxy_pass http://backend;
+  }
+}
+```
+        
+3. 保存并重新加载配置：
+    
+    - 保存配置文件，并使用以下命令重新加载Nginx配置：
+        
+        ```bash
+sudo service nginx reload
+        ```
+        
+4. 检查后端节点状态：
+    
+    - 使用Nginx状态页面或日志文件，检查后端节点的状态。可以通过访问`http://<Nginx服务器IP>/nginx_status`来查看Nginx状态页面，或者查看Nginx的错误日志文件。
+5. 根据节点状态配置负载均衡策略：
+    
+    - 根据节点的状态进行负载均衡配置，可以使用以下指令：
+        - `upstream`块中的`max_fails`指令：设置节点在失败多少次后被标记为不可用，默认为1。
+        - `upstream`块中的`fail_timeout`指令：设置节点的失效超时时间，默认为10秒。
+        - `upstream`块中的`backup`指令：标记节点为备份节点，只有在其他节点不可用时才会被使用。
+        - `server`块中的`weight`指令：设置节点的权重，用于调整节点之间的负载均衡比例。
+6. 监控节点状态和日志：
+    
+    - 定期检查后端节点的状态和日志，确保节点正常工作，并根据需要调整可用性探测和负载均衡配置。
+
+通过上述步骤，您可以在Nginx中配置后端节点的可用性探测，并根据节点的状态进行负载均衡配置，以确保只有可用的节点接收到请求，并实现高可用性和性能的负载均衡。
 
 ###  8-1 Nginx-全局异常兜底数据返回
 
+在Nginx中，可以使用全局异常处理（Fallback）来定义一个默认的数据返回，以处理未能匹配到任何其他请求的情况。这样，当出现异常或没有匹配到有效的请求时，Nginx将返回预定义的响应数据。下面是一个示例配置：
 
+```nginx
+http {
+  server {
+    listen 80;
+    
+    # 其他配置...
+    
+    location / {
+      # 主要请求处理逻辑
+      # ...
+    }
+    
+    location /fallback {
+      return 200 "Fallback response";
+    }
+    
+    error_page 404 /fallback;
+    error_page 500 /fallback;
+    error_page 502 /fallback;
+    
+    # 其他错误页配置...
+  }
+}
+```
+
+在上述配置中，我们定义了一个名为`/fallback`的location，它返回了一个状态码为200的响应，内容为"Fallback response"。接下来，我们使用`error_page`指令将特定的错误码（如404、500、502等）映射到`/fallback`，这样当出现这些错误时，Nginx会返回预定义的响应数据。
+
+您可以根据实际需求，自定义`/fallback`的处理逻辑和返回数据。例如，您可以返回一个自定义的HTML页面、JSON数据或重定向到其他URL等。
+
+此外，您还可以为不同的错误码配置不同的`error_page`指令，以提供特定的异常处理。例如：
+
+```nginx
+error_page 404 /404.html;
+error_page 500 /500.html;
+error_page 502 /502.html;
+```
+
+在上述配置中，分别将404错误映射到`/404.html`页面，500错误映射到`/500.html`页面，502错误映射到`/502.html`页面。
+
+通过使用全局异常处理，您可以为Nginx配置一个兜底的数据返回，以处理未能匹配到其他请求或出现异常的情况，提供更好的用户体验和异常处理机制。
 
 ###  8-2 网络安全-Nginx封禁恶意IP
 
+要在Nginx中封禁恶意IP，可以使用以下方法：
 
+1. 使用Nginx的`deny`指令：
+    
+    - 在Nginx的配置文件中，使用`deny`指令来封禁特定IP地址或IP地址段。
+    - 示例：
+        
+```nginx
+http {
+  # 其他配置...
+  
+  location / {
+    deny 192.168.0.1;
+    deny 10.0.0.0/24;
+    # 其他配置...
+  }
+}
+```
+        
+        在上述示例中，`deny`指令用于封禁IP地址`192.168.0.1`和IP地址段`10.0.0.0/24`。
+2. 使用Nginx的`geo`模块：
+    
+    - `geo`模块允许根据IP地址或其他条件进行匹配，并在Nginx配置中使用。
+    - 示例：
+        
+```nginx
+http {
+  geo $blocked_ip {
+    default 0;
+    192.168.0.1/32 1;
+    10.0.0.0/24 1;
+  }
+  
+  server {
+    # 其他配置...
+    
+    location / {
+      if ($blocked_ip) {
+        return 403;
+      }
+      # 其他配置...
+    }
+  }
+}
+```
+        
+        在上述示例中，定义了一个名为`$blocked_ip`的变量，根据IP地址或IP地址段进行匹配，并将其值设置为1。在`location`块中，使用`if`条件判断，如果`$blocked_ip`的值为1，则返回403错误。
+3. 使用Nginx的`ngx_http_limit_req_module`模块：
+    
+    - `ngx_http_limit_req_module`模块可以用于限制请求的速率和频率，并根据需要进行IP封禁。
+    - 示例：
+        
+```nginx
+http {
+  limit_req_zone $binary_remote_addr zone=ip_limit:10m rate=10r/s;
+  
+  server {
+    # 其他配置...
+    
+    location / {
+      limit_req zone=ip_limit burst=20 nodelay;
+      # 其他配置...
+    }
+  }
+}
+```
+        
+        在上述示例中，通过`limit_req_zone`指令设置了一个名为`ip_limit`的请求限制区域，并使用`limit_req`指令来限制请求的速率。如果某个IP地址超过限制，可以进一步配置相关操作，如返回错误码、记录日志或重定向到其他页面。
+
+无论使用哪种方法，都应谨慎使用IP封禁，确保仅封禁确实恶意的IP地址，并定期审查和更新封禁列表。同时，建议在防火墙层面也进行相应的IP封禁，以提供额外的安全保护。
 
 ###  8-3 跨域案例-Nginx如何配置浏览器跨域
 
+要配置Nginx以解决浏览器跨域问题，可以使用Nginx的`add_header`指令来添加必要的响应头信息。下面是一些常见的Nginx配置示例来处理跨域请求：
+
+1. 添加单个跨域头：
+    
+    - 如果只需要添加一个特定的跨域头，例如`Access-Control-Allow-Origin`，可以使用以下配置：
+        
+```nginx
+location / {
+  add_header Access-Control-Allow-Origin example.com;
+  # 其他配置...
+}
+```
+        
+2. 添加多个跨域头：
+    
+    - 如果需要添加多个跨域头，例如`Access-Control-Allow-Origin`、`Access-Control-Allow-Methods`、`Access-Control-Allow-Headers`等，可以使用以下配置：
+        
+```nginx
+location / {
+  add_header Access-Control-Allow-Origin example.com;
+  add_header Access-Control-Allow-Methods "GET, POST, OPTIONS";
+  add_header Access-Control-Allow-Headers "Content-Type";
+  # 其他配置...
+}
+```
+        
+3. 配置通用跨域头：
+    
+    - 如果要为所有请求添加通用的跨域头，可以在`http`块中使用`add_header`指令：
+        
+```nginx
+http {
+  add_header Access-Control-Allow-Origin example.com;
+  add_header Access-Control-Allow-Methods "GET, POST, OPTIONS";
+  add_header Access-Control-Allow-Headers "Content-Type";
+  
+  server {
+    # 其他配置...
+  }
+}
+```
+        
+
+在以上配置中，`Access-Control-Allow-Origin`指定了允许跨域访问的域名，可以设置为`*`以允许所有域名访问。`Access-Control-Allow-Methods`指定了允许的请求方法，`Access-Control-Allow-Headers`指定了允许的请求头。根据需求，可以根据需要添加其他跨域相关的头信息。
+
+通过配置Nginx添加适当的跨域头，可以使浏览器能够正确处理跨域请求，并实现跨域资源共享。
+
+###  8-4 路径匹配-Nginx的location规则应用
+
+Nginx中的`location`指令用于匹配请求的URL路径，并定义请求的处理规则。`location`规则的应用非常灵活，可以用于处理不同类型的请求和URL路径。以下是一些常见的`location`规则应用示例：
+
+1. 精确匹配：
+    
+    - `=`表示精确匹配，只有当请求的URL路径与指定的路径完全一致时，才会应用该规则。
+        
+```nginx
+location = /path {
+  # 处理具体的/path请求
+  # ...
+}
+```
+        
+2. 前缀匹配：
+    
+    - `^~`表示前缀匹配，当请求的URL路径以指定路径开头时，将应用该规则，优先于正则匹配。
+        
+```nginx
+location ^~ /static {
+  # 处理以/static开头的请求
+  # ...
+}
+```
+        
+3. 正则匹配：
+
+    - 使用正则表达式进行匹配，当请求的URL路径与正则表达式匹配时，将应用该规则。
+        
+```nginx
+location ~ /user/(\d+) {
+  # 处理形如/user/{数字}的请求
+  # 使用捕获组提取数字
+  # ...
+}
+```
+
+在Nginx的`location`指令中，`~`用于表示使用正则表达式进行匹配。具体而言，`~`表示区分大小写的正则匹配，而`~*`表示不区分大小写的正则匹配。以下是对它们的解释和示例：
+
+`~`：区分大小写的正则匹配
+
+- 当使用`~`进行匹配时，Nginx将使用区分大小写的正则表达式来匹配请求的URL路径。
+- 示例：
+
+```nginx
+location ~ /articles/[0-9]+ {
+  # 处理形如/articles/{数字}的请求
+  # ...
+}
+```
 
 
-###  8-4 路径匹配-Nginx的locatioin规则应用
+`~*`：不区分大小写的正则匹配
 
+- 当使用`~*`进行匹配时，Nginx将使用不区分大小写的正则表达式来匹配请求的URL路径。
+- 示例：
 
+```nginx
+location ~* \.(jpg|png|gif)$ {
+  # 处理以.jpg、.png或.gif结尾的请求
+  # ...
+}
+```
+
+4. 最长前缀匹配：
+    
+    - 按照配置文件中定义的顺序，使用最长前缀匹配规则，即匹配路径最长的规则将被应用。
+        
+```nginx
+location / {
+  # 处理根路径的请求
+  # ...
+}
+
+location /path {
+  # 处理/path开头的请求
+  # ...
+}
+
+location /path/subpath {
+  # 处理/path/subpath开头的请求
+  # ...
+}
+```
+        
+5. 正则匹配优先级：
+    
+    - 当有多个正则匹配规则时，使用正则表达式的优先级进行匹配。先定义的规则将具有更高的优先级。
+        
+```nginx
+location ~ \.php$ {
+  # 处理以.php结尾的请求
+  # ...
+}
+
+location ~ ^/admin/ {
+  # 处理以/admin/开头的请求
+  # ...
+}
+```
+        
+6. 通用规则：
+    
+    - 可以使用通用的`location`块来处理不满足其他规则的请求。
+        
+```nginx
+location / {
+  # 处理其他请求
+  # ...
+}
+```
+        
+
+通过合理配置`location`规则，可以根据请求的URL路径和类型，将请求分发到不同的处理逻辑和后端服务器。这样可以实现灵活的请求处理和URL路由，满足不同的业务需求。
 
 ###  8-5 地址重定向-Nginx的rewrite规则应用
 
+在Nginx中，`rewrite`指令用于根据匹配的条件对请求的URL进行重写。它允许您**修改请求的URL路径或执行重定向**。以下是一些常见的`rewrite`规则应用示例：
 
+1. 简单的URL重写：
+    
+    - 将指定的URL路径重写为另一个URL路径。
+    - 示例：
+        
+```nginx
+location /old/path {
+  rewrite ^/old/path$ /new/path last;
+}
+```
+        
+        在上述示例中，当请求的URL路径为`/old/path`时，将其重写为`/new/path`。
+2. 重定向：
+    
+    - 将请求重定向到其他URL，可以是永久重定向（301）或临时重定向（302）。
+    - 示例：
+        
+```nginx
+location /old-url {
+  rewrite ^/old-url$ http://example.com/new-url permanent;
+}
+```
+        
+        在上述示例中，当请求的URL路径为`/old-url`时，将其永久重定向到`http://example.com/new-url`。
+3. 使用正则表达式进行URL重写：
+    
+    - 使用正则表达式匹配URL，并根据匹配的结果重写URL。
+    - 示例：
+        
+```nginx
+location /articles {
+  rewrite ^/articles/([0-9]+)$ /article?id=$1 last;
+}
+```
+        
+        在上述示例中，当请求的URL路径为`/articles/{数字}`时，将其重写为`/article?id={数字}`。
+4. 重写标记（flag）：
+    
+    - 可以使用`last`、`break`、`redirect`等标记来控制重写规则的行为。
+    - 示例：
+        
+```nginx
+location /old-path {
+  rewrite ^/old-path$ /new-path last;
+}
+```
+        
+        在上述示例中，使用`last`标记表示当前规则是最后一个重写规则，并停止进一步的重写匹配。
+
+通过合理配置`rewrite`规则，可以根据请求的URL路径和匹配条件，修改URL或执行重定向。这样可以实现URL重写、重定向以及其他自定义的URL处理需求。请注意，重写规则的顺序很重要，确保匹配最精确的规则在前面，以避免重写冲突和错误的匹配。
 
 ###  8-6 实时通信-Nginx配置Websocket反向代理
 
