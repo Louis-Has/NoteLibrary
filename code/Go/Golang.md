@@ -1,5 +1,238 @@
 str,_ := username.(string) 类型断言
 
+# Function
+
+
+### 实现set
+
+- set := make(map[string]void)
+
+
+### 设计一个阻塞队列
+
+在Go语言中，可以使用内置的`channel`类型来设计一个阻塞队列。`channel`本身就具有阻塞和同步的特性，非常适合实现这样的队列。以下是一个简单的阻塞队列实现示例：
+
+```go
+package main
+
+import "fmt"
+
+type BlockingQueue struct {
+    queue chan interface{}
+}
+
+func NewBlockingQueue(capacity int) *BlockingQueue {
+    return &BlockingQueue{
+        queue: make(chan interface{}, capacity),
+    }
+}
+
+func (q *BlockingQueue) Enqueue(item interface{}) {
+    q.queue <- item
+}
+
+func (q *BlockingQueue) Dequeue() interface{} {
+    return <-q.queue
+}
+
+func main() {
+    // 创建容量为3的阻塞队列
+    queue := NewBlockingQueue(3)
+
+    // 启动一个消费者协程
+    go func() {
+        for {
+            item := queue.Dequeue()
+            fmt.Println("消费:", item)
+        }
+    }()
+
+    // 生产一些数据并入队
+    for i := 1; i <= 5; i++ {
+        fmt.Println("生产:", i)
+        queue.Enqueue(i)
+    }
+}
+```
+
+在这个例子中，`BlockingQueue`结构体包含一个带有指定容量的`channel`。`Enqueue`方法将元素放入`channel`中，如果`channel`已满，将会阻塞直到有空间可用。`Dequeue`方法从`channel`中取出元素，如果`channel`为空，将会阻塞直到有新的元素可用。
+
+在`main`函数中，我们创建了一个容量为3的阻塞队列，并启动一个消费者协程来消费队列中的元素。然后，我们通过调用`Enqueue`方法向队列中生产一些数据。由于队列的容量是3，其中2个元素会立即被消费，而后续的元素将会阻塞直到有空间可用。
+
+请注意，这只是一个简单的阻塞队列实现示例，实际情况可能需要更多的方法和逻辑来满足具体需求。
+
+### 实现使用字符串函数名，调用函数。
+
+```go
+type Animal struct{
+    
+}
+
+func (a *Animal) Eat(){
+    fmt.Println("Eat")
+}
+
+func main(){
+    a := Animal{}
+    reflect.ValueOf(&a).MethodByName("Eat").Call([]reflect.Value{})
+    
+}
+```
+
+### 有三个函数，分别打印"cat", "fish","dog"要求每一个函数都用一个goroutine，按照顺序打印100次。
+
+此题目考察channel，用三个无缓冲channel，如果一个channel收到信号则通知下一个。
+
+```go
+var dog = make(chan struct{})
+var cat = make(chan struct{})
+var fish = make(chan struct{})
+
+func Dog() {
+	defer wg.Done()
+	<-fish
+	fmt.Println("dog")
+	dog <- struct{}{}
+}
+
+func Cat() {
+	defer wg.Done()
+	<-dog
+	fmt.Println("cat")
+	cat <- struct{}{}
+}
+
+func Fish() {
+	defer wg.Done()
+	<-cat
+	fmt.Println("fish")
+	fish <- struct{}{}
+}
+
+var wg sync.WaitGroup
+
+func TestGoroutine(t *testing.T) {
+
+	for i := 0; i < 10; i++ {
+		wg.Add(1)
+
+		go Dog()
+		go Cat()
+		go Fish()
+	}
+	fish <- struct{}{}
+
+	wg.Wait()
+}
+```
+
+
+### 启动 2个groutine 2秒后取消， 第一个协程1秒执行完，第二个协程3秒执行完。
+
+采用`ctx, _ := context.WithTimeout(context.Background(), time.Second*2)`实现2s取消。协程执行完后通过channel通知，是否超时。
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"time"
+)
+
+func f1(in chan struct{}) {
+
+	time.Sleep(1 * time.Second)
+	in <- struct{}{}
+
+}
+
+func f2(in chan struct{}) {
+	time.Sleep(3 * time.Second)
+	in <- struct{}{}
+}
+
+func main() {
+	ch1 := make(chan struct{})
+	ch2 := make(chan struct{})
+	ctx, _ := context.WithTimeout(context.Background(), 2*time.Second)
+
+	go func() {
+		go f1(ch1)
+		select {
+		case <-ctx.Done():
+			fmt.Println("f1 timeout")
+			break
+		case <-ch1:
+			fmt.Println("f1 done")
+		}
+	}()
+
+	go func() {
+		go f2(ch2)
+		select {
+		case <-ctx.Done():
+			fmt.Println("f2 timeout")
+			break
+		case <-ch2:
+			fmt.Println("f2 done")
+		}
+	}()
+	time.Sleep(time.Second * 5)
+}
+```
+
+
+
+
+# Thread
+
+### go竞态
+
+在 Go 中，竞态（Race Condition）指的是多个 goroutine 并发访问共享资源时可能出现的不确定性行为。竞态条件的发生是由于多个 goroutine 同时读写共享资源，而没有进行正确的同步和互斥操作。
+
+竞态条件可能导致程序出现非预期的结果，例如数据不一致、数据丢失、死锁等问题。在竞态条件下，程序的行为变得不可预测，因为每个 goroutine 的执行顺序和时间是不确定的。
+
+为了避免竞态条件，可以采取以下措施：
+
+1. 互斥锁：使用互斥锁（Mutex）或读写锁（RWMutex）来保护共享资源的读写操作。在访问共享资源之前，获取锁，在完成操作后释放锁，以确保同一时间只有一个 goroutine 访问共享资源。
+    
+2. 原子操作：使用原子操作来对共享资源进行读写，例如原子加减、原子交换等。原子操作能够确保多个 goroutine 对共享资源的操作是原子性的，避免了竞态条件的发生。
+    
+3. 通道通信：使用通道进行数据传递和同步，避免直接对共享资源进行读写操作。通过发送和接收操作来实现数据的同步和协调，保证每个操作的顺序和执行时机。
+    
+4. 等待组：使用等待组（WaitGroup）来协调多个 goroutine 的执行顺序和同步，确保某个操作在其他操作完成之后再执行。
+    
+5. 原子性检测工具：使用 Go 提供的原子性检测工具，例如 go run -race 命令或使用第三方竞态检测工具，来检测和分析潜在的竞态条件问题。
+    
+
+总之，避免竞态条件的关键是确保对共享资源的访问是同步和互斥的。通过合适的锁、原子操作、通道通信和同步机制，可以保证程序的正确性和可靠性，避免竞态条件带来的问题。
+
+
+### channel 死锁的场景
+
+在Go中，死锁通常发生在以下场景：
+
+1. 单向通道的双向使用
+2. 无缓冲通道的阻塞
+3. 缓冲通道的填满与清空
+4. 向已关闭的通道发送数据
+
+这些场景中，如果发生了死锁，程序将被永久阻塞，无法继续执行。为了避免死锁，需要仔细设计和管理goroutine之间的通信和同步操作，确保发送和接收操作能够匹配，以及通道的缓冲区大小适当设置。同时，使用`select`语句可以避免阻塞和死锁情况的发生，通过在多个通道上进行非阻塞的发送和接收操作，选择可用的通道进行通信。
+
+### 主协程如何等其余协程完再操作
+- wg sync.WaitGroup
+	- wg.Add(2)
+	- wg.Done()
+	- wg.Wait()
+
+### select可以用于什么
+- -   `select` 主要用于**监听多个`channel`是否可以收发消息**，`select会尝试执行case语句`。当任何一个case满足条件则会执行，若没有可执行的case，就会执行**default分支**。如果default也不满足，程序会跳出select语句块。
+
+
+
+
+
 # Language
 
 ### Go面向对象是如何实现
@@ -319,111 +552,6 @@ Go语言提供了一些强大的调试和分析工具，可以帮助开发人员
 除了上述工具，还有许多第三方工具可用于Go的调试和分析，如Delve调试器、Goroutine分析工具、Heap分析工具等。这些工具提供了更多的功能和灵活性，可根据具体需求进行选择和使用。
 
 
-# Thread
-
-### go竞态
-
-在 Go 中，竞态（Race Condition）指的是多个 goroutine 并发访问共享资源时可能出现的不确定性行为。竞态条件的发生是由于多个 goroutine 同时读写共享资源，而没有进行正确的同步和互斥操作。
-
-竞态条件可能导致程序出现非预期的结果，例如数据不一致、数据丢失、死锁等问题。在竞态条件下，程序的行为变得不可预测，因为每个 goroutine 的执行顺序和时间是不确定的。
-
-为了避免竞态条件，可以采取以下措施：
-
-1. 互斥锁：使用互斥锁（Mutex）或读写锁（RWMutex）来保护共享资源的读写操作。在访问共享资源之前，获取锁，在完成操作后释放锁，以确保同一时间只有一个 goroutine 访问共享资源。
-    
-2. 原子操作：使用原子操作来对共享资源进行读写，例如原子加减、原子交换等。原子操作能够确保多个 goroutine 对共享资源的操作是原子性的，避免了竞态条件的发生。
-    
-3. 通道通信：使用通道进行数据传递和同步，避免直接对共享资源进行读写操作。通过发送和接收操作来实现数据的同步和协调，保证每个操作的顺序和执行时机。
-    
-4. 等待组：使用等待组（WaitGroup）来协调多个 goroutine 的执行顺序和同步，确保某个操作在其他操作完成之后再执行。
-    
-5. 原子性检测工具：使用 Go 提供的原子性检测工具，例如 go run -race 命令或使用第三方竞态检测工具，来检测和分析潜在的竞态条件问题。
-    
-
-总之，避免竞态条件的关键是确保对共享资源的访问是同步和互斥的。通过合适的锁、原子操作、通道通信和同步机制，可以保证程序的正确性和可靠性，避免竞态条件带来的问题。
-
-
-### channel 死锁的场景
-
-在Go中，死锁通常发生在以下场景：
-
-1. 单向通道的双向使用
-2. 无缓冲通道的阻塞
-3. 缓冲通道的填满与清空
-4. 向已关闭的通道发送数据
-
-这些场景中，如果发生了死锁，程序将被永久阻塞，无法继续执行。为了避免死锁，需要仔细设计和管理goroutine之间的通信和同步操作，确保发送和接收操作能够匹配，以及通道的缓冲区大小适当设置。同时，使用`select`语句可以避免阻塞和死锁情况的发生，通过在多个通道上进行非阻塞的发送和接收操作，选择可用的通道进行通信。
-
-### 主协程如何等其余协程完再操作
-- wg sync.WaitGroup
-	- wg.Add(2)
-	- wg.Done()
-	- wg.Wait()
-
-### select可以用于什么
-- -   `select` 主要用于**监听多个`channel`是否可以收发消息**，`select会尝试执行case语句`。当任何一个case满足条件则会执行，若没有可执行的case，就会执行**default分支**。如果default也不满足，程序会跳出select语句块。
-
-
-# Function
-
-
-### 实现set
-
-- set := make(map[string]void)
-
-
-### 设计一个阻塞队列
-
-在Go语言中，可以使用内置的`channel`类型来设计一个阻塞队列。`channel`本身就具有阻塞和同步的特性，非常适合实现这样的队列。以下是一个简单的阻塞队列实现示例：
-
-```go
-package main
-
-import "fmt"
-
-type BlockingQueue struct {
-    queue chan interface{}
-}
-
-func NewBlockingQueue(capacity int) *BlockingQueue {
-    return &BlockingQueue{
-        queue: make(chan interface{}, capacity),
-    }
-}
-
-func (q *BlockingQueue) Enqueue(item interface{}) {
-    q.queue <- item
-}
-
-func (q *BlockingQueue) Dequeue() interface{} {
-    return <-q.queue
-}
-
-func main() {
-    // 创建容量为3的阻塞队列
-    queue := NewBlockingQueue(3)
-
-    // 启动一个消费者协程
-    go func() {
-        for {
-            item := queue.Dequeue()
-            fmt.Println("消费:", item)
-        }
-    }()
-
-    // 生产一些数据并入队
-    for i := 1; i <= 5; i++ {
-        fmt.Println("生产:", i)
-        queue.Enqueue(i)
-    }
-}
-```
-
-在这个例子中，`BlockingQueue`结构体包含一个带有指定容量的`channel`。`Enqueue`方法将元素放入`channel`中，如果`channel`已满，将会阻塞直到有空间可用。`Dequeue`方法从`channel`中取出元素，如果`channel`为空，将会阻塞直到有新的元素可用。
-
-在`main`函数中，我们创建了一个容量为3的阻塞队列，并启动一个消费者协程来消费队列中的元素。然后，我们通过调用`Enqueue`方法向队列中生产一些数据。由于队列的容量是3，其中2个元素会立即被消费，而后续的元素将会阻塞直到有空间可用。
-
-请注意，这只是一个简单的阻塞队列实现示例，实际情况可能需要更多的方法和逻辑来满足具体需求。
 
 
 
