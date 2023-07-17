@@ -61,7 +61,19 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "code/development/Backend.md",
+                "file": "code/Go/Golang.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "5933936a708b9c39",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "code/Go/内存管理.md",
                 "mode": "source",
                 "source": false
               }
@@ -134,7 +146,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "code/development/Backend.md",
+                "file": "code/Go/Golang.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -151,7 +163,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "code/development/Backend.md",
+                "file": "code/Go/Golang.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -174,7 +186,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "code/development/Backend.md"
+                "file": "code/Go/Golang.md"
               }
             }
           }
@@ -196,10 +208,12 @@
   },
   "active": "9b5e8b9b5b8d30ef",
   "lastOpenFiles": [
+    "code/Go/内存管理.md",
+    "code/Go/GPM.md",
     "code/Go/Golang.md",
+    "code/development/Backend.md",
     "code/Java.md",
     "code/development/mq.md",
-    "code/development/Backend.md",
     "code/development/gRPC.md",
     "code/development/Nginx.md",
     "code/Go/go-zero.md",
@@ -207,8 +221,6 @@
     "code/development/Algorithm.md",
     "code/development/etcd.md",
     "code/Go/垃圾回收.md",
-    "code/Go/内存管理.md",
-    "code/Go/GPM.md",
     "code/Go/TX Interview.md",
     "code/Database/mysql.md",
     "README.md",
