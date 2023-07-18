@@ -73,14 +73,14 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "code/Go/内存管理.md",
+                "file": "code/Database/mysql.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -146,7 +146,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "code/Go/Golang.md",
+                "file": "code/Database/mysql.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -163,7 +163,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "code/Go/Golang.md",
+                "file": "code/Database/mysql.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -186,7 +186,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "code/Go/Golang.md"
+                "file": "code/Database/mysql.md"
               }
             }
           }
@@ -206,11 +206,11 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "9b5e8b9b5b8d30ef",
+  "active": "5933936a708b9c39",
   "lastOpenFiles": [
     "code/Go/内存管理.md",
-    "code/Go/GPM.md",
     "code/Go/Golang.md",
+    "code/Go/GPM.md",
     "code/development/Backend.md",
     "code/Java.md",
     "code/development/mq.md",
