@@ -1,9 +1,3 @@
-4.  avg,count,max,min,sum
-5.  索引
-	1.  场景 order by ，join on
-	2.  unique ，index
-	3.  not null
-	4.  联合索引
 
 6.  select * from tableA join tableB on a.name = b.name
 7.  SELECT name, COUNT(\*) FROM employee_tbl GROUP BY name WITH ROLLUP;
@@ -55,7 +49,9 @@
 SELECT cash,count(id) sum FROM author_mes GROUP BY cash  
 ```
 
-###### 不赞成sql_mode去掉ONLY_FULL_GROUP_BY
+###### ONLY_FULL_GROUP_BY
+
+不赞成sql_mode去掉ONLY_FULL_GROUP_BY
 1. MySQL5.7 官方的默认值
 2. SQL SERVER、ORACLE、Postgres 规范是一致的，遵循sql-92标准。自带 ONLY_FULL_GROUP_BY 约束，认为违反这个规则的SQL都是不合法的。
 3. 可能会有数据不一致的问题 important！
@@ -77,7 +73,7 @@ SELECT cash,count(id) sum FROM author_mes GROUP BY cash  HAVING cash >100
 
 
 ##### 8. 联合查询（JOIN）
-
+###### ON
 
 
 ##### 9. ORDER BY子句：如果有ORDER BY子句，查询会按照指定的列对结果进行排序。
@@ -164,4 +160,19 @@ WHERE column_name LIKE '\% %' ESCAPE '\';
 6. 数据类型转换函数：
     - CAST 和 CONVERT：用于数据类型的转换。
     - STR_TO_DATE 和 DATE_FORMAT：用于日期和时间格式的转换。
+
+### 索引
+
+索引类型：
+
+- 主键索引（**Primary Key Index**）：用于唯一标识表中的每一行，自动创建的索引。
+- 唯一索引（**Unique Index**）：确保索引列的值是唯一的。
+- 普通索引（**Non-Unique Index**）：用于加快查询速度，但允许索引列中的重复值。
+- 全文索引（**Full-Text Index**）：用于全文搜索，适用于对文本内容进行搜索的场景。
+
+索引的优化
+	1.  场景 order by ，join on
+	2.  unique ，index
+	3.  not null
+	4.  联合索引
 
