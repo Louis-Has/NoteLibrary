@@ -1,15 +1,16 @@
 
 6.  select * from tableA join tableB on a.name = b.name
 7.  SELECT name, COUNT(\*) FROM employee_tbl GROUP BY name WITH ROLLUP;
-8.  MySQL Innodb 事物 Transaction
+
+1.  MySQL Innodb 事物 Transaction
 	1.  begin;
 	2.  commit;
 	3.  rollback;
 
-9.  MyISAM Innodb
+2.  MyISAM Innodb
 	1.  事务 外键 哈希索引
 
-10.  SQL优化
+3.  SQL优化
 	1.  slow_query_log
 	2.  not null
 	3.  show processlist
