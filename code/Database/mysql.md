@@ -1,5 +1,4 @@
 
-6.  select * from tableA join tableB on a.name = b.name
 7.  SELECT name, COUNT(\*) FROM employee_tbl GROUP BY name WITH ROLLUP;
 
 1.  MySQL Innodb 事物 Transaction
