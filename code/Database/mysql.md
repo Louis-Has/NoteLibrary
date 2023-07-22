@@ -187,12 +187,32 @@ MyISAM 和 InnoDB 是 MySQL 中两种常用的存储引擎（Storage Engine）�
     
     - 脏读是指一个事务读取了另一个事务未提交的数据。
     - 幻读是指一个事务读取了另一个事务已提交的新增数据，导致之前的查询结果和之后的查询结果不一致。
+	    - 使用 SERIALIZABLE 隔离级别：
+			`SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;`
+	    - 使用锁定读（FOR UPDATE）：
+			`SELECT * FROM table_name WHERE column_name = 'value' FOR UPDATE;`
     - 不可重复读是指一个事务内两次读取同一数据，但两次读取的结果不一致，可能是因为另一个并发事务修改了数据。
 5. 如何解决并发事务的问题？ 回答：可以通过设置不同的事务隔离级别来解决并发事务的问题。MySQL 支持四种事务隔离级别：READ UNCOMMITTED、READ COMMITTED、REPEATABLE READ 和 SERIALIZABLE。每个隔离级别都有不同的特点和用途，可以根据实际场景选择合适的隔离级别。
     
 
 这些问题只是可能涉及 MySQL 事务的一部分，面试中可能会涵盖更多的细节和场景。在准备面试时，建议深入理解数据库事务的基本概念和 ACID 特性，以及各种隔离级别的特点和应用场景。
 
+### 事务隔离级别
+
+在 MySQL 中，可以通过设置合适的事务隔离级别来解决脏读问题。事务隔离级别包括 READ UNCOMMITTED、READ COMMITTED、REPEATABLE READ 和 SERIALIZABLE。设置事务隔离级别为 READ COMMITTED 或更高级别，可以避免脏读的问题。
+
+- READ COMMITTED：每个查询只能读取到已经提交的数据，避免了脏读问题。
+- REPEATABLE READ：在同一个事务内多次读取同一数据，得到的结果都是一样的，避免了脏读和不可重复读问题。
+- SERIALIZABLE：最高隔离级别，保证了事务的串行执行，避免了脏读、不可重复读和幻读问题。
+
+设置事务隔离级别的方式为：
+```sql
+SET TRANSACTION ISOLATION LEVEL <isolation_level>;
+```
+
+### 锁机制
+
+MySQL 的锁机制可以通过不同的锁类型和语句来进行使用。下面介绍几种常用的锁机制及其使用方式：
 
 ### SQL优化
 1.  slow_query_log
