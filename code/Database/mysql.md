@@ -1,36 +1,3 @@
-
-7.  SELECT name, COUNT(\*) FROM employee_tbl GROUP BY name WITH ROLLUP;
-
-1.  MySQL Innodb 事物 Transaction
-	1.  begin;
-	2.  commit;
-	3.  rollback;
-
-2.  MyISAM Innodb
-	1.  事务 外键 哈希索引
-
-3.  SQL优化
-	1.  slow_query_log
-	2.  not null
-	3.  show processlist
-	4.  读写分离
-	5.  in > between
-	6.  in > exists
-	7.  or > union 组合查询
-	8.  where 1=1 > 去掉
-	9.  where 联合索引 按顺序
-	10.  避免隐式类型转换
-	11.  join 小表在前
-	12.  用表 的 别名
-	13.  HAVING > where
-	14.  where 从左到右的顺序
-	15.  inset 多条合并插入
-	16.  order by null
-	17.  union > union all
-	18.  delete > truncate
-
-
-
 ### SELECT语句 - 执行顺序
 
 ##### 1. FROM子句：首先，执行FROM子句，指定要查询的表（或表的组合）。
@@ -176,3 +143,73 @@ WHERE column_name LIKE '\% %' ESCAPE '\';
 	3.  not null
 	4.  联合索引
 
+### 存储引擎
+
+MyISAM 和 InnoDB 是 MySQL 中两种常用的存储引擎（Storage Engine），用于管理数据的存储和访问。它们有不同的特点和适用场景。
+
+1. MyISAM： MyISAM 是 MySQL 的默认存储引擎（在 MySQL 5.5.5 版本之前）。它以较简单的方式存储数据，对于读操作具有较好的性能，适用于大量的读操作和少量的写操作的场景。
+    
+    主要特点：
+    
+    - 不支持事务：MyISAM 不支持事务，这意味着它不支持事务的原子性、一致性、隔离性和持久性（ACID 特性）。
+    - **表级锁**：MyISAM 使用表级锁，这意味着在执行写操作时会锁定整个表，可能导致并发写操作的性能瓶颈。
+    - **全文索引**：MyISAM 支持全文索引，适用于全文搜索的场景。
+    
+    由于 MyISAM 不支持事务和使用表级锁，不建议在高并发、写操作频繁的业务场景中使用 MyISAM 引擎。
+    
+2. InnoDB： InnoDB 是 MySQL 中另一种常用的存储引擎。它支持事务和行级锁，提供了更好的数据完整性和并发性，适用于高并发和频繁写入的业务场景。
+    
+    主要特点：
+    
+    - **支持事务**：InnoDB 支持事务，允许用户实现事务的原子性、一致性、隔离性和持久性（ACID 特性）。
+    - **行级锁**：InnoDB 使用行级锁，可以在并发读写操作时避免表级锁带来的性能瓶颈，提高了并发性能。
+    - 外键支持：InnoDB 支持外键约束，可以保证数据的完整性。
+    
+    InnoDB 是 MySQL 5.5.5 版本及以后的默认存储引擎。对于大多数应用来说，InnoDB 引擎通常是更好的选择，特别是对于需要支持事务和并发写入的应用场景。
+    
+
+在选择存储引擎时，应根据应用的需求和特点来选择合适的引擎。对于读多写少的简单查询场景，MyISAM 可能会有更好的性能。而对于需要事务支持和高并发写入的应用，InnoDB 是更稳定和可靠的选择。
+
+### Transaction
+1.  begin;
+2.  commit;
+3.  rollback;
+
+当面试中涉及 MySQL 事务的问题时，通常会涵盖数据库事务的基本概念、事务的特性（ACID）、并发控制和隔离级别等方面。以下是一些可能出现在 MySQL 事务相关面试题中的问题：
+
+1. 什么是数据库事务？ 回答：数据库事务是一组被视为单个逻辑单元的数据库操作，要么全部成功执行（提交），要么全部回滚（撤销），从而**确保数据的一致性和完整性**。
+    
+2. 事务的 ACID 特性是什么？ 回答：ACID 是事务的四个特性，分别是原子性（Atomicity）、一致性（Consistency）、隔离性（Isolation）和持久性（Durability）。原子性表示事务中的所有操作要么全部成功，要么全部失败回滚。一致性确保事务使数据库从一个一致性状态转换到另一个一致性状态。隔离性保证事务之间互不干扰，使并发执行的事务相互隔离。持久性确保一旦事务提交，其对数据库的修改将永久保存，即使系统崩溃也不会丢失。
+    
+3. MySQL 默认使用的事务隔离级别是什么？ 回答：MySQL 默认使用的事务隔离级别是 REPEATABLE READ。这是为了保证事务的可重复读性，即在同一个事务中多次读取同一数据，得到的结果都是一样的。
+    
+4. 什么是脏读（Dirty Read）、幻读（Phantom Read）和不可重复读（Non-repeatable Read）？ 回答：这些都是并发事务执行时可能出现的问题。
+    
+    - 脏读是指一个事务读取了另一个事务未提交的数据。
+    - 幻读是指一个事务读取了另一个事务已提交的新增数据，导致之前的查询结果和之后的查询结果不一致。
+    - 不可重复读是指一个事务内两次读取同一数据，但两次读取的结果不一致，可能是因为另一个并发事务修改了数据。
+5. 如何解决并发事务的问题？ 回答：可以通过设置不同的事务隔离级别来解决并发事务的问题。MySQL 支持四种事务隔离级别：READ UNCOMMITTED、READ COMMITTED、REPEATABLE READ 和 SERIALIZABLE。每个隔离级别都有不同的特点和用途，可以根据实际场景选择合适的隔离级别。
+    
+
+这些问题只是可能涉及 MySQL 事务的一部分，面试中可能会涵盖更多的细节和场景。在准备面试时，建议深入理解数据库事务的基本概念和 ACID 特性，以及各种隔离级别的特点和应用场景。
+
+
+### SQL优化
+1.  slow_query_log
+2.  not null
+3.  show processlist
+4.  读写分离
+5.  in > between
+6.  in > exists
+7.  or > union 组合查询
+8.  where 1=1 > 去掉
+9.  where 联合索引 按顺序
+10.  避免隐式类型转换
+11.  join 小表在前
+12.  用表 的 别名
+13.  HAVING > where
+14.  where 从左到右的顺序
+15.  inset 多条合并插入
+16.  order by null
+17.  union > union all
+18.  delete > truncate
