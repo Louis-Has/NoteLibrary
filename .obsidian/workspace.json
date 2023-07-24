@@ -208,8 +208,9 @@
   },
   "active": "5933936a708b9c39",
   "lastOpenFiles": [
-    "code/Go/内存管理.md",
     "code/Go/Golang.md",
+    "code/Database/mysql.md",
+    "code/Go/内存管理.md",
     "code/Go/GPM.md",
     "code/development/Backend.md",
     "code/Java.md",
@@ -222,7 +223,6 @@
     "code/development/etcd.md",
     "code/Go/垃圾回收.md",
     "code/Go/TX Interview.md",
-    "code/Database/mysql.md",
     "README.md",
     "().md",
     "configure/Mac.md",
