@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "code/Database/redis.md",
+                "file": "code/Database/Redis.md",
                 "mode": "source",
                 "source": false
               }
@@ -73,14 +73,14 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "code/Database/mysql.md",
+                "file": "code/Database/MySQL.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -146,7 +146,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "code/Database/mysql.md",
+                "file": "code/Database/Redis.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -163,7 +163,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "code/Database/mysql.md",
+                "file": "code/Database/Redis.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -186,7 +186,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "code/Database/mysql.md"
+                "file": "code/Database/Redis.md"
               }
             }
           }
@@ -206,10 +206,11 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "5933936a708b9c39",
+  "active": "73dd82385690baad",
   "lastOpenFiles": [
     "code/development/mq.md",
-    "code/Database/mysql.md",
+    "code/Database/MySQL.md",
+    "code/Database/Redis.md",
     "code/Go/Golang.md",
     "code/Go/内存管理.md",
     "code/Go/GPM.md",
@@ -231,7 +232,6 @@
     "code/Go/import Mods.md",
     "code/Go/Interview questions.md",
     "code/Go/Gin & Gorm.md",
-    "code/Database/redis.md",
     "code/development/Network.md",
     "code/development",
     "code/Network",
