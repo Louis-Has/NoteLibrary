@@ -441,6 +441,10 @@ if atomic.CompareAndSwapInt32(&num, old, new) {
 - 当slice的`len==cap`后，再向slice中追加元素时，会发生扩容
 - [你不知道的 Go 之 slice](https://darjun.github.io/2021/05/09/youdontknowgo/slice/)
 
+### range 演示绑定
+
+
+
 ### map如何顺序读取
 - map底层使用hash表实现,插入数据位置是随机的
 - 将 map 的 key 全部拿出来，放到一个数组中，

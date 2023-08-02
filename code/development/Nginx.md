@@ -1,3 +1,24 @@
+### 在 nginx 的 access log 中查出请求前 10 的 ip
+
+要在 Nginx的 access log 中查出请求前 10 的 IP，您可以通过一些命令行工具和管道操作实现。下面是一个使用 Linux 命令的示例：
+
+假设您的 Nginx access log 文件路径是 `/var/log/nginx/access.log`，您可以执行以下命令：
+
+```bash
+cat /var/log/nginx/access.log | awk '{print $1}' | sort | uniq -c | sort -nr | head -n 10
+```
+
+命令说明：
+
+- `cat /var/log/nginx/access.log`：使用 `cat` 命令读取 Nginx 的 access log 文件。
+- `awk '{print $1}'`：使用 `awk` 命令提取每行中的第一个字段，即请求的 IP 地址。
+- `sort`：对提取的 IP 地址进行排序。
+- `uniq -c`：统计每个 IP 地址出现的次数。
+- `sort -nr`：对 IP 地址的统计结果进行逆序排序，以便查出出现频率最高的 IP 地址。
+- `head -n 10`：输出前 10 行结果，即出现频率最高的前 10 个 IP 地址。
+
+执行上述命令后，您将会得到请求最频繁的前 10 个 IP 地址以及它们的访问次数。这样可以帮助您了解哪些 IP 地址对您的 Nginx 服务器产生了最多的请求，有助于进行进一步的分析和优化。
+
 ### 2-1 快速认知什么是Nginx服务器
 
 Nginx（发音为"engine X"）是一个**高性能的开源Web服务器和反向代理服务器**。它具有轻量级、高并发处理能力和低内存消耗的特点，被广泛用于构建高性能的网站、应用程序和服务。
