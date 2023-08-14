@@ -673,9 +673,9 @@ func main() {
 ### go defer（for defer）
 - 被defer的函数执行顺序满足LIFO原则，后defer的先执行。
 - 被`defer`的函数或者方法如果存在多级调用，只有最后一个函数或方法会被`defer`到函数return或者panic之前执行
-- 被defer的函数或方法的参数的值在执行到defer语句的时候就被确定下来了。
+- 被defer的**函数或方法的参数的值在执行到defer语句的时候就被确定**下来了。
 - defer后面跟的必须是函数或者方法调用，defer后面的表达式不能加括号。
-- 被defer的函数可以对defer语句所在的函数的命名返回值做读取和修改操作。
+- 被defer的函数可以**对defer语句所在的函数的命名返回值做读取和修改操作**。
 
 ### context 的用途
 

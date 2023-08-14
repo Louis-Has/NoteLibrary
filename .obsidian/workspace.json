@@ -220,8 +220,9 @@
   },
   "active": "9b5e8b9b5b8d30ef",
   "lastOpenFiles": [
-    "code/development/Sort.md",
+    "code/Go/内存管理.md",
     "code/Go/Golang.md",
+    "code/development/Sort.md",
     "code/Database/MySQL.md",
     "code/development/Nginx.md",
     "code/development/Linux Backend.md",
@@ -230,7 +231,6 @@
     "code/Go/TX Interview.md",
     "code/development/gRPC.md",
     "code/development/Algorithm.md",
-    "code/Go/内存管理.md",
     "code/development/Kafka.md",
     "code/Database/Redis.md",
     "code/Go/GPM.md",
