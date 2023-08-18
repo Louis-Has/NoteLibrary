@@ -331,6 +331,7 @@ for data := range ch {
 - `for range` 循环接收用于持续接收通道数据，直到通道被关闭。
 
 ### select可以用于什么
+
 - -   `select` 主要用于**监听多个`channel`是否可以收发消息**，`select会尝试执行case语句`。当任何一个case满足条件则会执行，若没有可执行的case，就会执行**default分支**。如果default也不满足，程序会跳出select语句块。
 
 ### channel 的实现原理
