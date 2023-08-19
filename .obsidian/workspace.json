@@ -220,6 +220,7 @@
   },
   "active": "5933936a708b9c39",
   "lastOpenFiles": [
+    "code/Go/import Mods.md",
     "code/Go/垃圾回收（GC）.md",
     "code/Database/MySQL.md",
     "code/Go/Golang.md",
@@ -229,7 +230,6 @@
     "code/development/Sort.md",
     "code/development/Nginx.md",
     "code/Go/go-zero.md",
-    "code/Go/import Mods.md",
     "code/Go/TX Interview.md",
     "code/development/gRPC.md",
     "code/development/Algorithm.md",
