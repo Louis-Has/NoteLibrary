@@ -2,15 +2,12 @@
 
 ### Cron
 
-### Time, Ticker
-[golang 定時器(一) Time, Ticker 基本用法整理](https://davidleitw.github.io/posts/time01/)
-
 ### time/rate
 [Golang 标准库限流器 time/rate 实现剖析](https://www.cyhone.com/articles/analisys-of-golang-rate/)
 
 ### redsync
 
-### zap
+### zap 日志
 
 ```bash
 go get -u go.uber.org/zap

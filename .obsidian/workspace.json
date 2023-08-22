@@ -37,7 +37,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "code/development/Linux Backend.md",
+                "file": "code/Database/Redis.md",
                 "mode": "source",
                 "source": false
               }
@@ -92,7 +92,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -158,7 +158,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "code/Database/MySQL.md",
+                "file": "code/Database/Redis.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -175,7 +175,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "code/Database/MySQL.md",
+                "file": "code/Database/Redis.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -198,7 +198,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "code/Database/MySQL.md"
+                "file": "code/Database/Redis.md"
               }
             }
           }
@@ -218,18 +218,18 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "5933936a708b9c39",
+  "active": "73dd82385690baad",
   "lastOpenFiles": [
-    "code/Go/import Mods.md",
-    "code/Go/垃圾回收（GC）.md",
+    "code/development/Linux Backend.md",
     "code/Database/MySQL.md",
     "code/Go/Golang.md",
+    "code/Go/import Mods.md",
+    "code/Go/go-zero.md",
+    "code/Go/垃圾回收（GC）.md",
     "code/Go/内存管理.md",
     "code/Go/GPM.md",
-    "code/development/Linux Backend.md",
     "code/development/Sort.md",
     "code/development/Nginx.md",
-    "code/Go/go-zero.md",
     "code/Go/TX Interview.md",
     "code/development/gRPC.md",
     "code/development/Algorithm.md",
