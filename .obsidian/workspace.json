@@ -222,6 +222,7 @@
   "lastOpenFiles": [
     "code/Database/MySQL.md",
     "code/Database/Redis.md",
+    "code/Go/Golang.md",
     "code/development/Algorithm.md",
     "code/development/etcd.md",
     "code/development/gRPC.md",
@@ -233,7 +234,6 @@
     "code/Go/import Mods.md",
     "code/Go/TX Interview.md",
     "code/Database/MongoDb.md",
-    "code/Go/Golang.md",
     "code/Go/垃圾回收（GC）.md",
     "code/Go/内存管理.md",
     "code/Go/GPM.md",
