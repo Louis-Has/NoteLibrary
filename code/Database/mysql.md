@@ -1,10 +1,12 @@
 ### SELECT语句 - 执行顺序
 
-##### 1. FROM子句：首先，执行FROM子句，指定要查询的表（或表的组合）。
+##### 1. FROM子句
+首先，执行FROM子句，指定要查询的表（或表的组合）。
 
 
 
-##### 2. WHERE子句：如果有WHERE子句，查询会根据WHERE条件对FROM子句中的表进行筛选，只选择满足条件的行。
+##### 2. WHERE子句
+如果有WHERE子句，查询会根据WHERE条件对FROM子句中的表进行筛选，只选择满足条件的行。
 
 
 
@@ -31,7 +33,8 @@ SELECT cash,count(id) sum FROM author_mes GROUP BY cash  HAVING cash >100
 ```
 
 
-##### 6. SELECT子句：在前面的步骤筛选和分组后，执行SELECT子句，选择要查询的列或表达式，并计算任何聚合函数。
+##### 6. SELECT子句
+在前面的步骤筛选和分组后，执行SELECT子句，选择要查询的列或表达式，并计算任何聚合函数。
 
 
 
@@ -47,7 +50,7 @@ FROM Customers
 INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
 ```
 
-##### 9. ORDER BY子句：如果有ORDER BY子句，查询会按照指定的列对结果进行排序。
+##### 9. ORDER BY子句
 
 使用 ORDER BY 子句可以对查询结果进行排序。ORDER BY 子句通常放在 SELECT 语句的末尾，用于按照指定的列进行升序（ASC）或降序（DESC）排序。
 ```sql
