@@ -37,7 +37,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "code/Database/Redis.md",
+                "file": "code/Database/RabbitMQ.md",
                 "mode": "source",
                 "source": false
               }
@@ -158,7 +158,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "code/Database/Redis.md",
+                "file": "code/Database/RabbitMQ.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -175,7 +175,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "code/Database/Redis.md",
+                "file": "code/Database/RabbitMQ.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -198,7 +198,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "code/Database/Redis.md"
+                "file": "code/Database/RabbitMQ.md"
               }
             }
           }
@@ -221,12 +221,13 @@
   "active": "73dd82385690baad",
   "lastOpenFiles": [
     "code/Database/MySQL.md",
+    "code/Database/RabbitMQ.md",
+    "code/development/Kafka.md",
     "code/Database/Redis.md",
     "code/Go/Golang.md",
     "code/development/Algorithm.md",
     "code/development/etcd.md",
     "code/development/gRPC.md",
-    "code/development/Kafka.md",
     "code/development/Linux Backend.md",
     "code/development/Nginx.md",
     "code/development/Sort.md",
@@ -245,7 +246,6 @@
     "configure/learning.md",
     "code/Go/Interview questions.md",
     "code/Go/Gin & Gorm.md",
-    "code/development/Network.md",
     "code/development",
     "code/Network",
     "static/Goroutine Pool.png",
