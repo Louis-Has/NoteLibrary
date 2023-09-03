@@ -92,7 +92,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -158,7 +158,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "code/development/Network & Linux.md",
+                "file": "code/Go/Golang.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -175,7 +175,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "code/development/Network & Linux.md",
+                "file": "code/Go/Golang.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -198,7 +198,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "code/development/Network & Linux.md"
+                "file": "code/Go/Golang.md"
               }
             }
           }
@@ -218,10 +218,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "73dd82385690baad",
+  "active": "9b5e8b9b5b8d30ef",
   "lastOpenFiles": [
-    "code/Database/Redis.md",
     "code/development/Network & Linux.md",
+    "code/Database/Redis.md",
     "code/Go/go-zero.md",
     "code/Go/GPM.md",
     "code/Go/Golang.md",
