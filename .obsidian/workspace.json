@@ -49,19 +49,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "code/development/Sort.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "ef86da9c5fd81035",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "code/development/Sort.md",
+                "file": "code/development/Data structure & Algorithm.md",
                 "mode": "source",
                 "source": false
               }
@@ -104,7 +92,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -170,7 +158,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "code/development/Network & Linux.md",
+                "file": "code/development/Data structure & Algorithm.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -187,7 +175,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "code/development/Network & Linux.md",
+                "file": "code/development/Data structure & Algorithm.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -210,7 +198,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "code/development/Network & Linux.md"
+                "file": "code/development/Data structure & Algorithm.md"
               }
             }
           }
@@ -230,15 +218,15 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "73dd82385690baad",
+  "active": "d363d204ab33d34f",
   "lastOpenFiles": [
-    "code/development/Sort.md",
-    "code/Go/TX Interview.md",
+    "code/Database/MySQL.md",
     "code/development/Network & Linux.md",
+    "code/development/Data structure & Algorithm.md",
+    "code/development/Algorithm.md",
+    "code/Go/TX Interview.md",
     "code/Go/GPM.md",
     "code/Go/垃圾回收（GC）.md",
-    "code/development/Algorithm.md",
-    "code/Database/MySQL.md",
     "code/Java.md",
     "code/Go/import Mods.md",
     "code/Database/RabbitMQ.md",
