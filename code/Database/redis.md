@@ -7,6 +7,27 @@ Redis是一种快速的键值存储数据库，支持多种数据类型。以下
 #### 2. 列表 (List)：
     - 有序的字符串元素集合，支持在两端进行添加、删除操作，可以用作**队列或栈**。
     - 使用场景：**消息队列、任务队列、最新消息排行等功能(比如朋友圈的时间线)**等。
+
+|常用命令格式|描述|
+|---|---|
+|**LPUSH\|RPUSH** key value [value …]|从列表的左\|右插入元素|
+|**LINSERT** key BEFORE\|AFTER value newValue|在list指定的值前\|后插入新元素【时间复杂度O(N)】|
+|**LPOP\|RPOP** key|从列表左侧\|右侧弹出一个元素|
+|**LREM** key count value|根据count值，从列表删除所有等于value的值【时间复杂度O(N)】  <br>【count>0，从左到右删除count个】  <br>【count<0，从右到坐删除count个】  <br>【count=0，删除所有value相等的值】|
+|**LTRIM** key start end|按照索引范围保留list，删除大链表有用【时间复杂度O(N)】|
+|**LRANGR** key start end|获取列表指定索引范围内的值，数值为负则从右往左取值【时间复杂度O(N)】|
+|**LINDEX** key index|获取列表指定索引的值，数值为负则从右取值【时间复杂度O(N)】|
+|**LLEN** key|获取list长度【内部计数，生成环境可用】|
+|**LSET** key index newValue|设置指定位置的值【时间复杂度O(N)】|
+|**BLPOP\|RLPOP** key timeout|LPOP/RPOP的阻塞版，timeout为0则表示永不阻塞|
+
+使用技巧：
+
+- LPUSH + LPOP = Stack
+- LPUSH + RPOP = Queue
+- LPUSH + LTRIM = Capped Collection【固定容量集合】
+- LPUSH + BRPOP = Block Queue
+
 #### 3. 集合 (Set)：
     - **无序的**字符串元素集合，支持快速的添加、删除、查找操作，并能够对多个集合进行交集、并集、差集等操作。
     - 使用场景：**标签系统、用户关注列表、共同好友查找**等。
