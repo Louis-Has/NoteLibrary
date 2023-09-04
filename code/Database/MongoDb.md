@@ -2,7 +2,7 @@
 	1.  db.createCollection(name, options)
 
 2.  文档
-	1.  db.collection.insert(document)
+	1.  db.collection.**insert**(document)
 		1.  insertOne
 		2.  insertMany
 
@@ -21,8 +21,8 @@
 	4.  db.collection.find({"title" : {$type : 'string'}})
 	5.  db.collection.find().limit(NUMBER).skip(NUMBER)
 	6.  db.collection.find().sort({KEY:1}) 排序
-	7.  db.collection.createIndex(keys, options) 索引
-	8.  db.collection.aggregate(AGGREGATE_OPERATION) 聚合
+	7.  db.collection.**createIndex**(keys, options) 索引
+	8.  db.collection.**aggregate**(AGGREGATE_OPERATION) 聚合
 		1.  db.collection.aggregate([{$group : {_id : "$by_user", num_tutorial : {$sum : 1}}}])
 		2.  $project：修改输入文档的结构。可以用来重命名、增加或删除域，也可以用于创建计算结果以及嵌套文档。
 		3.  \$match：用于过滤数据，只输出符合条件的文档。$match使用MongoDB的标准查询操作。
