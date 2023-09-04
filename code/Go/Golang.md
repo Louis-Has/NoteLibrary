@@ -253,7 +253,7 @@ func main() {
 总之，避免竞态条件的关键是确保对共享资源的访问是同步和互斥的。通过合适的锁、原子操作、通道通信和同步机制，可以保证程序的正确性和可靠性，避免竞态条件带来的问题。
 
 
-### channel 的实现原理
+### channel 及实现原理
 
 在Go语言中，通道（channel）是用于在多个goroutine之间传递数据的特殊数据结构。Go语言的通道实现是基于CSP（Communicating Sequential Processes）并发模型的一种实现。
 

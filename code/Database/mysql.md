@@ -457,7 +457,7 @@ MySQL 实现高并发控制主要依赖于其默认的并发控制机制：MVCC�
 综合上述方法，合理的数据库设计、优化查询语句、使用索引、调整配置以及使用缓存等措施可以有效地保证 MySQL 的高并发控制，使得数据库在面对大量并发访问时能够保持稳定、高效地运行。
 
 #### MVCC 使用
-
+ 
 在 MySQL 的 InnoDB 存储引擎中，MVCC（Multi-Version Concurrency Control）是默认的并发控制方式，用于**解决并发冲突的无锁并发控制**。MVCC 的使用主要涉及以下方面：
 
 1. 事务隔离级别设置：MVCC 和事务隔离级别密切相关。在 MySQL 中，可以通过设置不同的事务隔离级别来决定 MVCC 的具体行为。常见的事务隔离级别包括 READ UNCOMMITTED、READ COMMITTED、REPEATABLE READ 和 SERIALIZABLE。
