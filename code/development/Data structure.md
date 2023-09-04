@@ -337,6 +337,36 @@ func HeapSort(slice []int) []int {
 3. **实现方式**：通常通过类的静态成员或全局变量来保存唯一的实例，并提供一个静态方法来获取该实例。确保构造函数是私有的，以防止外部代码创建多个实例。
     
 
+```go
+// Singleton 是一个单例模式的结构体
+type Singleton struct {
+	data int
+}
+
+var instance *Singleton
+var once sync.Once
+
+// GetInstance 返回单例实例
+func GetInstance() *Singleton {
+	once.Do(func() {
+		instance = &Singleton{data: 42}
+	})
+	return instance
+}
+
+func main() {
+	singleton1 := GetInstance()
+	singleton2 := GetInstance()
+
+	if singleton1 == singleton2 {
+		fmt.Println("singleton1 和 singleton2 是相同的实例")
+	} else {
+		fmt.Println("singleton1 和 singleton2 不是相同的实例")
+	}
+}
+```
+
+
 ##### **工厂模式（Factory Pattern）**：
 
 1. **目的**：工厂模式用于创建对象，但将对象的创建过程与客户端代码分离，以便于解耦。它提供了一种创建对象的抽象接口，客户端通过该接口请求对象而不需要了解对象的具体类。

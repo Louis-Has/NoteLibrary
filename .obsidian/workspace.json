@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "code/Go/import Mods.md",
+                "file": "code/development/Linux & Network.md",
                 "mode": "source",
                 "source": false
               }
@@ -92,7 +92,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -158,7 +158,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "code/development/Data structure.md",
+                "file": "code/Go/Golang.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -175,7 +175,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "code/development/Data structure.md",
+                "file": "code/Go/Golang.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -198,7 +198,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "code/development/Data structure.md"
+                "file": "code/Go/Golang.md"
               }
             }
           }
@@ -218,19 +218,19 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "5933936a708b9c39",
+  "active": "9b5e8b9b5b8d30ef",
   "lastOpenFiles": [
+    "code/Database/MongoDb.md",
+    "code/Go/Golang.md",
+    "code/development/Linux & Network.md",
+    "code/Go/import Mods.md",
+    "code/development/Data structure.md",
     "code/Database/MySQL.md",
     "code/Database/Redis.md",
-    "code/Go/import Mods.md",
-    "code/Database/MongoDb.md",
-    "code/development/Data structure.md",
-    "code/development/Network & Linux.md",
     "code/Go/GPM.md",
     "README.md",
     "未命名.canvas",
     "code/Go/内存管理.md",
-    "code/Go/Golang.md",
     "code/Go/go-zero.md",
     "code/development/Algorithm.md",
     "code/Go/TX Interview.md",
