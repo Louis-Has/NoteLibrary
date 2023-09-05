@@ -61,7 +61,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "code/Go/Golang.md",
+                "file": "code/development/Linux & Network.md",
                 "mode": "source",
                 "source": false
               }
@@ -219,15 +219,15 @@
   },
   "active": "d09a0663ab656c77",
   "lastOpenFiles": [
+    "code/Go/GPM.md",
     "code/Go/内存管理.md",
     "code/Go/import Mods.md",
     "code/development/Linux & Network.md",
+    "code/Go/Golang.md",
     "code/Database/MongoDb.md",
     "code/Database/Redis.md",
-    "code/Go/Golang.md",
     "code/development/Data structure.md",
     "code/Database/MySQL.md",
-    "code/Go/GPM.md",
     "README.md",
     "未命名.canvas",
     "code/Go/go-zero.md",

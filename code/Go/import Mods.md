@@ -14,7 +14,7 @@ go get github.com/spf13/viper
 
 [Go 每日一库之 viper](https://darjun.github.io/2020/01/18/godailylib/viper/)
 
-### zap 日志
+### zap 高性能日志库
 
 ```bash
 go get -u go.uber.org/zap
@@ -50,17 +50,20 @@ go get gopkg.in/natefinch/lumberjack.v2
 
 ### time/rate
 [Golang 标准库限流器 time/rate 实现剖析](https://www.cyhone.com/articles/analisys-of-golang-rate/)
+### ants 高性能且低损耗的 goroutine 池
 
 
 ## Time
 ### Cron 定时任务管理库
 
 ```go
+ c := cron.New()
+ 
  c.AddFunc("@every 1s", func() {
     fmt.Println("tick every 1 second")
   })
 
-  c.AddFunc("30 3-6,20-23 * * *", func() {
+ c.AddFunc("30 3-6,20-23 * * *", func() {
     fmt.Println("On the half hour of 3-6am, 8-11pm")
   })
 ```
@@ -73,7 +76,7 @@ go get gopkg.in/natefinch/lumberjack.v2
 - `Month`：月，取值范围`[1-12]`或者使用月份名字缩写`[JAN-DEC]`，支持特殊字符`* / , -`；
 - `Day of week`：周历，取值范围`[0-6]`或名字缩写`[JUN-SAT]`，支持特殊字符`* / , - ?`。
 
-
+### jobrunner 基于 cron 的定时任务管理库。
 ### carbon 日期时间的创建和运算
 ### copier 处理相同或不同结构体/map 之间的赋值。 
 
@@ -81,6 +84,8 @@ go get gopkg.in/natefinch/lumberjack.v2
 ## Data
 ### cast  小巧、实用的类型转换库
 ### validator 使用最为广泛的数据校验库。
+
+### casbin 灵活、强大的权限管理库，支持多种语言。
 
 
 ## Database
