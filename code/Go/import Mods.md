@@ -53,8 +53,27 @@ go get gopkg.in/natefinch/lumberjack.v2
 
 
 ## Time
-### gron 定时任务管理库
-### Cron
+### Cron 定时任务管理库
+
+```go
+ c.AddFunc("@every 1s", func() {
+    fmt.Println("tick every 1 second")
+  })
+
+  c.AddFunc("30 3-6,20-23 * * *", func() {
+    fmt.Println("On the half hour of 3-6am, 8-11pm")
+  })
+```
+
+`cron`库支持用 **5** 个空格分隔的域来表示时间。这 5 个域含义依次为：
+
+- `Minutes`：分钟，取值范围`[0-59]`，支持特殊字符`* / , -`；
+- `Hours`：小时，取值范围`[0-23]`，支持特殊字符`* / , -`；
+- `Day of month`：每月的第几天，取值范围`[1-31]`，支持特殊字符`* / , - ?`；
+- `Month`：月，取值范围`[1-12]`或者使用月份名字缩写`[JAN-DEC]`，支持特殊字符`* / , -`；
+- `Day of week`：周历，取值范围`[0-6]`或名字缩写`[JUN-SAT]`，支持特殊字符`* / , - ?`。
+
+
 ### carbon 日期时间的创建和运算
 ### copier 处理相同或不同结构体/map 之间的赋值。 
 
