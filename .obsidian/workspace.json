@@ -220,9 +220,9 @@
   },
   "active": "5933936a708b9c39",
   "lastOpenFiles": [
-    "static/golang方向-简历.md",
-    "code/Database/MySQL.md",
     "code/Database/RabbitMQ.md",
+    "code/Database/MySQL.md",
+    "static/golang方向-简历.md",
     "code/development/Data structure.md",
     "code/Go/import Mods.md",
     "code/Go/GPM.md",

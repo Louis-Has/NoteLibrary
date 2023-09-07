@@ -10,4 +10,5 @@ rabbitmq-plugins enable rabbitmq_management
 
 
 ### 参考文章：
-1. [# RabbitMQ(一) 入门与四种交换机类型](https://amos-x.com/index.php/amos/archives/rabbitmq_01/)
+1. [RabbitMQ(一) 入门与四种交换机类型](https://amos-x.com/index.php/amos/archives/rabbitmq_01/)
+2. [RabbitMQ Tutorials](https://www.rabbitmq.com/getstarted.html)
