@@ -66,15 +66,6 @@ Redis是一种快速的键值存储数据库，支持多种数据类型。以下
     - 使用场景：基数统计、独立访客统计等。
 
 
-1.  string
-	1.  Set 
-		1. 基本格式：\[业务名称]:\[数据名]:\[id]
-		2. SetNX 不存在则设置 
-			1. 用来分布式锁
-			2. Del 释放锁
-		3. Setex 设置过期时间 分布式锁常用
-	3.  incr incrby decr decrby
-
 ### 有序集合（Sorted Set）的编码方式
 
 在Redis中，有序集合（Sorted Set）的编码方式取决于存储的元素数量和元素的大小。Redis为有序集合定义了两种编码方式：
@@ -228,7 +219,7 @@ func main() {
 |DBSIZE|统计key总数【使用的是redis的内部计数，并不是全部扫描，生产可用】|
 |EXISTS key [key …]|检查key是否存在【存在返回1，不存在返回0】|
 |DEL key [key…]|删除key【成功删除返回1，不存在此key返回0】|
-|EXPIRE key seconds|设置过期时间|
+|**EXPIRE** key seconds|设置过期时间|
 |TTL key|查看剩余的过期时间【-2代表已不存在，-1代表永不过期】|
 |PERSIST key|取消key的过期设置|
 |TYPE key|查询key的类型|

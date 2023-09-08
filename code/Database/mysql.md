@@ -353,7 +353,7 @@ MySQL 中的锁可以通过以下方式进行管理：
     - 一般情况下，表级锁的并发性较差，会导致性能瓶颈。
 2. **行级锁、记录锁（Row-level Lock）**：
     - 行级锁是最细粒度的锁，对数据库中的每一行数据进行加锁。
-    - InnoDB 存储引擎支持行级锁，通过在事务中使用 SELECT ... FOR UPDATE 或 SELECT ... LOCK IN SHARE MODE 可以对查询的行进行加锁。
+    - InnoDB 存储引擎支持行级锁，通过在事务中使用 **SELECT ... FOR UPDATE** 或 SELECT ... LOCK IN SHARE MODE 可以对查询的行进行加锁。
     - 行级锁的并发性较好，可以减少锁的竞争，提高数据库的并发性能。
 3. 页级锁（Page-level Lock）：
     - 页级锁对数据库中的每一页数据进行加锁。
@@ -550,3 +550,4 @@ SHOW PROCESSLIST;
 
 ### 参考文章：
 1. [SQL优化](https://developer.aliyun.com/article/779151)
+2. [数据结构之MySQL独爱B+树(二叉树、AVL树、红黑树、B树对比)](https://learnku.com/articles/52909)
