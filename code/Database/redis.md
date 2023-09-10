@@ -152,6 +152,9 @@ Redis的内存管理是非常灵活和高效的，它允许管理员根据具体
 ### 缓存常见问题
 
 #### 缓存穿透
+
+缓存穿透是指当一个请求查询一个不存在于缓存中但存在于数据存储中的数据时，由于缓存不命中，每次都要去数据库中查询，导致数据库负载增加，降低系统性能。
+
 1. 拦截非法参数
 2. 将数据库不存在的数据也缓存下来：缺点是会有额外的内存消耗，而且可能造成短期的不一致
 3. 使用布隆过滤器,保证一般访问体验
@@ -210,14 +213,14 @@ func main() {
 ```
 
 ### redis常用命令
-
+************
 #### Redis基本通用命令
 
 |命令|说明|
 |---|---|
 |KEYS [pattern]|查找出匹配的key【生成环境禁止使用，数据量太大阻塞生成环境】|
 |DBSIZE|统计key总数【使用的是redis的内部计数，并不是全部扫描，生产可用】|
-|EXISTS key [key …]|检查key是否存在【存在返回1，不存在返回0】|
+|**EXISTS** key [key …]|检查key是否存在【存在返回1，不存在返回0】|
 |DEL key [key…]|删除key【成功删除返回1，不存在此key返回0】|
 |**EXPIRE** key seconds|设置过期时间|
 |TTL key|查看剩余的过期时间【-2代表已不存在，-1代表永不过期】|
@@ -245,14 +248,12 @@ func main() {
 1. **RDB快照**： RDB（Redis Database）快照是一种将Redis数据保存到二进制文件的方式。通过RDB快照，可以在特定的时间点上将数据的快照保存到磁盘，以便在Redis服务器重启时加载恢复。RDB快照是一个非常紧凑的文件，适用于备份和灾难恢复。
     
     RDB快照的特点：
-    
     - 适用于数据备份和恢复。
     - 文件紧凑，适用于大规模数据集。
     - 可以通过配置项设置自动触发RDB快照的时间或在特定条件下。
 2. **AOF日志**： AOF（Append-Only File）日志是一种记录每个写操作的方式。通过AOF日志，可以将每个写操作以命令的形式记录到一个日志文件中。在Redis服务器重启时，可以通过重新执行AOF日志中的命令来恢复数据。AOF日志相对于RDB快照提供了更高的数据安全性，因为数据是逐条记录的，不会丢失较多的数据。
     
     AOF日志的特点：
-    
     - 适用于数据恢复，提供更高的数据安全性。
     - 日志文件逐步增长，可能会变得较大。
     - 支持不同的fsync选项来控制写操作何时被同步到磁盘。
@@ -314,7 +315,7 @@ ZADD leader 12 'time+number1' # 示例：插入成员及分数
 ZREVRANGE leader 0 -1 # 获取整个排行榜
 zincrby leader 2 'time+number1' # 增长成员的分数
 ```
-
+ 
 如果是根据积分和时间来排序，**积分高的，时间最远的**拍前面
 
 ```bash
@@ -347,7 +348,6 @@ zincrby leader -2 '-time+number1' # 增长成员的分数
 
 ### 参考文章：
 1. [分布式锁：使用 Redis 实现](https://pandaychen.github.io/2020/06/01/REDIS-DISTRIBUTED-LOCK/)
-2. [Golang中的本地锁和分布式锁](https://www.xiaoyeshiyu.com/post/9e4b.html)
-3. [Redis学习笔记之实用篇](https://www.xiaoyeshiyu.com/post/c187.html)
-4. [Redis基本数据类型代码示例](https://www.cnblogs.com/jiujuan/p/17215125.html)
-5. [Redis使用详解](https://mynamelancelot.github.io/nosql/redis.html)
+2. [Redis学习笔记之实用篇](https://www.xiaoyeshiyu.com/post/c187.html)
+3. [Redis基本数据类型代码示例](https://www.cnblogs.com/jiujuan/p/17215125.html)
+4. [Redis使用详解](https://mynamelancelot.github.io/nosql/redis.html)
