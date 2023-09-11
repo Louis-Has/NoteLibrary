@@ -2,11 +2,9 @@ str,_ := username.(string) 类型断言
 
 # Function
 
-
 ### 实现set
 
 - set := make(map[string]void)
-
 
 ### 设计一个阻塞队列
 
