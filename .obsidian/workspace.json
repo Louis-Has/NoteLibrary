@@ -116,7 +116,7 @@
             }
           }
         ],
-        "currentTab": 8
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -182,7 +182,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "code/development/Data structure.md",
+                "file": "code/Go/Golang.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -199,7 +199,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "code/development/Data structure.md",
+                "file": "code/Go/Golang.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -222,7 +222,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "code/development/Data structure.md"
+                "file": "code/Go/Golang.md"
               }
             }
           }
@@ -242,10 +242,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "47c9fecca8fc2bbd",
+  "active": "9b5e8b9b5b8d30ef",
   "lastOpenFiles": [
-    "code/Go/Golang.md",
     "code/development/Data structure.md",
+    "code/Go/Golang.md",
     "code/Database/Redis.md",
     "code/development/etcd.md",
     "code/development/gRPC.md",

@@ -643,7 +643,7 @@ if atomic.CompareAndSwapInt32(&num, old, new) {
 2. 退出应用程序
 3. defer函数不会执行
 
-### 数组（Array）和切片（Slice）
+### 数组（Array）& 切片（Slice）& 映射（map）
 
 数组是**固定长度的、值类型**的数据结构。
 
@@ -653,7 +653,6 @@ if atomic.CompareAndSwapInt32(&num, old, new) {
 - 当slice的`len==cap`后，再向slice中追加元素时，会发生扩容
 - [你不知道的 Go 之 slice](https://darjun.github.io/2021/05/09/youdontknowgo/slice/)
 
-### map
 
 `map` 的数据结构是一个哈希表（Hash Table）
 
@@ -666,7 +665,8 @@ if atomic.CompareAndSwapInt32(&num, old, new) {
 **第三方库**
 github.com/elliotchance/orderedmap
 
-#### sync.Map
+#### 并发安全问题
+##### sync.Map
 
 `sync.Map` 是 Go 语言标准库中的一个并发安全的映射数据结构。它是通过内置的 `sync` 包实现的，其内部实现比较复杂，基于分段锁（sharded lock）的方式来提高并发性能。下面是 `sync.Map` 的简要实现原理：
 
@@ -726,7 +726,44 @@ func (m *Map) Range(f func(key, value interface{}) bool)
     
     遍历 `sync.Map` 中的键值对，通过传入的函数对每个键值对进行处理。
 
-### map和切片的扩容规则
+##### slice 并发问题
+
+在Go语言中，slice是并发不安全的，主要有以下两个原因：数据竞争、内存重分配。
+
+数据竞争：slice底层的结构体包含一个指向底层数组的指针和该数组的长度，当多个协程并发访问同一个slice时，有可能会出现数据竞争的问题。例如，一个协程在修改slice的长度，而另一个协程同时在读取或修改slice的内容。
+
+内存重分配：在向slice中追加元素时，可能会触发slice的扩容操作，在这个过程中，如果有其他协程访问了slice，就会导致指向底层数组的指针出现异常。
+
+解决办法
+1. 互斥锁 sync.Mutex
+2. 使用channel串行化操作
+
+```go
+func main() {
+	buffer := make(chan int)
+	a := make([]int, 0)
+	// 消费者
+	go func() {
+		for v := range buffer {
+			a = append(a, v)
+		}
+	}()
+	// 生产者
+	var wg sync.WaitGroup
+	for i := 0; i < 10000; i++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			buffer <- i
+		}(i)
+	}
+	wg.Wait()
+	fmt.Println(len(a))
+	// equal 10000
+}
+```
+
+#### map和切片的扩容规则
 
 虽然`map`和切片都会触发扩容操作，但它们的扩容规则有一些不同之处：
 
