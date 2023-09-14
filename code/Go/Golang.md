@@ -499,16 +499,16 @@ Go 语言虽然没有像其他一些面向对象编程语言那样提供传统�
 ### make  new 和 :=  使用区别
 
 1. `make`：
-	- `make` 是一个**用于创建切片、映射和通道的内置函数**。
-	- 它分配并初始化了底层的数据结构，并**返回对应类型的引用（切片、映射或通道）**。
-	- 使用 `make` 创建的变量是**对底层数据结构的引用**，而不是变量本身的值。
-
+	- 能够分配并初始化类型所需的内存空间和结构，返回引用类型的本身。
+	- 具有使用范围的局限性，仅支持 channel、map、slice 三种类型。
+	- 具有独特的优势，make 函数会对三种类型的内部数据结构（长度、容量等）赋值。
+	- 在初始化时，会**初始化 `slice`、`chan`、`map` 类型的内部数据结构**
+	
 2. `new`：
-	- `new` 是一个用于**在堆上分配内存并返回指向该内存的指针的内置函数**。
-	- 它接收一个类型作为参数，并**返回该类型的零值**的指针。
-	- 使用 `new` 创建的变量是指针类型，指向分配在堆上的内存空间。
+	- 能够**分配**类型所需的内存空间，返回指针引用（指向内存的指针）。
+	- 可被替代，能够通过字面值快速初始化。
 
-3. `:=`（短变量声明）：
+2. `:=`（短变量声明）：
 	- `:=` 操作符用于**在当前作用域内**声明和初始化变量。
 	- 它根据右侧表达式的类型推断变量的类型，并进行赋值。
 	- `:=` 创建的变量是**在栈上分配**的，并且**只在当前作用域内可见**。
@@ -666,7 +666,43 @@ if atomic.CompareAndSwapInt32(&num, old, new) {
 github.com/elliotchance/orderedmap
 
 #### 并发安全问题
-##### sync.Map
+##### map 并发问题
+
+map 报错 fatal error: concurrent map writes
+
+Go 官方在 Go maps in action 中提供了一种简单又便利的方式来实现：
+```go
+var counter = struct{
+    sync.RWMutex
+    m map[string]int
+}{m: make(map[string]int)}
+```
+
+**sync.Map**
+
+[Go 并发读写 sync.map 的强大之处](https://segmentfault.com/a/1190000040729053#item-1)
+[不得不知道的Golang之sync.Map解读！](https://cloud.tencent.com/developer/article/2022098)
+
+```go
+type Map struct {
+ mu Mutex
+ read atomic.Value // readOnly
+ dirty map[interface{}]*entry
+ misses int
+}
+
+// Map.read 属性实际存储的是 readOnly。
+type readOnly struct {
+ m       map[interface{}]*entry
+ amended bool
+}
+```
+
+内部函数:
+**missLocked**  
+	- dirty=>read：随着load的miss不断自增，达到阈值后触发升级转储（完毕之后，dirty置空&miss清零&read.amended置false）
+**dirtyLocked**
+	- read=>dirty：当有read中不存在的新key需要增加且read和dirty一致的时候，触发重塑，且read.amended置true（然后再在dirty新增）。重塑的过程，会将nil状态的entry，全部挤压到expunged状态中，同时将非expunged的entry浅拷贝到dirty中，这样可以避免read的key无限的膨胀（存在大量逻辑删除的key）。最终，在dirty再次升级为read的时候，这些逻辑删除的key就可以一次性丢弃释放了（因为是直接覆盖上去）
 
 `sync.Map` 是 Go 语言标准库中的一个并发安全的映射数据结构。它是通过内置的 `sync` 包实现的，其内部实现比较复杂，基于分段锁（sharded lock）的方式来提高并发性能。下面是 `sync.Map` 的简要实现原理：
 
@@ -677,54 +713,6 @@ github.com/elliotchance/orderedmap
 3. **原子操作**：`sync.Map` 使用原子操作来进行映射的读取、写入和删除操作，这样可以保证多个协程并发访问时不会发生数据竞争。
     
 4. **无需手动加锁**：与传统的 `map` 不同，`sync.Map` 不需要手动加锁来保护并发访问。它的方法（如 `Load`、`Store`、`Delete`）会在内部进行加锁和解锁，使得操作变得更加方便。
-
-1. **Load：**
-    
-    ```go
-func (m *Map) Load(key interface{}) (value interface{}, ok bool)
-    ```
-    
-    用于从 `sync.Map` 加载键对应的值，返回值和是否成功加载。
-    
-2. **Store：**
-    
-    ```go
-func (m *Map) Store(key, value interface{})
-    ```
-    
-    用于向 `sync.Map` 存储键值对，如果键已存在，则更新其对应的值。
-    
-3. **LoadOrStore：**
-    
-    ```go
-func (m *Map) LoadOrStore(key, value interface{}) (actual interface{}, loaded bool)
-    ```
-    
-    尝试从 `sync.Map` 加载指定键的值，如果键不存在，则存储提供的键值对。
-    
-4. **Delete：**
-    
-    ```go
-func (m *Map) Delete(key interface{})
-    ```
-    
-    从 `sync.Map` 删除指定键的键值对。
-    
-5. **LoadAndDelete：**
-    
-    ```go
-func (m *Map) LoadAndDelete(key interface{}) (value interface{}, loaded bool)
-    ```
-    
-    原子地加载并删除指定键的值。
-    
-6. **Range：**
-    
-    ```go
-func (m *Map) Range(f func(key, value interface{}) bool)
-	```
-    
-    遍历 `sync.Map` 中的键值对，通过传入的函数对每个键值对进行处理。
 
 ##### slice 并发问题
 
@@ -744,6 +732,7 @@ func main() {
 	a := make([]int, 0)
 	// 消费者
 	go func() {
+		defer close(buffer) // 关闭通道，通知生产者不再产生数据
 		for v := range buffer {
 			a = append(a, v)
 		}

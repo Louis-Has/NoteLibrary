@@ -4,6 +4,7 @@
 协程(co-routine)
 	线程由CPU调度是抢占式的，*协程由用户态调度是协作式的*，一个协程让出CPU后，才执行下一个协程。
 
+[GMP 模型，为什么要有 P？](https://mp.weixin.qq.com/s?__biz=MzUxMDI4MDc1NA==&mid=2247487503&idx=1&sn=bfc20f81a1c6059ca489733b31a2c63c&chksm=f9040552ce738c4496afffe69893ee6c4a8bfb7a50988f29e2e10b097dca24b9d63dd5177d9d&scene=178&cur_album_id=1751854579329056768#rd)
 ### Go语言的协程goroutine
 
 **Go为了提供更容易使用的并发方法，使用了goroutine和channel**。goroutine来自协程的概念，让一组可复用的函数运行在一组线程之上，即使有协程阻塞，该线程的其他协程也可以被`runtime`调度，转移到其他可运行的线程上。最关键的是，程序员看不到这些底层的细节，这就降低了编程的难度，提供了更容易的并发。
