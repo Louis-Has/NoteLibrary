@@ -680,8 +680,9 @@ var counter = struct{
 
 **sync.Map**
 
-[Go 并发读写 sync.map 的强大之处](https://segmentfault.com/a/1190000040729053#item-1)
-[不得不知道的Golang之sync.Map解读！](https://cloud.tencent.com/developer/article/2022098)
+- [Go 并发读写 sync.map 的强大之处](https://segmentfault.com/a/1190000040729053#item-1)
+- [不得不知道的Golang之sync.Map解读！](https://cloud.tencent.com/developer/article/2022098)
+- [一口气搞懂 Go sync.map 所有知识点](https://mp.weixin.qq.com/s?__biz=MzUxMDI4MDc1NA==&mid=2247489164&idx=1&sn=e56e5c9836cda40f3c95a39e2ba57dde&chksm=f90403d1ce738ac7d746c35a2b09b00aebcdf3e6a28ee58f2f9cf11b53b366e548b570cc5a1e&scene=178&cur_album_id=1751854579329056768#rd)
 
 ```go
 type Map struct {

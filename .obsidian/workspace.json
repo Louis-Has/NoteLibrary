@@ -116,7 +116,7 @@
             }
           }
         ],
-        "currentTab": 7
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -182,7 +182,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "code/Go/GPM.md",
+                "file": "code/Database/MySQL.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -199,7 +199,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "code/Go/GPM.md",
+                "file": "code/Database/MySQL.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -222,7 +222,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "code/Go/GPM.md"
+                "file": "code/Database/MySQL.md"
               }
             }
           }
@@ -242,9 +242,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "f612ad36b0acd395",
+  "active": "5933936a708b9c39",
   "lastOpenFiles": [
     "code/Go/Golang.md",
+    "code/Go/GPM.md",
     "code/Database/MongoDb.md",
     "code/development/Data structure.md",
     "code/Database/Redis.md",
@@ -261,7 +262,6 @@
     "configure/learning.md",
     "code/Go/内存管理.md",
     "code/Go/Gin & Gorm.md",
-    "code/Go/GPM.md",
     "code/Go/go-zero.md",
     "code/Database/MySQL.md",
     "code/Database/RabbitMQ.md",
