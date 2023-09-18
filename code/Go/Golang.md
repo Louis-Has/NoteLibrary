@@ -624,28 +624,28 @@ if atomic.CompareAndSwapInt32(&num, old, new) {
 
 需要注意的是，`atomic`包只能用于基本类型的原子操作，对于复杂的数据结构，需要使用其他的同步机制，如互斥锁（`sync.Mutex`）或读写锁（`sync.RWMutex`）来保证线程安全性。
 
-
-
 ### panic（使用多值返回来返回错误
-1. 函数立刻停止执行 (注意是函数本身，不是应用程序停止)
-2. defer函数被执行
-3. 返回给调用者(caller)
-4. 调用者函数假装也收到了一个panic函数，从而  
-	1. 立即停止执行当前函数  
-	2. 它defer函数被执行  
-	3. 返回给它的调用者(caller)
-5. ...(递归重复上述步骤，直到最上层函数)  
-    应用程序停止。
-6. panic的行为
+
+1. **函数立刻停止执行** (注意是函数本身，不是应用程序停止)
+2. **defer函数被执行**
+3. 使用defer recover()捕获异常:
+4. goroutine中的 panic 只能**协程内恢复**
+5. panic 会不断往外抛，直到程序停止，但可以在外侧恢复
 
 ### log.Fatal
 1. 打印输出内容
 2. 退出应用程序
 3. defer函数不会执行
 
-### 数组（Array）& 切片（Slice）& 映射（map）
+### CAS 的实现
+
+`sync/atomic` 包还提供了 `atomic.Value` 类型，它可以用于原子地读取和存储任意类型的值。这对于实现具有线程安全属性的数据结构非常有用。
+
+### 数组（Array）
 
 数组是**固定长度的、值类型**的数据结构。
+
+### 切片（Slice）
 
 切片是**动态长度的、引用类型**的数据结构。
 	切片的底层实现是一个指向连续内存区域的指针，这个内存区域是数组。切片通过指针（Pointer）、长度（Length）和容量（Capacity）这三个字段来描述和操作底层数组。
@@ -653,8 +653,66 @@ if atomic.CompareAndSwapInt32(&num, old, new) {
 - 当slice的`len==cap`后，再向slice中追加元素时，会发生扩容
 - [你不知道的 Go 之 slice](https://darjun.github.io/2021/05/09/youdontknowgo/slice/)
 
+#### slice 并发问题
 
-`map` 的数据结构是一个哈希表（Hash Table）
+在Go语言中，slice是并发不安全的，主要有以下两个原因：数据竞争、内存重分配。
+
+数据竞争：slice底层的结构体包含一个指向底层数组的指针和该数组的长度，当多个协程并发访问同一个slice时，有可能会出现数据竞争的问题。例如，一个协程在修改slice的长度，而另一个协程同时在读取或修改slice的内容。
+
+内存重分配：在向slice中追加元素时，可能会触发slice的扩容操作，在这个过程中，如果有其他协程访问了slice，就会导致指向底层数组的指针出现异常。
+
+解决办法
+1. 互斥锁 sync.Mutex
+2. 使用channel串行化操作
+
+```go
+func main() {
+	buffer := make(chan int)
+	a := make([]int, 0)
+	// 消费者
+	go func() {
+		defer close(buffer) // 关闭通道，通知生产者不再产生数据
+		for v := range buffer {
+			a = append(a, v)
+		}
+	}()
+	// 生产者
+	var wg sync.WaitGroup
+	for i := 0; i < 10000; i++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			buffer <- i
+		}(i)
+	}
+	wg.Wait()
+	fmt.Println(len(a))
+	// equal 10000
+}
+```
+
+
+### 映射（map）
+
+#### Go 里面使用 Map 时应注意问题
+
+1. **并发安全性问题**：Go 的 Map 不是并发安全的，因此在多个 Goroutine 中使用 Map 时需要使用适当的同步机制，如互斥锁（mutex）或者使用并发安全的数据结构，如 sync.Map。
+    
+2. **Map 的零值**：未初始化的 Map 是 nil，如果尝试对 nil Map 进行读取或写入操作，会导致 panic。因此，在使用 Map 前确保对其进行初始化。
+    
+3. **Map 的键类型**：Map 的键必须是支持相等性比较的类型，通常是可以用 == 运算符进行比较的类型。例如，整数、字符串、指针等都可以作为 Map 的键。
+    
+4. **Map 的值类型**：Map 的值可以是任意类型，包括自定义结构体。但要注意，Map 的值通常是不可寻址的，所以如果需要修改 Map 中的值，可以将值存储为指针类型，或者使用 sync.Map 来实现。
+    
+5. **Map 的遍历**：遍历 Map 时，注意 Map 的遍历顺序是随机的，不保证元素的顺序。如果需要按特定顺序遍历 Map，可以将键排序后再进行遍历。
+    
+6. **Map 的容量**：Map 的容量会影响性能。当你知道 Map 预计存储大量数据时，可以使用 make 函数初始化 Map 并指定足够的容量，以避免 Map 在运行时频繁扩容。
+    
+7. **内存占用**：Map 在 Go 中是引用类型，传递 Map 时是按引用传递的，所以要注意在函数间传递 Map 时可能共享相同的底层数据，对 Map 的修改可能会影响其他部分的代码。
+    
+8. **错误处理**：Map 的读取操作总是返回一个值，甚至是不存在的键也会返回零值。因此，在读取 Map 时，要额外检查键是否存在，以防止返回的零值引起误解。
+    
+9. **性能和内存占用**：Map 在大数据量的情况下可能会占用较多内存，因此在性能和内存占用敏感的场景中，要考虑是否适合使用 Map，或者是否可以使用其他数据结构来优化。
 
 #### map如何顺序读取
 
@@ -665,8 +723,7 @@ if atomic.CompareAndSwapInt32(&num, old, new) {
 **第三方库**
 github.com/elliotchance/orderedmap
 
-#### 并发安全问题
-##### map 并发问题
+#### map 并发问题
 
 map 报错 fatal error: concurrent map writes
 
@@ -715,45 +772,8 @@ type readOnly struct {
     
 4. **无需手动加锁**：与传统的 `map` 不同，`sync.Map` 不需要手动加锁来保护并发访问。它的方法（如 `Load`、`Store`、`Delete`）会在内部进行加锁和解锁，使得操作变得更加方便。
 
-##### slice 并发问题
 
-在Go语言中，slice是并发不安全的，主要有以下两个原因：数据竞争、内存重分配。
-
-数据竞争：slice底层的结构体包含一个指向底层数组的指针和该数组的长度，当多个协程并发访问同一个slice时，有可能会出现数据竞争的问题。例如，一个协程在修改slice的长度，而另一个协程同时在读取或修改slice的内容。
-
-内存重分配：在向slice中追加元素时，可能会触发slice的扩容操作，在这个过程中，如果有其他协程访问了slice，就会导致指向底层数组的指针出现异常。
-
-解决办法
-1. 互斥锁 sync.Mutex
-2. 使用channel串行化操作
-
-```go
-func main() {
-	buffer := make(chan int)
-	a := make([]int, 0)
-	// 消费者
-	go func() {
-		defer close(buffer) // 关闭通道，通知生产者不再产生数据
-		for v := range buffer {
-			a = append(a, v)
-		}
-	}()
-	// 生产者
-	var wg sync.WaitGroup
-	for i := 0; i < 10000; i++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
-			buffer <- i
-		}(i)
-	}
-	wg.Wait()
-	fmt.Println(len(a))
-	// equal 10000
-}
-```
-
-#### map和切片的扩容规则
+### map和切片的扩容规则
 
 虽然`map`和切片都会触发扩容操作，但它们的扩容规则有一些不同之处：
 
