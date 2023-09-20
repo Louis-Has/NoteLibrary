@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "code/development/Linux & Network.md",
+                "file": "code/Go/import Mods.md",
                 "mode": "source",
                 "source": false
               }
@@ -115,8 +115,7 @@
               }
             }
           }
-        ],
-        "currentTab": 5
+        ]
       }
     ],
     "direction": "vertical"
@@ -182,7 +181,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "code/Go/Golang.md",
+                "file": "static/golang方向-简历.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -199,7 +198,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "code/Go/Golang.md",
+                "file": "static/golang方向-简历.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -222,7 +221,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "code/Go/Golang.md"
+                "file": "static/golang方向-简历.md"
               }
             }
           }
@@ -242,21 +241,21 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "9b5e8b9b5b8d30ef",
+  "active": "a8b66f1489715ec9",
   "lastOpenFiles": [
-    "code/Database/Redis.md",
+    "code/development/Data structure.md",
+    "static/golang方向-简历.md",
+    "code/Go/import Mods.md",
     "code/development/Linux & Network.md",
-    "code/Database/MySQL.md",
-    "code/Go/Golang.md",
     "code/Go/GPM.md",
     "code/Database/MongoDb.md",
-    "code/development/Data structure.md",
+    "code/Database/Redis.md",
+    "code/Database/MySQL.md",
+    "code/Go/Golang.md",
     "code/development/etcd.md",
     "code/development/gRPC.md",
     "code/development/Kafka.md",
-    "code/Go/import Mods.md",
     "static/Goroutine Pool.png",
-    "static/golang方向-简历.md",
     "static/GMP.png",
     "configure/Mac.md",
     "configure/env.md",
