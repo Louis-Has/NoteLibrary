@@ -97,7 +97,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "code/Go/内存管理.md",
+                "file": "code/Go/垃圾回收（GC）.md",
                 "mode": "source",
                 "source": false
               }
@@ -114,8 +114,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "4627fc9ac6cd0166",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "code/development/Data structure.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -181,7 +194,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "static/golang方向-简历.md",
+                "file": "code/Database/MySQL.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -198,7 +211,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "static/golang方向-简历.md",
+                "file": "code/Database/MySQL.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -221,7 +234,17 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "static/golang方向-简历.md"
+                "file": "code/Database/MySQL.md"
+              }
+            }
+          },
+          {
+            "id": "9ac0fdaa5e135908",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency"
               }
             }
           }
@@ -241,18 +264,19 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "a8b66f1489715ec9",
+  "active": "5933936a708b9c39",
   "lastOpenFiles": [
+    "code/development/Data structure.md",
+    "code/Database/MySQL.md",
+    "code/Go/垃圾回收（GC）.md",
+    "code/development/Nginx.md",
+    "static/golang方向-简历.md",
+    "code/Database/Redis.md",
+    "code/Go/内存管理.md",
     "code/Go/Golang.md",
     "code/Go/GPM.md",
-    "code/Database/MongoDb.md",
-    "code/Database/Redis.md",
-    "static/golang方向-简历.md",
-    "code/Database/MySQL.md",
     "code/development/Linux & Network.md",
-    "code/Go/内存管理.md",
-    "code/development/Nginx.md",
-    "code/development/Data structure.md",
+    "code/Database/MongoDb.md",
     "code/Go/import Mods.md",
     "code/development/etcd.md",
     "code/development/gRPC.md",
@@ -269,7 +293,6 @@
     "未命名.canvas",
     "code/development/Algorithm.md",
     "code/Go/TX Interview.md",
-    "code/Go/垃圾回收（GC）.md",
     "code/Java.md",
     "code/development",
     "code/Network",
