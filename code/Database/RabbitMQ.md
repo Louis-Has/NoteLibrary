@@ -54,7 +54,7 @@ rabbitmq-plugins enable rabbitmq_management
 当”x-match”为“any”时，消息头的任意一个值被匹配就可以满足条件
 当”x-match”设置为“all”的时候，就需要消息头的所有值都匹配成功
 
-### cak
+### Ack
 
 ### ddd
 ### 参考文章：
