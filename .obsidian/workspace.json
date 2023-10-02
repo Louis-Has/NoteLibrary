@@ -140,7 +140,7 @@
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -206,7 +206,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "code/Database/RabbitMQ.md",
+                "file": "code/Go/Golang.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -223,7 +223,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "code/Database/RabbitMQ.md",
+                "file": "code/Go/Golang.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -246,7 +246,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "code/Database/RabbitMQ.md"
+                "file": "code/Go/Golang.md"
               }
             }
           },
@@ -276,12 +276,12 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "0af66b1aad9af317",
+  "active": "9b5e8b9b5b8d30ef",
   "lastOpenFiles": [
+    "code/Database/RabbitMQ.md",
     "code/Go/Golang.md",
     "code/Database/MySQL.md",
     "code/Database/Redis.md",
-    "code/Database/RabbitMQ.md",
     "static/golang方向-简历.md",
     "code/Go/GPM.md",
     "code/development/Linux & Network.md",

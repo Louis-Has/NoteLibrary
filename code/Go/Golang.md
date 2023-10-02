@@ -977,7 +977,22 @@ func main() {
 
 ### Golang 性能分析工具
 
-[Go 大杀器之性能剖析 PProf](https://golang2.eddycjy.com/posts/ch6/01-pprof-1/)
+- 如果您主要关心 CPU 和内存性能分析，以及解决 CPU 密集型任务和内存问题，那么 `pprof` 是一个更适合的工具。
+    
+- 如果您需要详细的事件跟踪和并发性分析，以诊断并发问题和理解程序的时间线，那么 `trace` 更适合您的需求。
+#### PProf
+pprof 是用于可视化和分析性能分析数据的工具
+- runtime/pprof：采集程序（非 Server）的运行数据进行分析
+- net/http/pprof：采集 HTTP Server 的运行时数据进行分析
+
+1. [Go 大杀器之性能剖析 PProf](https://golang2.eddycjy.com/posts/ch6/01-pprof-1/)
+2. [你不知道的 Go 之 pprof](https://darjun.github.io/2021/06/09/youdontknowgo/pprof/)
+
+#### trace
+
+
+#### perf工具 
+无侵入采集
 ### go的调试/分析工具
 
 Go语言提供了一些强大的调试和分析工具，可以帮助开发人员进行代码调试、性能优化和内存分析等任务。以下是一些常用的Go调试/分析工具：
