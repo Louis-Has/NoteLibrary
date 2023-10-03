@@ -988,6 +988,18 @@ pprof 是用于可视化和分析性能分析数据的工具
 1. [Go 大杀器之性能剖析 PProf](https://golang2.eddycjy.com/posts/ch6/01-pprof-1/)
 2. [你不知道的 Go 之 pprof](https://darjun.github.io/2021/06/09/youdontknowgo/pprof/)
 
+```bahs
+go build -o app counter_v1.go // 将 Go 代码编译成可执行文件或库文件
+./app --cpu=cpu.pprof
+./app --mem=mem.pprof
+
+(pprof) top
+
+(pprof) list main.counter
+```
+
+1. 注意该包利用下划线 `_` 导入，意味着只需要该包运行其 `init()` 函数即可。这样之后，该包将**自动完成信息采集并保存到内存**。
+2. 服务上线时需要将 net/http/pprof 包移除，避免其影响服务的性能，更重要的是**防止其造成内存的不断上涨**。
 #### trace
 
 
