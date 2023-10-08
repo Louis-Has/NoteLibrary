@@ -595,3 +595,4 @@ SHOW PROCESSLIST;
 2. [数据结构之MySQL独爱B+树(二叉树、AVL树、红黑树、B树对比)](https://learnku.com/articles/52909)
 3. [Golang中的本地锁和分布式锁](https://www.xiaoyeshiyu.com/post/9e4b.html)
 4. [MySQL学习笔记事务和锁篇](https://www.xiaoyeshiyu.com/post/fa7d.html)
+5. [MySQL MVCC实现原理](https://juejin.cn/post/7212812263098761275#heading-2)

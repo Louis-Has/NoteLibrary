@@ -14,7 +14,7 @@
 - 缓存:熟练使用Redis，熟悉Redis高性能和高可用方案;掌握缓存模式，提高系统高容错和并发能力；
 - 方法论:熟练掌握DDD，TDD，熟练运用设计模式
 - 掌握常见的数据结构和排序算法，熟悉dp、sort等
-- 其它中间件:Nginx，Etcd
+- 其它中间件:Nginx，WebSocket
 - 其余技能:NodeJs使用经验，linux操作，git，Docker, Kubernetes
 
 ## 工作经历

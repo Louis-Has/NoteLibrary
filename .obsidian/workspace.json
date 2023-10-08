@@ -13,6 +13,18 @@
             "state": {
               "type": "markdown",
               "state": {
+                "file": "static/Y-go-pdf.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "fd27d18df9795927",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
                 "file": "static/golang方向-简历.md",
                 "mode": "source",
                 "source": false
@@ -139,8 +151,7 @@
               }
             }
           }
-        ],
-        "currentTab": 6
+        ]
       }
     ],
     "direction": "vertical"
@@ -206,7 +217,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "code/Go/Golang.md",
+                "file": "static/Y-go-pdf.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -223,7 +234,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "code/Go/Golang.md",
+                "file": "static/Y-go-pdf.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -246,7 +257,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "code/Go/Golang.md"
+                "file": "static/Y-go-pdf.md"
               }
             }
           },
@@ -276,19 +287,20 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "9b5e8b9b5b8d30ef",
+  "active": "a8b66f1489715ec9",
   "lastOpenFiles": [
-    "code/Database/RabbitMQ.md",
-    "code/Go/Golang.md",
-    "code/Database/MySQL.md",
-    "code/Database/Redis.md",
     "static/golang方向-简历.md",
-    "code/Go/GPM.md",
+    "static/Y-go-pdf.md",
     "code/development/Linux & Network.md",
     "code/development/Data structure.md",
+    "code/Go/Golang.md",
+    "code/Database/MySQL.md",
+    "code/development/Nginx.md",
+    "code/Database/Redis.md",
+    "code/Database/RabbitMQ.md",
+    "code/Go/GPM.md",
     "code/Database/MongoDb.md",
     "code/Go/垃圾回收（GC）.md",
-    "code/development/Nginx.md",
     "code/Go/内存管理.md",
     "code/Go/import Mods.md",
     "code/development/etcd.md",

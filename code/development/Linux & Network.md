@@ -304,6 +304,15 @@ Connection: keep-alive
 2. **支持多个请求同时处理**
 3. **节省带宽和资源**
 
+### WebSocket
+
+```go
+"github.com/gorilla/websocket"
+```
+
+### DevOps
+
+
 ### Backend
 
 #### SQLx 和 GORM 比较
