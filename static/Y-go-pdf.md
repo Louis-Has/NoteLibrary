@@ -7,7 +7,7 @@
 工作年限：3年
 研发经验：
 1. 游戏，后台数据，WebSocket开发，
-2. 素材后台，黑盒测试
+2. 素材后台，黑盒测试，cicd
 
 
 ## 技术介绍
@@ -18,5 +18,5 @@
 - NoSQL数据库：MongoDB、Redis
 - 测试方法
 - 掌握常见的数据结构和排序算法
-- 其它中间件：Nginx，WebSocket
+- 中间件：Nginx，WebSocket
 - 容器化：Docker, Kubernetes
