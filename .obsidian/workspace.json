@@ -151,8 +151,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -218,7 +217,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "static/golang方向-简历.md",
+                "file": "static/Y-go-pdf.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -235,7 +234,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "static/golang方向-简历.md",
+                "file": "static/Y-go-pdf.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -258,7 +257,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "static/golang方向-简历.md"
+                "file": "static/Y-go-pdf.md"
               }
             }
           },
@@ -288,10 +287,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "fd27d18df9795927",
+  "active": "a8b66f1489715ec9",
   "lastOpenFiles": [
-    "static/Y-go-pdf.md",
     "static/golang方向-简历.md",
+    "static/Y-go-pdf.md",
     "code/development/Linux & Network.md",
     "code/development/Data structure.md",
     "code/Go/Golang.md",
