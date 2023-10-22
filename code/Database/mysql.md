@@ -33,6 +33,11 @@
 
 - **由于实际存储的长度不确定，MySQL 不允许 TEXT 类型的字段做主键**。遇到这种情况，你只能采用 CHAR(M)，或者 VARCHAR(M)。
 
+#### INT(11)
+
+```sql
+    `b` `INT``(11) UNSIGNED ZEROFILL` `NOT` `NULL``,`
+```
 ### SELECT语句 - 执行顺序
 
 ##### 1. FROM子句

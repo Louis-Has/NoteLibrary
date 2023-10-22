@@ -541,7 +541,7 @@ Go 语言虽然没有像其他一些面向对象编程语言那样提供传统�
 1. new 的参数要求传入一个类型，而不是一个值，它会申请该类型的内存大小空间，并初始化为对应的零值，返回该指向类型空间的一个指针
 2. make 也用于内存分配，但它只用于引用对象 slice、map、channel的内存创建，返回的类型是类型本身
 
-### sync 同步原语
+### sync.Mutex 等同步原语
 
 在 Go 语言中，`sync` 包提供了一些常用的同步原语，用于实现并发安全的操作。以下是几个常见的 `sync` 同步原语以及它们的作用：
 
@@ -601,6 +601,20 @@ func main() {
 	fmt.Println("Got object from pool:", obj)
 }
 ```
+
+#### sync.Mutex 的数据结构
+
+`sync.Mutex` 的数据结构非常简单，它包含一个整数字段，用于表示锁的状态。通常情况下，0 表示锁是未锁定的，非零值表示锁已锁定。具体来说，`sync.Mutex` 的数据结构如下：
+```go
+type Mutex struct {
+    state int32
+    sema  uint32
+}
+```
+
+- `state` 字段表示锁的状态，它是一个 `int32` 类型的整数。当 `state` 的值为 0 时，表示锁是未锁定状态；当 `state` 的值为非零时，表示锁已锁定。
+    
+- `sema` 字段用于实现信号量，它是一个 `uint32` 类型的整数，用于控制等待锁的 goroutine 的数量。这个字段通常用于避免饥饿现象。
 
 ### atomic 使用
 
@@ -987,6 +1001,7 @@ pprof 是用于可视化和分析性能分析数据的工具
 
 1. [Go 大杀器之性能剖析 PProf](https://golang2.eddycjy.com/posts/ch6/01-pprof-1/)
 2. [你不知道的 Go 之 pprof](https://darjun.github.io/2021/06/09/youdontknowgo/pprof/)
+3. [Goroutine 泄露排查](https://ms2008.github.io/2019/06/02/golang-goroutine-leak/)
 
 ```bahs
 go build -o app counter_v1.go // 将 Go 代码编译成可执行文件或库文件
