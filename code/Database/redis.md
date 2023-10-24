@@ -335,9 +335,9 @@ zincrby leader 2 'time+number1' # 增长成员的分数
 如果是根据积分和时间来排序，**积分高的，时间最远的**拍前面
 
 ```bash
-ZADD leader -12 '-time+number1' # 示例：插入成员及分数
+ZADD leader -12 'time+number1' # 示例：插入成员及分数
 ZRANGE leader 0 -1 # 获取整个排行榜
-zincrby leader -2 '-time+number1' # 增长成员的分数
+zincrby leader -2 'time+number1' # 增长成员的分数
 ```
 
 #### 同时有很多个 redis 请求，怎么优化
