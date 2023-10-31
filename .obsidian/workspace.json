@@ -8,18 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "e146a8bf92dd70aa",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "static/Golang-Wang-pdf.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
             "id": "fd27d18df9795927",
             "type": "leaf",
             "state": {
@@ -151,8 +139,7 @@
               }
             }
           }
-        ],
-        "currentTab": 7
+        ]
       }
     ],
     "direction": "vertical"
@@ -218,7 +205,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "code/Go/Golang.md",
+                "file": "static/golang方向-简历.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -235,7 +222,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "code/Go/Golang.md",
+                "file": "static/golang方向-简历.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -258,7 +245,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "code/Go/Golang.md"
+                "file": "static/golang方向-简历.md"
               }
             }
           },
@@ -288,15 +275,15 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "9b5e8b9b5b8d30ef",
+  "active": "fd27d18df9795927",
   "lastOpenFiles": [
-    "code/Database/Redis.md",
     "code/Go/Golang.md",
+    "static/golang方向-简历.md",
+    "code/Database/MySQL.md",
+    "static/Golang-Wang-pdf.md",
+    "code/Database/Redis.md",
     "code/development/Linux & Network.md",
     "code/development/Nginx.md",
-    "static/Golang-Wang-pdf.md",
-    "code/Database/MySQL.md",
-    "static/golang方向-简历.md",
     "code/Go/GPM.md",
     "code/Go/垃圾回收（GC）.md",
     "code/Database/RabbitMQ.md",
