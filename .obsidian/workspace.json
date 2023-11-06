@@ -139,7 +139,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -205,7 +206,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "static/golang方向-简历.md",
+                "file": "code/Database/MySQL.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -222,7 +223,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "static/golang方向-简历.md",
+                "file": "code/Database/MySQL.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -245,7 +246,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "static/golang方向-简历.md"
+                "file": "code/Database/MySQL.md"
               }
             }
           },
@@ -275,20 +276,20 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "fd27d18df9795927",
+  "active": "5933936a708b9c39",
   "lastOpenFiles": [
+    "code/development/Data structure.md",
     "code/Go/Golang.md",
-    "static/golang方向-简历.md",
     "code/Database/MySQL.md",
-    "static/Golang-Wang-pdf.md",
+    "code/Database/MongoDb.md",
+    "static/golang方向-简历.md",
     "code/Database/Redis.md",
+    "code/Go/GPM.md",
+    "static/Golang-Wang-pdf.md",
     "code/development/Linux & Network.md",
     "code/development/Nginx.md",
-    "code/Go/GPM.md",
     "code/Go/垃圾回收（GC）.md",
     "code/Database/RabbitMQ.md",
-    "code/Database/MongoDb.md",
-    "code/development/Data structure.md",
     "code/Go/内存管理.md",
     "code/Go/import Mods.md",
     "code/development/etcd.md",
