@@ -10,6 +10,26 @@ typedef struct node
 void TraverseList(pNode h)
 {
    pNode p = h->next;
+   if (!p)
+   {
+      printf("Empty!");
+   }
+   while (p != NULL)
+   {
+      printf("%d", p->data);
+      if (p->next != NULL)
+      {
+         printf(" -> ");
+      }
+      p = p->next;
+   }
+   printf("\n");
+   return;
+}
+
+void TraverseListAll(pNode h)
+{
+   pNode p = h;
    while (p != NULL)
    {
       printf("%d", p->data);
@@ -88,6 +108,48 @@ void MergeLinks(pNode la, pNode lb)
    tail->next = pa ? pa : pb;
    printf("result: ");
    TraverseList(pc);
+   return;
+}
+
+void MergeRevLinks(pNode la, pNode lb)
+{
+   pNode pa = la->next;
+   pNode pb = lb->next;
+   pNode pc = (pNode)malloc(sizeof(Node));
+   pc->next = NULL;
+
+   while (pa || pb)
+   {
+      pNode temp;
+
+      if (!pb)
+      {
+         temp = pa;
+         pa = pa->next;
+      }
+      else if (!pa)
+      {
+         temp = pb;
+         pb = pb->next;
+      }
+      else if (pa->data <= pb->data)
+      {
+         temp = pa;
+         pa = pa->next;
+      }
+      else
+      {
+         temp = pb;
+         pb = pb->next;
+      }
+
+      temp->next = pc->next;
+      pc->next = temp;
+      // free(temp);
+   }
+   printf("result: ");
+   TraverseList(pc);
+   return;
 }
 
 int main()
@@ -102,11 +164,14 @@ int main()
    // 表中不允许有重复的数据。
    int arr11[] = {1, 2, 3, 4, 5, 7, 12, -1};
    int arr12[] = {2, 4, 5, 6, 9, -1};
-   MergeLinks(CreateLinkList(arr11), CreateLinkList(arr12));
+   // MergeLinks(CreateLinkList(arr11), CreateLinkList(arr12));
 
    // 2.2.2 将两个非递减的有序链表合并为 一个非递增的有序链表。
    // 要求结果链表仍使用原来两个链表的存储空间，不另外占用其他的存储空间。
    // 表中允许有重复的数据。
+   int arr21[] = {1, 2, 3, 3, 4, 5, 8, 9, 9, -1};
+   int arr22[] = {2, 5, 6, 6, 8, 10, 12, -1};
+   MergeRevLinks(CreateLinkList(arr21), CreateLinkList(arr22));
 
    return 0;
 }
