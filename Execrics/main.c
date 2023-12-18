@@ -180,7 +180,6 @@ void Mix(pNode la, pNode lb)
 
    while (pa && pb)
    {
-      printf("pa:%d pb:%d \n", pa->data, pb->data);
       if (pa->data == pb->data)
       {
          tail->next = pa;
@@ -203,6 +202,49 @@ void Mix(pNode la, pNode lb)
    return;
 }
 
+// 2.2.4 已知两个链表A和B分别表示两个集合，其元素递增排列。
+// 请设计算法求出两个集合A和B 的差集（即仅由在A中出现而不在B中出现的元素所构成的集合），
+// 并以同样的形式存储，同时返回该集合的元素个数。
+int arr41[] = {1, 2, 4, 6, 7, 10, 12, 14, 15, -1};
+int arr42[] = {2, 3, 4, 7, 8, 9, 10, 11, -1};
+
+void Difference(pNode la, pNode lb)
+{
+   pNode pa = la->next;
+   pNode pb = lb->next;
+   pNode pc = la;
+   pNode tail = pc;
+
+   while (pa && pb)
+   {
+      if (pa->data < pb->data)
+      {
+         tail->next = pa;
+         tail = tail->next;
+         pa = pa->next;
+      }
+      else if (pa->data > pb->data)
+      {
+         pb = pb->next;
+      }
+      else
+      {
+         pa = pa->next;
+         pb = pb->next;
+      }
+      tail->next = NULL;
+   }
+
+   if (!pb)
+   {
+      tail->next = pa;
+   }
+
+   printf("Difference result: ");
+   TraverseList(pc);
+   return;
+}
+
 int main()
 {
    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 8, -1};
@@ -212,7 +254,9 @@ int main()
 
    // MergeRevLinks(CreateLinkList(arr21), CreateLinkList(arr22));
 
-   Mix(CreateLinkList(arr31), CreateLinkList(arr32));
+   // Mix(CreateLinkList(arr31), CreateLinkList(arr32));
+
+   Difference(CreateLinkList(arr41), CreateLinkList(arr42));
 
    return 0;
 }
