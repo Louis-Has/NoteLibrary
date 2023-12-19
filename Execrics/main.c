@@ -282,6 +282,26 @@ void Discompose(pNode la)
    return;
 }
 
+// 2.2.6 设计一个算法，通过一趟遍历在单链表中确定值最大的结点。
+int arr61[] = {2, 4, 12, 48, 2, 3, 8, 13, -1};
+
+void FindMax(pNode la)
+{
+   pNode pa = la->next;
+   if (!pa)
+   {
+      printf("result: 0");
+   }
+   int max = pa->data;
+   while (pa)
+   {
+      max = pa->data > max ? pa->data : max;
+      pa = pa->next;
+   }
+
+   printf("FindMax result: %d", max);
+}
+
 int main()
 {
    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 8, -1};
@@ -295,7 +315,9 @@ int main()
 
    // Difference(CreateLinkList(arr41), CreateLinkList(arr42));
 
-   Discompose(CreateLinkList(arr51));
+   // Discompose(CreateLinkList(arr51));
+
+   FindMax(CreateLinkList(arr61));
 
    return 0;
 }
