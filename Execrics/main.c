@@ -291,6 +291,7 @@ void FindMax(pNode la)
    if (!pa)
    {
       printf("result: 0");
+      return;
    }
    int max = pa->data;
    while (pa)
@@ -300,6 +301,36 @@ void FindMax(pNode la)
    }
 
    printf("FindMax result: %d", max);
+}
+
+// 2.2.7 设计一个算法，通过遍历一趟，将链表中所有结点的链接方向逆转，仍利用原表的存储空间。
+int arr71[] = {1, 2, 5, 4, 12, 7, -22, 8, 3, -1};
+
+void Reverse(pNode la)
+{
+   pNode pa = la->next;
+
+   pNode re = la;
+   re->next = NULL;
+   pNode temp;
+
+   if (!pa)
+   {
+      printf("result: 0");
+      return;
+   }
+
+   while (pa)
+   {
+      temp = pa;
+      pa = pa->next;
+      temp->next = re->next;
+      re->next = temp;
+   }
+
+   printf("Reverse result: ");
+   TraverseList(re);
+   return;
 }
 
 int main()
@@ -317,7 +348,9 @@ int main()
 
    // Discompose(CreateLinkList(arr51));
 
-   FindMax(CreateLinkList(arr61));
+   // FindMax(CreateLinkList(arr61));
+
+   Reverse(CreateLinkList(arr71));
 
    return 0;
 }
