@@ -245,6 +245,43 @@ void Difference(pNode la, pNode lb)
    return;
 }
 
+// 2.2.5 设计算法将一个带头结点的单链表A分解为两个具有相同结构的链表B、C，
+// 其中B表的结点为A表中值小于零的结点，
+// 而C表的结点为A表中值大于零的结点（链表A中的元素为非零整数，要求B、C表利用A表的结点）。
+int arr51[] = {1, 2, -2, -5, 4, 3, -12, 13, 8, -1};
+
+void Discompose(pNode la)
+{
+   pNode pa = la->next;
+   pNode pb = (pNode)malloc(sizeof(Node));
+   pNode tailb = pb;
+   pNode pc = (pNode)malloc(sizeof(Node));
+   pNode tailc = pc;
+
+   while (pa)
+   {
+      if (pa->data > 0)
+      {
+         tailb->next = pa;
+         tailb = tailb->next;
+         pa = pa->next;
+         tailb->next = NULL;
+      }
+      else
+      {
+         tailc->next = pa;
+         tailc = tailc->next;
+         pa = pa->next;
+         tailc->next = NULL;
+      }
+   }
+
+   printf("Discompose result: ");
+   TraverseList(pb);
+   TraverseList(pc);
+   return;
+}
+
 int main()
 {
    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 8, -1};
@@ -256,7 +293,9 @@ int main()
 
    // Mix(CreateLinkList(arr31), CreateLinkList(arr32));
 
-   Difference(CreateLinkList(arr41), CreateLinkList(arr42));
+   // Difference(CreateLinkList(arr41), CreateLinkList(arr42));
+
+   Discompose(CreateLinkList(arr51));
 
    return 0;
 }
