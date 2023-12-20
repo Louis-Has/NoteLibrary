@@ -366,6 +366,61 @@ void Delete(pNode la, int mink, int maxk)
    return;
 }
 
+// 2.2.9 已知p指向双向循环链表中的一个结点，
+// 其结点结构为data、prior、next三个域，
+// 写出算法change(p),交换p所指向的结点和它的前缀结点的顺序。
+
+// q = p->prior;
+
+// q->prior->next = p;
+// p->prior = q.prior;
+
+// q->next = p->next;
+// p->next->prior = q;
+
+// p->next = q;
+// q->prior = p;
+
+// 2.2.10 已知长度为n的线性表A采用顺序存储结构，
+// 请写一时间复杂度为O(n)、空间复杂度为O(1)的算法，
+// 该算法删除线性表中所有值为item的数据元素。
+int arr101[] = {1, 2, 3, 5, 2, 1, 5, 5, 6, 8, 12, 4, 3, 8, 12};
+int arrSize = sizeof(arr101) / sizeof(arr101[0]);
+int arrItem = 5;
+
+void DeleteArr(int arr[], int n, int item)
+{
+   int i = 0;
+   int j = n;
+   while (i < j)
+   {
+      while (arr[j - 1] == item)
+      {
+         j--;
+      }
+
+      if (arr[i] == item)
+      {
+         arr[i] = arr[j - 1];
+         n--;
+         j--;
+      }
+
+      i++;
+   }
+
+   printf("DeleteArr result: ");
+   for (int i = 0; i < n; i++)
+   {
+      if (i)
+      {
+         printf(" , ");
+      }
+      printf("%d", arr[i]);
+   }
+   return;
+}
+
 int main()
 {
    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 8, -1};
@@ -385,7 +440,9 @@ int main()
 
    // Reverse(CreateLinkList(arr71));
 
-   Delete(CreateLinkList(arr81), mink, maxk);
+   // Delete(CreateLinkList(arr81), mink, maxk);
+
+   DeleteArr(arr101, arrSize, arrItem);
 
    return 0;
 }
