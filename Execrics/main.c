@@ -333,6 +333,39 @@ void Reverse(pNode la)
    return;
 }
 
+// 2.2.8 设计一个算法，删除递增有序链表中值大于mink且小于maxk的所有元素
+// （mink和maxk是给定的两个参数，其值可以和表中的元素相同，也可以不同 ）。
+int arr81[] = {1, 3, 4, 7, 9, 12, 14, 22, 33, 34, 35, 47, -1};
+int mink = 14;
+int maxk = 34;
+
+void Delete(pNode la, int mink, int maxk)
+{
+   pNode pa = la->next;
+   pNode min;
+   pNode max;
+
+   while (pa)
+   {
+      if (pa->data <= mink)
+      {
+         min = pa;
+      }
+
+      if (pa->data < maxk)
+      {
+         max = pa;
+      }
+
+      pa = pa->next;
+   }
+   min->next = max->next;
+
+   printf("Delete result: ");
+   TraverseList(la);
+   return;
+}
+
 int main()
 {
    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 8, -1};
@@ -350,7 +383,9 @@ int main()
 
    // FindMax(CreateLinkList(arr61));
 
-   Reverse(CreateLinkList(arr71));
+   // Reverse(CreateLinkList(arr71));
+
+   Delete(CreateLinkList(arr81), mink, maxk);
 
    return 0;
 }
