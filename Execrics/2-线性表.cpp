@@ -1,5 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <iostream>
+
+using namespace std;
 
 typedef struct node
 {
@@ -384,7 +385,7 @@ void Delete(pNode la, int mink, int maxk)
 // 2.2.10 已知长度为n的线性表A采用顺序存储结构，
 // 请写一时间复杂度为O(n)、空间复杂度为O(1)的算法，
 // 该算法删除线性表中所有值为item的数据元素。
-int arr101[] = {1, 2, 3, 5, 2, 1, 5, 5, 6, 8, 12, 4, 3, 8, 12};
+int arr101[] = {1, 2, 3, 5, 4, 2, 1, 5, 5, 6, 8, 12, 4, 3, 8, 12};
 int arrSize = sizeof(arr101) / sizeof(arr101[0]);
 int arrItem = 5;
 
@@ -409,15 +410,16 @@ void DeleteArr(int arr[], int n, int item)
       i++;
    }
 
-   printf("DeleteArr result: ");
+   cout << "DeleteArr result: ";
    for (int i = 0; i < n; i++)
    {
       if (i)
       {
-         printf(" , ");
+         cout << " , ";
       }
-      printf("%d", arr[i]);
+      cout << arr[i];
    }
+
    return;
 }
 
