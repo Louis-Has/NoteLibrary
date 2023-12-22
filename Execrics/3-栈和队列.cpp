@@ -121,25 +121,46 @@ bool isPalindrome(const char *str)
 //  当ai=-1时，输出栈顶整数并出栈。
 //  算法应对异常情况（入栈满等）给出相应的信息。
 
-void InOut(stack<int> *st, int i)
+#define maxsize 栈空间容量
+void InOut(int a[], int n)
 {
-    if (i == -1)
+    int m = 4;
+    int stack[m];
+    int top = 0;
+
+    for (size_t i = 0; i < n; i++)
     {
-        if (st->empty())
+        if (a[i] == -1)
         {
-            cout << "Stack is empty!" << endl;
-            return;
+            if (top == 0)
+            {
+                cout << "Stack is Empty!" << endl;
+            }
+            else
+            {
+                cout << "Stack pop: " << stack[--top] << endl;
+            }
         }
         else
         {
-            cout << "Stack pop: " << st->top() << endl;
-            st->pop();
+            if (top == m)
+            {
+                cout << "Stack is Full!" << endl;
+            }
+            else
+            {
+                stack[top++] = a[i];
+                cout << "Stack push: " << a[i] << endl;
+            }
         }
     }
-    else
+
+    cout << "Now Stack contents: ";
+    while (top != 0)
     {
-        st->push(i);
+        cout << stack[--top] << "->";
     }
+    cout << endl;
 }
 int main()
 {
@@ -168,23 +189,8 @@ int main()
 
     []()
     {
-        stack<int> st;
-
-        InOut(&st, 2);
-        InOut(&st, 4);
-        InOut(&st, 6);
-        InOut(&st, -1);
-        InOut(&st, -1);
-        InOut(&st, -1);
-        InOut(&st, -1);
-
-        cout << "Now Stack contents: ";
-        while (!st.empty())
-        {
-            cout << st.top() << "->";
-            st.pop();
-        }
-        cout << endl;
+        int arr[] = {1, 22, -1, 13, -1, 4, 5, 6, 7};
+        InOut(arr, sizeof(arr) / sizeof(arr[0]));
     }();
 
     return 0;
