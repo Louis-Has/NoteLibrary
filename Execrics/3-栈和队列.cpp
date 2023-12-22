@@ -1,8 +1,10 @@
 #include <iostream>
+#include <cstring>
+#include <stack>
 
 using namespace std;
 
-// 将编号为0和1的两个栈存放于一个数组空间V[m]中，栈底分别处于数组的两端。
+// （1）将编号为0和1的两个栈存放于一个数组空间V[m]中，栈底分别处于数组的两端。
 // 当第0号栈的栈顶指针top[0]等于-1时该栈为空，当第1号栈的栈顶指针top[1]等于m时该栈为空。
 // 两个栈均从两端向中间增长。试编写双栈初始化，判断栈空、栈满、进栈和出栈等算法的函数。
 
@@ -86,6 +88,34 @@ public:
     }
 };
 
+// （2）回文是指正读反读均相同的字符序列，
+// 如“abba”和“abdba”均是回文，但“good”不是回文。
+// 试写一个算法判定给定的字符向量是否为回文。(提示：将一半字符入栈)
+
+bool isPalindrome(const char *str)
+{
+    stack<char> charStack;
+    int len = strlen(str);
+    cout << str << " length: " << len << " , isPalindrome: ";
+
+    for (size_t i = 0; i < len / 2; i++)
+    {
+        charStack.push(str[i]);
+    }
+
+    int start = (len % 2 == 0) ? (len / 2) : (len / 2 + 1);
+
+    for (size_t i = start; i < len; i++)
+    {
+        if (charStack.top() != str[i])
+        {
+            return false;
+        }
+        charStack.pop();
+    }
+    return true;
+}
+
 int main()
 {
     []()
@@ -102,6 +132,13 @@ int main()
         cout << DS.Pop(0) << endl;
         DS.Push(0, 12);
         DS.PrintAll();
+    };
+
+    []()
+    {
+        cout << boolalpha << isPalindrome("abcdcba") << endl;
+        cout << boolalpha << isPalindrome("abcdba") << endl;
+        cout << boolalpha << isPalindrome("abcddcba") << endl;
     }();
 
     return 0;
