@@ -116,6 +116,31 @@ bool isPalindrome(const char *str)
     return true;
 }
 
+// （3）设从键盘输入一整数的序列：a1, a2, a3，…，an，
+//  试编写算法实现：用栈结构存储输入的整数，当ai≠-1时，将ai进栈；
+//  当ai=-1时，输出栈顶整数并出栈。
+//  算法应对异常情况（入栈满等）给出相应的信息。
+
+void InOut(stack<int> *st, int i)
+{
+    if (i == -1)
+    {
+        if (st->empty())
+        {
+            cout << "Stack is empty!" << endl;
+            return;
+        }
+        else
+        {
+            cout << "Stack pop: " << st->top() << endl;
+            st->pop();
+        }
+    }
+    else
+    {
+        st->push(i);
+    }
+}
 int main()
 {
     []()
@@ -139,6 +164,27 @@ int main()
         cout << boolalpha << isPalindrome("abcdcba") << endl;
         cout << boolalpha << isPalindrome("abcdba") << endl;
         cout << boolalpha << isPalindrome("abcddcba") << endl;
+    };
+
+    []()
+    {
+        stack<int> st;
+
+        InOut(&st, 2);
+        InOut(&st, 4);
+        InOut(&st, 6);
+        InOut(&st, -1);
+        InOut(&st, -1);
+        InOut(&st, -1);
+        InOut(&st, -1);
+
+        cout << "Now Stack contents: ";
+        while (!st.empty())
+        {
+            cout << st.top() << "->";
+            st.pop();
+        }
+        cout << endl;
     }();
 
     return 0;
