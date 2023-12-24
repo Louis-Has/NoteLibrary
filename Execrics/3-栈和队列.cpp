@@ -219,8 +219,17 @@ void expr()
                 OPTR.pop();
                 int temp2 = OPTR.top();
                 OPTR.pop();
-                OPTR.push(temp * temp2);
-                cout << "pro : " << OPTR.top();
+               OPTR.push(temp2 / temp);
+                cout << "mul : " << OPTR.top();
+            }
+            else if (da[i] == '/')
+            {
+                int temp = OPTR.top();
+                OPTR.pop();
+                int temp2 = OPTR.top();
+                OPTR.pop();
+                OPTR.push(temp2 / temp);
+                cout << "div : " << OPTR.top();
             }
             else if (da[i] == '+')
             {
@@ -228,8 +237,17 @@ void expr()
                 OPTR.pop();
                 int temp2 = OPTR.top();
                 OPTR.pop();
-                OPTR.push(temp + temp2);
-                cout << "sum : " << OPTR.top();
+                OPTR.push(temp2 / temp);
+                cout << "add : " << OPTR.top();
+            }
+            else if (da[i] == '-')
+            {
+                int temp = OPTR.top();
+                OPTR.pop();
+                int temp2 = OPTR.top();
+                OPTR.pop();
+                 OPTR.push(temp2 / temp);
+                cout << "sub : " << OPTR.top();
             }
 
             cout << endl;
