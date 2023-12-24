@@ -122,15 +122,28 @@ bool isPalindrome(const char *str)
 //  算法应对异常情况（入栈满等）给出相应的信息。
 
 #define maxsize 栈空间容量
-void InOut(int a[], int n)
+
+void Inouts()
 {
     int m = 4;
     int stack[m];
     int top = 0;
+    int n = m * 2;
 
     for (size_t i = 0; i < n; i++)
     {
-        if (a[i] == -1)
+        int da;
+        cin >> da;
+
+        if (cin.fail())
+        {
+            // 输入不是整数，处理异常情况
+            cerr << "Invalid input. Please enter integers only.\n";
+            break;
+        }
+
+        //  handle the input data
+        if (da == -1)
         {
             if (top == 0)
             {
@@ -138,7 +151,8 @@ void InOut(int a[], int n)
             }
             else
             {
-                cout << "Stack pop: " << stack[--top] << endl;
+                top--;
+                cout << "Stack pop: " << stack[top] << endl;
             }
         }
         else
@@ -149,8 +163,8 @@ void InOut(int a[], int n)
             }
             else
             {
-                stack[top++] = a[i];
-                cout << "Stack push: " << a[i] << endl;
+                stack[top++] = da;
+                cout << "Stack push: " << stack[top - 1] << endl;
             }
         }
     }
@@ -162,6 +176,69 @@ void InOut(int a[], int n)
     }
     cout << endl;
 }
+
+// （4）从键盘上输入一个后缀表达式，试编写算法计算表达式的值。
+// 规定：逆波兰表达式的长度不超过一行，以$符作为输入结束，
+// 操作数之间用空格分隔,操作符只可能有+、-、*、/四种运算。
+// 例如：234 34+2*$。
+
+void expr()
+{
+    stack<int> OPTR;
+    string da;
+    // cin >> da;
+    getline(cin, da);
+    int sum = 0;
+
+    cout << "string : " << da << endl;
+
+    for (size_t i = 0; i < da.length(); i++)
+    {
+        cout << da[i] << " ";
+        if (isdigit(da[i]))
+        {
+            sum = sum * 10 + (da[i] - '0');
+            cout << "sum is : " << sum << endl;
+        }
+        else if (da[i] == '$')
+        {
+            cout << "break!" << endl;
+            break;
+        }
+        else
+        {
+            OPTR.push(sum);
+            sum = 0;
+            if (da[i] == ' ') // 空格之间是数字间隔
+            {
+                cout << "space!";
+            }
+            else if (da[i] == '*')
+            {
+                int temp = OPTR.top();
+                OPTR.pop();
+                int temp2 = OPTR.top();
+                OPTR.pop();
+                OPTR.push(temp * temp2);
+                cout << "pro : " << OPTR.top();
+            }
+            else if (da[i] == '+')
+            {
+                int temp = OPTR.top();
+                OPTR.pop();
+                int temp2 = OPTR.top();
+                OPTR.pop();
+                OPTR.push(temp + temp2);
+                cout << "sum : " << OPTR.top();
+            }
+
+            cout << endl;
+        }
+    }
+
+    cout << "result : " << OPTR.top() << endl;
+}
+
 int main()
 {
     []()
@@ -189,8 +266,12 @@ int main()
 
     []()
     {
-        int arr[] = {1, 22, -1, 13, -1, 4, 5, 6, 7};
-        InOut(arr, sizeof(arr) / sizeof(arr[0]));
+        Inouts();
+    };
+
+    []()
+    {
+        expr();
     }();
 
     return 0;
