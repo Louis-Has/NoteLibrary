@@ -219,7 +219,7 @@ void expr()
                 OPTR.pop();
                 int temp2 = OPTR.top();
                 OPTR.pop();
-               OPTR.push(temp2 / temp);
+                OPTR.push(temp2 / temp);
                 cout << "mul : " << OPTR.top();
             }
             else if (da[i] == '/')
@@ -246,7 +246,7 @@ void expr()
                 OPTR.pop();
                 int temp2 = OPTR.top();
                 OPTR.pop();
-                 OPTR.push(temp2 / temp);
+                OPTR.push(temp2 / temp);
                 cout << "sub : " << OPTR.top();
             }
 
@@ -255,6 +255,58 @@ void expr()
     }
 
     cout << "result : " << OPTR.top() << endl;
+}
+
+// （5）假设以I和O分别表示入栈和出栈操作。
+// 栈的初态和终态均为空，入栈和出栈的操作序列可表示为仅由I和O组成的序列，
+// 称可以操作的序列为合法序列，否则称为非法序列。
+// ①下面所示的序列中哪些是合法的？
+//    A. IOIIOIOO     B. IOOIOIIO      C. IIIOIOIO     D. IIIOOIOO
+// ②通过对①的分析，写出一个算法，判定所给的操作序列是否合法。
+// 若合法，返回true，否则返回false（假定被判定的操作序列已存入一维数组中）。
+
+// ①A和D是合法序列，B和C 是非法序列。
+
+bool judge(string st)
+{
+    cout << st << endl;
+
+    stack<int> sta;
+
+    for (size_t i = 0; i < st.length(); i++)
+    {
+        if (st[i] == 'I')
+        {
+            cout << "ready to push" << endl;
+            sta.push(1);
+        }
+        else if (st[i] == 'O')
+        {
+            cout << "ready to pop" << endl;
+            if (sta.empty())
+            {
+                cout << "stack is empty!" << endl;
+                return false;
+            }
+            else
+            {
+                sta.pop();
+            }
+        }
+    }
+
+    // 检查 stack 是否清空
+    if (!sta.empty())
+    {
+        cout << "stack not yet empty!" << endl;
+        return false;
+    }
+    else
+    {
+
+        // finally
+        return true;
+    }
 }
 
 int main()
@@ -282,14 +334,15 @@ int main()
         cout << boolalpha << isPalindrome("abcddcba") << endl;
     };
 
-    []()
-    {
-        Inouts();
-    };
+    // Inouts();
+
+    // expr();
 
     []()
     {
-        expr();
+        string dd[] = {"IOIIOIOO", "IOOIOIIO", "IIIOIOIO", "IIIOOIOO"};
+        bool res = judge(dd[3]);
+        cout << boolalpha << "Judge result: " << res;
     }();
 
     return 0;
