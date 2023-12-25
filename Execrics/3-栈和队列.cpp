@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <optional>
 #include <stack>
 
 using namespace std;
@@ -309,6 +310,86 @@ bool judge(string st)
     }
 }
 
+// (6）假设以带头结点的循环链表表示队列，并且只设一个指针指向队尾元素站点(注意不设头指针) ，
+// 试编写相应的置空队、判队空 、入队和出队等算法。
+
+// 插入操作： 在循环链表中，如果没有头指针，插入节点可能需要特殊处理。通常，你需要找到链表中的最后一个节点，然后将其 next 指针指向新节点。
+// 删除操作： 删除节点时，如果没有头指针，你可能需要遍历链表找到要删除的节点的前一个节点，并修改其 next 指针。如果队列很长，这可能会导致性能问题。
+// 遍历操作： 遍历整个队列时，没有头指针可能使得代码更加复杂，因为你需要考虑循环的终止条件。
+// 判空操作： 判断队列是否为空时，没有头指针可能需要特殊处理。你可能需要使用一个标记或其他方式来表示队列是否为空。
+
+typedef int ElemType;
+
+class Node // 构造Node节点
+{
+public:
+    ElemType data;
+    Node *next;
+
+    Node(ElemType da = 0)
+    {
+        data = da;
+        next = nullptr;
+    }
+};
+
+class nodeQueue
+{
+private:
+    Node *rear;
+
+public:
+    nodeQueue()
+    {
+        rear = new Node();
+        rear->next = rear;
+    }
+
+    void ClearQueue()
+    {
+        rear->next = rear;
+    }
+
+    bool EmptyQueue()
+    {
+        return rear->next == rear;
+    }
+
+    void EnQueue(ElemType da)
+    {
+        Node *newNode = new Node(da);
+        newNode->next = rear->next;
+        rear->next = newNode;
+        rear = rear->next;
+    }
+
+    ElemType DeQueue()
+    {
+        if (EmptyQueue())
+        {
+            cout << "empty!" << endl;
+            return -1;
+        }
+        else
+        {
+            // rear->next 就是头结点
+            // rear->next->next 就是队头元素节点
+            Node *front = rear->next->next;
+            ElemType res = front->data;
+            if (front == rear) // 即队列只有一个元素
+            {
+                rear->next = rear;
+            }
+            else
+            {
+                rear->next->next = front->next;
+            }
+            delete front;
+            return res;
+        }
+    }
+};
+
 int main()
 {
     []()
@@ -343,7 +424,29 @@ int main()
         string dd[] = {"IOIIOIOO", "IOOIOIIO", "IIIOIOIO", "IIIOOIOO"};
         bool res = judge(dd[3]);
         cout << boolalpha << "Judge result: " << res;
-    }();
+    };
+
+    []()
+    {
+        nodeQueue nq;
+        cout << boolalpha << nq.EmptyQueue() << endl;
+
+        nq.EnQueue(2);
+        cout << boolalpha << nq.EmptyQueue() << endl;
+        nq.EnQueue(3);
+        nq.EnQueue(4);
+
+        cout << "i want to " << nq.DeQueue() << endl;
+        cout << "i want to " << nq.DeQueue() << endl;
+        nq.EnQueue(5);
+        nq.EnQueue(6);
+
+        while (!nq.EmptyQueue())
+        {
+            ElemType dd = nq.DeQueue();
+            cout << "NodeQueue conrtent : " << dd << endl;
+        }
+    };
 
     return 0;
 }
