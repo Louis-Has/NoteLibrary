@@ -442,7 +442,7 @@ public:
         }
         else
         {
-            cout << "del : " << base[front] << endl;
+            // cout << "del : " << base[front] << endl;
             res = base[front];
             front++;
 
@@ -457,9 +457,99 @@ public:
 
     void printQueue()
     {
+        cout << "arrQueue content : ";
         while (!isEmpty())
         {
-            cout << "arrQueue content : " << endl;
+            cout << dlQueue() << " , ";
+        }
+    }
+};
+
+// (8）如果允许在循环队列的两端都可以进行插入和删除操作。要求：
+// ① 写出循环队列的类型定义；
+// ② 写出“从队尾删除”和“从队头插入”的算法。
+
+class dbQueue
+{
+private:
+    ElemType base[m];
+    int front, rear = 0;
+
+public:
+    dbQueue() {}
+
+    bool isEmpty()
+    {
+        return rear == front;
+    }
+
+    bool isFull()
+    {
+        return (rear + 1) % m == front;
+    }
+
+    void enRQueue(int da)
+    {
+        if (isFull())
+        {
+            cout << "rq is full !" << endl;
+        }
+        else
+        {
+            base[rear] = da;
+            rear = (rear + 1) % m;
+            cout << "enRQ : " << base[rear - 1] << endl;
+        }
+    }
+
+    void enFQueue(int da)
+    {
+        if (isFull())
+        {
+            cout << "fq is full !" << endl;
+        }
+        else
+        {
+            base[--front] = da;
+            cout << "enFQ : " << base[front] << endl;
+        }
+    }
+
+    ElemType dlRQueue()
+    {
+        ElemType res;
+        if (isEmpty())
+        {
+            cout << "dlRQ is Empty !" << endl;
+        }
+        else
+        {
+            res = base[--rear];
+            // cout << "dlRQ : " << res << endl;
+        }
+        return res;
+    }
+
+    ElemType dlFQueue()
+    {
+        ElemType res;
+        if (isEmpty())
+        {
+            cout << "dlFQ is Empty !" << endl;
+        }
+        else
+        {
+            res = base[front++];
+            // cout << "dlFQ : " << res << endl;
+        }
+        return res;
+    }
+    void printQueue()
+    {
+        cout << "Queue content : ";
+        while (!isEmpty())
+        {
+            cout << dlFQueue() << " , ";
         }
     }
 };
@@ -529,12 +619,31 @@ int main()
         aq.enQueue(3);
         aq.enQueue(4);
 
-        aq.dlQueue();
+        int dd = aq.dlQueue();
+        cout << "del : " << dd << endl;
         aq.enQueue(5);
         aq.enQueue(6);
 
         aq.printQueue();
     };
+
+    []()
+    {
+        dbQueue dbq;
+        dbq.enRQueue(1);
+        dbq.enRQueue(2);
+        dbq.enRQueue(3);
+        cout << ">> dlFQ : " << dbq.dlFQueue() << endl;
+        cout << ">> dlFQ : " << dbq.dlFQueue() << endl;
+        dbq.enFQueue(5);
+        dbq.enFQueue(4);
+        dbq.enRQueue(7);
+        dbq.enRQueue(6);
+        dbq.enRQueue(8);
+        cout << ">> dlRQ : " << dbq.dlRQueue() << endl;
+
+        dbq.printQueue();
+    }();
 
     return 0;
 }
