@@ -390,6 +390,80 @@ public:
     }
 };
 
+// （7）假设以数组Q[m]存放循环队列中的元素, 同时设置一个标志tag，
+// 以tag == 0和tag == 1来区别在队头指针(front)和队尾指针(rear)相等时，队列状态为“空”还是“满”。
+// 试编写与此结构相应的插入(enqueue)和删除(dlqueue)算法。
+
+const int m = 6;
+
+class arrQueue
+{
+private:
+    ElemType base[m];
+    int front, rear, tag = 0;
+
+public:
+    arrQueue() {}
+    bool isEmpty()
+    {
+        return (tag == 0 && front == rear);
+    }
+
+    bool isFull()
+    {
+        return (tag == 1 && front == rear);
+    }
+
+    void enQueue(int da)
+    {
+        if (isFull()) // full
+        {
+            cout << "arrQueue is fulled " << endl;
+        }
+        else
+        {
+            base[rear] = da;
+            rear = (rear + 1) % m;
+            cout << "en : " << base[rear - 1] << endl;
+
+            if (tag == 0)
+            {
+                tag = 1;
+            }
+        }
+    }
+
+    ElemType dlQueue()
+    {
+        ElemType res;
+        if (isEmpty())
+        {
+            cout << "arrQueue is empty" << endl;
+        }
+        else
+        {
+            cout << "del : " << base[front] << endl;
+            res = base[front];
+            front++;
+
+            if (front == rear)
+            {
+                tag = 0;
+            }
+        }
+
+        return res;
+    }
+
+    void printQueue()
+    {
+        while (!isEmpty())
+        {
+            cout << "arrQueue content : " << endl;
+        }
+    }
+};
+
 int main()
 {
     []()
@@ -446,6 +520,20 @@ int main()
             ElemType dd = nq.DeQueue();
             cout << "NodeQueue conrtent : " << dd << endl;
         }
+    };
+
+    []()
+    {
+        arrQueue aq;
+        aq.enQueue(2);
+        aq.enQueue(3);
+        aq.enQueue(4);
+
+        aq.dlQueue();
+        aq.enQueue(5);
+        aq.enQueue(6);
+
+        aq.printQueue();
     };
 
     return 0;
