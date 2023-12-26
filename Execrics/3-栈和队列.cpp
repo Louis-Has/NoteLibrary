@@ -554,6 +554,66 @@ public:
     }
 };
 
+// （9）已知Ackermann函数定义如下:
+
+// ① 写出计算Ack(m,n)的递归算法，并根据此算法给出出Ack(2,1)的计算过程。
+// ② 写出计算Ack(m,n)的非递归算法。
+
+int Ack(int m, int n)
+{
+    if (m == 0)
+        return (n + 1);
+    else if (m != 0 && n == 0)
+        return (Ack(m - 1, 1));
+    else
+        return (Ack(m - 1, Ack(m, n - 1)));
+}
+
+int Ackerman(int m, int n)
+{
+    int akm[m][n]; // 声明一个二维数组 akm 用于存储计算结果
+    int i, j;      // 声明两个循环变量 i 和 j
+
+    // 初始化第一行，即当 m=0 时的情况
+    cout << "Ack i= 0 => ";
+    for (j = 0; j < n; j++)
+    {
+        if (j)
+        {
+            cout << " - ";
+        }
+        akm[0][j] = j + 1;
+        cout << akm[0][j];
+    }
+    cout << endl;
+
+    // 通过两个嵌套的循环填充数组 akm
+    for (i = 1; i < m; i++)
+    {
+        cout << "Ack i= " << i << " => ";
+        // 处理每一行的第一个元素
+        akm[i][0] = akm[i - 1][1];
+        cout << akm[i][0];
+
+        // 处理每一行的剩余元素
+        for (j = 1; j < n; j++)
+        {
+            cout << " - ";
+            akm[i][j] = akm[i - 1][akm[i][j - 1]];
+            cout << akm[i][j];
+        }
+        cout << endl;
+    }
+
+    // 返回计算结果，即 A(m, n)
+    return (akm[m][n]);
+}
+
+// （10）已知f为单链表的表头指针, 链表中存储的都是整型数据，试写出实现下列运算的递归算法：
+// ① 求链表中的最大整数；
+// ② 求链表的结点个数；
+// ③ 求所有整数的平均值。
+
 int main()
 {
     []()
@@ -643,7 +703,28 @@ int main()
         cout << ">> dlRQ : " << dbq.dlRQueue() << endl;
 
         dbq.printQueue();
-    }();
+    };
+
+    []()
+    {
+        // int m = 5;
+        // int n = 15;
+
+        // for (size_t i = 0; i < m; i++)
+        // {
+        //     cout << "Ack i=" << i << " : ";
+        //     for (size_t j = 0; j < n; j++)
+        //     {
+        //         if (j)
+        //         {
+        //             cout << " - ";
+        //         }
+        //         cout << Ack(i, j);
+        //     }
+        //     cout << endl;
+        // }
+        // cout << Ackerman(4, 9);
+    };
 
     return 0;
 }
