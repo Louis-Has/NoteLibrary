@@ -636,7 +636,7 @@ int findNodeNum(pNode node)
     return findNodeNum(node->next) + 1;
 }
 
-float findNodeAva(pNode node)
+float findNodeAva(pNode node, int len)
 {
     if (!node->next)
     {
@@ -644,7 +644,7 @@ float findNodeAva(pNode node)
         return node->data;
     }
 
-    float res = (node->data + findNodeAva(node->next)) / 2;
+    float res = (node->data + findNodeAva(node->next, len - 1) * (len - 1)) / len;
     cout << " now ready : " << node->data << " -> " << res << endl;
     return res;
 }
@@ -777,7 +777,7 @@ int main()
         newNode = newNode->next;
         cout << "findMax : " << findMax(newNode) << endl;
         cout << "findNodeNum : " << findNodeNum(newNode) << endl;
-        cout << "findNodeAva : " << findNodeAva(newNode) << endl;
+        cout << "findNodeAva : " << findNodeAva(newNode, len) << endl;
 
         // printf all node
         cout << "newNode content : ";
