@@ -333,6 +333,8 @@ public:
     }
 };
 
+using pNode = Node *;
+
 class nodeQueue
 {
 private:
@@ -613,6 +615,39 @@ int Ackerman(int m, int n)
 // ① 求链表中的最大整数；
 // ② 求链表的结点个数；
 // ③ 求所有整数的平均值。
+int findMax(pNode node)
+{
+    if (!node->next)
+    {
+        return node->data;
+    }
+
+    int max = findMax(node->next);
+    return node->data > max ? node->data : max;
+}
+
+int findNodeNum(pNode node)
+{
+    if (!node->next)
+    {
+        return 1;
+    }
+
+    return findNodeNum(node->next) + 1;
+}
+
+float findNodeAva(pNode node)
+{
+    if (!node->next)
+    {
+        cout << " this is final : " << node->data << endl;
+        return node->data;
+    }
+
+    float res = (node->data + findNodeAva(node->next)) / 2;
+    cout << " now ready : " << node->data << " -> " << res << endl;
+    return res;
+}
 
 int main()
 {
@@ -726,5 +761,36 @@ int main()
         // cout << Ackerman(4, 9);
     };
 
+    []()
+    {
+        pNode newNode = new Node();
+        pNode tail = newNode;
+        int arr[] = {1, 2, 13, 3, 12, 4, 9, 5, 15, 7};
+        int len = sizeof(arr) / sizeof(arr[0]);
+        cout << "arr size : " << len << endl;
+        for (size_t i = 0; i < len; i++)
+        {
+            tail->next = new Node(arr[i]);
+            tail = tail->next;
+        }
+
+        newNode = newNode->next;
+        cout << "findMax : " << findMax(newNode) << endl;
+        cout << "findNodeNum : " << findNodeNum(newNode) << endl;
+        cout << "findNodeAva : " << findNodeAva(newNode) << endl;
+
+        // printf all node
+        cout << "newNode content : ";
+        while (newNode)
+        {
+            cout << newNode->data;
+            if (newNode->next)
+            {
+                cout << " -> ";
+            }
+            newNode = newNode->next;
+        }
+        cout << endl;
+    }();
     return 0;
 }
