@@ -763,21 +763,24 @@ int main()
 
     []()
     {
-        pNode newNode = new Node();
-        pNode tail = newNode;
         int arr[] = {1, 2, 13, 3, 12, 4, 9, 5, 15, 7};
         int len = sizeof(arr) / sizeof(arr[0]);
+
+        pNode newNode = new Node(arr[0]);
+        pNode tail = newNode;
         cout << "arr size : " << len << endl;
-        for (size_t i = 0; i < len; i++)
+
+        for (size_t i = 1; i < len; i++)
         {
             tail->next = new Node(arr[i]);
             tail = tail->next;
         }
+        // newNode = newNode->next;
 
-        newNode = newNode->next;
         cout << "findMax : " << findMax(newNode) << endl;
         cout << "findNodeNum : " << findNodeNum(newNode) << endl;
-        cout << "findNodeAva : " << findNodeAva(newNode, len) << endl;
+        float ava = findNodeAva(newNode, len);
+        cout << "findNodeAva : " << ava << endl;
 
         // printf all node
         cout << "newNode content : ";
