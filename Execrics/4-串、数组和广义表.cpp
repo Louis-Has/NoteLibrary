@@ -12,15 +12,39 @@ typedef int SElemType;
 // （字符串中的合法字符为A-Z这26个字母和0-9这10个数字）。
 void ASCCount(const char str[])
 {
+    int len = 26 + 10;
+    int res[len] = {0};
     while (*str != '\0')
     {
-        cout << *str++ << endl;
+        if ('0' <= *str && *str <= '9')
+        {
+            res[*str - '0']++;
+        }
+        else if ('A' <= *str && *str <= 'Z')
+        {
+            res[*str - 'A' + 10]++;
+        }
+        str++;
+    }
+
+    for (size_t i = 0; i < len; i++)
+    {
+        if (!res[i])
+            continue;
+        if (i < 10)
+        {
+            cout << "int " << i << " : " << res[i] << endl;
+        }
+        else
+        {
+            cout << "char " << static_cast<char>(i + 'A' - 10) << " : " << res[i] << endl;
+        }
     }
 }
 
 int main()
 {
-    const char str[][8] = {"sdrwr2", "342dfwf"};
+    const char str[][24] = {"DJH&*@", "342DFWF5444RRE"};
     ASCCount(str[1]);
     return 0;
 }
