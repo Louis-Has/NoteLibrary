@@ -46,11 +46,42 @@ void ASCCount(const char str[])
 // （2）写一个递归算法来实现字符串逆序存储，要求不另设串存储空间。
 string InvertStore(string str)
 {
-    string res = "";
     if (str.empty())
         return "";
 
     return InvertStore(str.substr(1)) + str[0];
+}
+
+// （3）编写算法，实现下面函数的功能。
+// 函数void insert(char*s,char*t,int pos)将字符串t插入到字符串s中，插入位置为pos。
+// 假设分配给字符串s的空间足够让字符串t插入。（说明：不得使用任何库函数）
+
+void insert(char *s, char *t, int pos)
+{
+    cout << "s : " << s << endl;
+    cout << "t : " << t << endl;
+    cout << "pos : " << pos << endl;
+
+    int s_len = strlen(s);
+    int t_len = strlen(t);
+
+    if (pos < 0 || pos > s_len)
+    {
+        cout << "Invalid position." << endl;
+        return;
+    }
+
+    for (size_t i = s_len - 1; i >= pos; i--)
+    {
+        s[i + t_len] = s[i];
+    }
+
+    for (size_t i = 0; i < t_len; i++)
+    {
+        s[i + pos] = t[i];
+    }
+
+    cout << "Result : " << s << endl;
 }
 
 int main()
@@ -65,6 +96,13 @@ int main()
     {
         string str[] = {"asd456ghjk123"};
         cout << "InvertStore : " << InvertStore(str[0]);
+    };
+
+    []()
+    {
+        char st[24] = "abcdefgh";
+        char tt[] = "QWERT";
+        insert(st, tt, 2);
     }();
 
     return 0;
