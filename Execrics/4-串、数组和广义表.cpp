@@ -14,13 +14,14 @@ void ASCCount(const char str[])
 {
     int len = 26 + 10;
     int res[len] = {0};
+
     while (*str != '\0')
     {
-        if ('0' <= *str && *str <= '9')
+        if (*str >= '0' && *str <= '9')
         {
             res[*str - '0']++;
         }
-        else if ('A' <= *str && *str <= 'Z')
+        else if (*str >= 'A' && *str <= 'Z')
         {
             res[*str - 'A' + 10]++;
         }
@@ -42,9 +43,29 @@ void ASCCount(const char str[])
     }
 }
 
+// （2）写一个递归算法来实现字符串逆序存储，要求不另设串存储空间。
+string InvertStore(string str)
+{
+    string res = "";
+    if (str.empty())
+        return "";
+
+    return InvertStore(str.substr(1)) + str[0];
+}
+
 int main()
 {
-    const char str[][24] = {"DJH&*@", "342DFWF5444RRE"};
-    ASCCount(str[1]);
+    []()
+    {
+        const char str[][24] = {"DJH&*@", "342DF WF54^%$44RR"};
+        ASCCount(str[1]);
+    };
+
+    []()
+    {
+        string str[] = {"asd456ghjk123"};
+        cout << "InvertStore : " << InvertStore(str[0]);
+    }();
+
     return 0;
 }
