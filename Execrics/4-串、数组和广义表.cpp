@@ -118,6 +118,48 @@ void Format(char *s1, char *s2, char *s3, int n)
     }
 }
 
+// （5）设二维数组a[1..m, 1..n] 含有m*n 个整数。
+// ① 写一个算法判断a中所有元素是否互不相同?输出相关信息(yes/no)；
+// ② 试分析算法的时间复杂度。
+
+// (6)设任意n个整数存放于数组A(1:n)中，
+// 试编写算法，将所有正数排在所有负数前面（要求算法复杂度为0(n)）。
+
+void Arrange(int arr[], int len)
+{
+    int n = 0;
+    int m = len - 1;
+
+    while (n < m)
+    {
+        while (arr[n] > 0)
+        {
+            n++;
+        }
+
+        while (arr[m] < 0)
+        {
+            m--;
+        }
+
+        if (n < m)
+        {
+            int temp = arr[n];
+            arr[n] = arr[m];
+            arr[m] = temp;
+        }
+    }
+
+    // print content
+    cout << "Arange result : ";
+    for (size_t i = 0; i < len; i++)
+    {
+        if (i)
+            cout << " -> ";
+        cout << arr[i];
+    }
+}
+
 int main()
 {
     []()
@@ -148,6 +190,12 @@ int main()
         Format(s1, s2, s3, nLen);
         printf("Format result :\n s1 %s \n s2 %s \n s3 %s \n nLen %d \n", s1, s2, s3, nLen);
     };
+
+    []()
+    {
+        int arr[] = {-2, 3, 55, -12, 1, 23, -8, -6, 10};
+        Arrange(arr, sizeof(arr) / sizeof(arr[0]));
+    }();
 
     return 0;
 }
