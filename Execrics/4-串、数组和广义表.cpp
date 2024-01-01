@@ -62,8 +62,17 @@ void insert(char *s, char *t, int pos)
     cout << "t : " << t << endl;
     cout << "pos : " << pos << endl;
 
-    int s_len = strlen(s);
-    int t_len = strlen(t);
+    int s_len = 0;
+    while (s[s_len] != '\0')
+    {
+        ++s_len;
+    }
+
+    int t_len = 0;
+    while (t[t_len] != '\0')
+    {
+        ++t_len;
+    }
 
     if (pos < 0 || pos > s_len)
     {
@@ -82,6 +91,31 @@ void insert(char *s, char *t, int pos)
     }
 
     cout << "Result : " << s << endl;
+}
+
+// （4）已知字符串S1中存放一段英文，
+// 写出算法format(s1,s2,s3,n),将其按给定的长度n格式化成两端对齐的字符串S2, 其多余的字符送S3。
+
+void Format(char *s1, char *s2, char *s3, int n)
+{
+    int len = strlen(s1);
+    int j = 0;
+    int h = 0;
+
+    for (size_t i = 0; i < len; i++)
+    {
+        if (s1[i] != ' ')
+        {
+            if (j < n)
+            {
+                s2[j++] = s1[i];
+            }
+            else
+            {
+                s3[h++] = s1[i];
+            }
+        }
+    }
 }
 
 int main()
@@ -103,7 +137,17 @@ int main()
         char st[24] = "abcdefgh";
         char tt[] = "QWERT";
         insert(st, tt, 2);
-    }();
+    };
+
+    []()
+    {
+        char s1[24] = "ab c2 d 23e f233 ";
+        char s2[24] = "";
+        char s3[24] = "";
+        int nLen = 4;
+        Format(s1, s2, s3, nLen);
+        printf("Format result :\n s1 %s \n s2 %s \n s3 %s \n nLen %d \n", s1, s2, s3, nLen);
+    };
 
     return 0;
 }
