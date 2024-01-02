@@ -1,3 +1,7 @@
 /.obsidian
+.DS_Store
 
 *.exe
+
+Execrics/*
+!Execrics/*.cpp

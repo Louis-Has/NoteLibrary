@@ -12,7 +12,7 @@ typedef int SElemType;
 // （字符串中的合法字符为A-Z这26个字母和0-9这10个数字）。
 void ASCCount(const char str[])
 {
-    int len = 26 + 10;
+    const int len = 26 + 10;
     int res[len] = {0};
 
     while (*str != '\0')
@@ -158,44 +158,45 @@ void Arrange(int arr[], int len)
             cout << " -> ";
         cout << arr[i];
     }
+    cout << endl;
 }
 
 int main()
 {
-    []()
-    {
-        const char str[][24] = {"DJH&*@", "342DF WF54^%$44RR"};
-        ASCCount(str[1]);
-    };
+    // []()
+    // {
+    //     const char str[][24] = {"DJH&*@", "342DF WF54^%$44RR"};
+    //     ASCCount(str[1]);
+    // }();
 
-    []()
-    {
-        string str[] = {"asd456ghjk123"};
-        cout << "InvertStore : " << InvertStore(str[0]);
-    };
+    // []()
+    // {
+        // string str[] = {"asd456ghjk123"};
+        // cout << "InvertStore : " << InvertStore(str[0]);
+    // };
 
-    []()
-    {
-        char st[24] = "abcdefgh";
-        char tt[] = "QWERT";
-        insert(st, tt, 2);
-    };
+    // []()
+    // {
+    //     char st[24] = "abcdefgh";
+    //     char tt[] = "QWERT";
+    //     insert(st, tt, 2);
+    // };
 
-    []()
-    {
-        char s1[24] = "ab c2 d 23e f233 ";
-        char s2[24] = "";
-        char s3[24] = "";
-        int nLen = 4;
-        Format(s1, s2, s3, nLen);
-        printf("Format result :\n s1 %s \n s2 %s \n s3 %s \n nLen %d \n", s1, s2, s3, nLen);
-    };
+    // []()
+    // {
+    //     char s1[24] = "ab c2 d 23e f233 ";
+    //     char s2[24] = "";
+    //     char s3[24] = "";
+    //     int nLen = 4;
+    //     Format(s1, s2, s3, nLen);
+    //     printf("Format result :\n s1 %s \n s2 %s \n s3 %s \n nLen %d \n", s1, s2, s3, nLen);
+    // };
 
-    []()
-    {
+    // []()
+    // {
         int arr[] = {-2, 3, 55, -12, 1, 23, -8, -6, 10};
         Arrange(arr, sizeof(arr) / sizeof(arr[0]));
-    }();
+    // };
 
     return 0;
 }
