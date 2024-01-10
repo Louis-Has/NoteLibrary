@@ -136,6 +136,32 @@ bool compareTree(TreeNode *root1, TreeNode *root2)
     }
 }
 
+// （3）交换二叉树每个结点的左孩子和右孩子。
+// [题目分析]如果某结点左右子树为空，返回，否则交换该结点左右孩子，然后递归交换左右子树。
+void changeLR(TreeNode *root)
+{
+    if (root->left == nullptr && root->right == nullptr)
+    {
+        cout << "null" << endl;
+        return;
+    }
+
+    TreeNode *temp;
+    temp = root->right;
+    root->right = root->left;
+    root->left = temp;
+
+    if (root->left != nullptr)
+    {
+        changeLR(root->left);
+    }
+
+    if (root->right != nullptr)
+    {
+        changeLR(root->right);
+    }
+}
+
 int main()
 {
     Tree Tr;
@@ -159,6 +185,10 @@ int main()
     // Ts.printTree();
     // // （2）判别两棵树是否相等。
     // cout << boolalpha << compareTree(Tr.root, Ts.root) << endl;
+
+    // // （3）交换二叉树每个结点的左孩子和右孩子。
+    // changeLR(Tr.root);
+    // Tr.printTree();
 
     return 0;
 }
