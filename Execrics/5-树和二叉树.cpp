@@ -113,10 +113,33 @@ int LeafNodeCount(TreeNode *T)
     return res;
 }
 
+// （2）判别两棵树是否相等。
+
+bool compareTree(TreeNode *root1, TreeNode *root2)
+{
+    if (root1 == nullptr || root2 == nullptr)
+    {
+        if (root1 == nullptr && root2 == nullptr)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    if (root1->data != root2->data)
+    {
+        return false;
+    }
+    else
+    {
+        return compareTree(root1->left, root2->left) && compareTree(root1->right, root2->right);
+    }
+}
+
 int main()
 {
     Tree Tr;
-    Tr.printTree();
+    // Tr.printTree();
     Tr.insert(8);
     Tr.insert(2);
     Tr.insert(5);
@@ -125,7 +148,17 @@ int main()
     Tr.printTree();
 
     // （1）统计二叉树的叶结点个数。
-    cout << LeafNodeCount(Tr.root) << endl;
+    // cout << LeafNodeCount(Tr.root) << endl;
+
+    // Tree Ts;
+    // Ts.insert(8);
+    // Ts.insert(2);
+    // Ts.insert(5);
+    // Ts.insert(3);
+    // Ts.insert(11);
+    // Ts.printTree();
+    // // （2）判别两棵树是否相等。
+    // cout << boolalpha << compareTree(Tr.root, Ts.root) << endl;
 
     return 0;
 }
