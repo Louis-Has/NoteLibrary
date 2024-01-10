@@ -162,6 +162,30 @@ void changeLR(TreeNode *root)
     }
 }
 
+// （4）设计二叉树的双序遍历算法
+// （双序遍历是指对于二叉树的每一个结点来说，先访问这个结点，
+// 再按双序遍历它的左子树，然后再一次访问这个结点，接下来按双序遍历它的右子树）。
+// [题目分析]若树为空，返回；若某结点为叶子结点，则仅输出该结点；
+// 否则先输出该结点，递归遍历其左子树，再输出该结点，递归遍历其右子树。
+
+void doubleTraversal(TreeNode *root)
+{
+    if (root == nullptr)
+    {
+        cout << "point null !" << endl;
+    }
+    else if (root->left == nullptr && root->right == nullptr)
+    {
+        cout << root->data << endl;
+    }
+    else
+    {
+        cout << root->data << endl;
+        doubleTraversal(root->left);
+        cout << root->data << endl;
+        doubleTraversal(root->right);
+    }
+}
 int main()
 {
     Tree Tr;
@@ -189,6 +213,9 @@ int main()
     // // （3）交换二叉树每个结点的左孩子和右孩子。
     // changeLR(Tr.root);
     // Tr.printTree();
+
+    // （4）设计二叉树的双序遍历算法
+    // doubleTraversal(Tr.root);
 
     return 0;
 }
