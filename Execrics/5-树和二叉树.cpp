@@ -217,12 +217,12 @@ int maxWidth(TreeNode *root)
             cout << "data : " << temp->data << endl;
             qu.pop();
 
-            if (temp->left != nullptr)
+            if (temp->left)
             {
                 cout << "add left : " << temp->left->data << endl;
                 qu.push(temp->left);
             }
-            if (temp->right != nullptr)
+            if (temp->right)
             {
                 cout << "add right : " << temp->right->data << endl;
                 qu.push(temp->right);
@@ -234,6 +234,55 @@ int maxWidth(TreeNode *root)
     return maxWidth;
 };
 
+// （6）用按层次顺序遍历二叉树的方法，统计树中具有度为1的结点数目。
+// [题目分析]
+// 若某个结点左子树空右子树非空或者右子树空左子树非空，则该结点为度为1的结点
+int countLevel1(TreeNode *root)
+{
+    if (root == nullptr)
+    {
+        return 0;
+    }
+
+    queue<TreeNode *> qu;
+    qu.push(root);
+    int countNum = 0;
+
+    while (!qu.empty())
+    {
+        // char cinchar;
+        // cin >> cinchar;
+
+        int nodeSize = qu.size();
+
+        for (size_t i = 0; i < nodeSize; i++)
+        {
+            TreeNode *temp = qu.front();
+            qu.pop();
+
+            // cout << "nodeSize : " << nodeSize << "; date : " << temp->data << countNum << endl;
+
+            if ((temp->left && !temp->right) || (!temp->left && temp->right))
+            {
+                // cout << " add 1 ~" << endl;
+                countNum++;
+            }
+
+            if (temp->left)
+            {
+                qu.push(temp->left);
+            }
+
+            if (temp->right)
+            {
+                qu.push(temp->right);
+            }
+        }
+    }
+
+    return countNum;
+};
+
 int main()
 {
     Tree Tr;
@@ -243,6 +292,7 @@ int main()
     Tr.insert(5);
     Tr.insert(3);
     Tr.insert(1);
+    Tr.insert(4);
     Tr.printTree();
 
     // （1）统计二叉树的叶结点个数。
@@ -267,6 +317,9 @@ int main()
 
     // （5）计算二叉树最大的宽度
     // cout << "maxWidth : " << maxWidth(Tr.root) << endl;
+
+    // （6）用按层次顺序遍历二叉树的方法，统计树中具有度为1的结点数目。
+    // cout << "countLevel1 : " << countLevel1(Tr.root) << endl;
 
     return 0;
 }
