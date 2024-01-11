@@ -1,8 +1,7 @@
 #include <iostream>
 #include <cstring>
-#include <optional>
-#include <stack>
 #include <vector>
+#include <queue>
 
 using namespace std;
 
@@ -186,6 +185,55 @@ void doubleTraversal(TreeNode *root)
         doubleTraversal(root->right);
     }
 }
+
+// （5）计算二叉树最大的宽度（二叉树的最大宽度是指二叉树所有层中结点个数的最大值）。
+// [题目分析] 求最大宽度可采用层次遍历的方法，记下各层结点数，每层遍历完毕，
+// 若结点数大于原先最大宽度，则修改最大宽度。
+
+int maxWidth(TreeNode *root)
+{
+    if (root == nullptr)
+    {
+        return 0;
+    }
+
+    queue<TreeNode *> qu;
+    qu.push(root);
+    int maxWidth = 0;
+
+    while (!qu.empty())
+    {
+        // int cindd;
+        // cin >> cindd;
+
+        int nodeSize = qu.size();
+        maxWidth = max(maxWidth, nodeSize);
+
+        cout << "nodeSize : " << nodeSize << endl;
+
+        for (size_t i = 0; i < nodeSize; i++)
+        {
+            TreeNode *temp = qu.front();
+            cout << "data : " << temp->data << endl;
+            qu.pop();
+
+            if (temp->left != nullptr)
+            {
+                cout << "add left : " << temp->left->data << endl;
+                qu.push(temp->left);
+            }
+            if (temp->right != nullptr)
+            {
+                cout << "add right : " << temp->right->data << endl;
+                qu.push(temp->right);
+            }
+        }
+        cout << endl;
+    }
+
+    return maxWidth;
+};
+
 int main()
 {
     Tree Tr;
@@ -216,6 +264,9 @@ int main()
 
     // （4）设计二叉树的双序遍历算法
     // doubleTraversal(Tr.root);
+
+    // （5）计算二叉树最大的宽度
+    // cout << "maxWidth : " << maxWidth(Tr.root) << endl;
 
     return 0;
 }
