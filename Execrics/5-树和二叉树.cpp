@@ -2,6 +2,7 @@
 #include <cstring>
 #include <vector>
 #include <queue>
+#include <stack>
 
 using namespace std;
 
@@ -283,6 +284,48 @@ int countLevel1(TreeNode *root)
     return countNum;
 };
 
+// （7）求任意二叉树中第一条最长的路径长度，并输出此路径上各结点的值。
+// [题目分析]因为后序遍历栈中保留当前结点的祖先的信息，用一变量保存栈的最高栈顶指针，
+// 每当退栈时，栈顶指针高于保存最高栈顶指针的值时，则将该栈倒入辅助栈中，
+// 辅助栈始终保存最长路径长度上的结点，直至后序遍历完毕，则辅助栈中内容即为所求。
+
+stack<int> LongestPath(TreeNode *root, stack<int> arr)
+{
+    if (root == nullptr)
+    {
+        return arr;
+    }
+
+    stack<int> leftArr = LongestPath(root->left, arr);
+    stack<int> rightArr = LongestPath(root->right, arr);
+
+    arr = (leftArr.size() >= rightArr.size()) ? leftArr : rightArr;
+
+    arr.push(root->data);
+
+    return arr;
+};
+
+void getLongestPath(TreeNode *root)
+{
+    stack<int> res;
+    res = LongestPath(root, res);
+
+    printf("LongestPath size : %d , content : ", res.size());
+    while (!res.empty())
+    {
+        cout << res.top();
+        res.pop();
+
+        if (!res.empty())
+        {
+            cout << " -> ";
+        }
+    }
+
+    cout << endl;
+};
+
 int main()
 {
     Tree Tr;
@@ -293,6 +336,9 @@ int main()
     Tr.insert(3);
     Tr.insert(1);
     Tr.insert(4);
+    Tr.insert(-1);
+    Tr.insert(-2);
+    Tr.insert(-3);
     Tr.printTree();
 
     // （1）统计二叉树的叶结点个数。
@@ -320,6 +366,9 @@ int main()
 
     // （6）用按层次顺序遍历二叉树的方法，统计树中具有度为1的结点数目。
     // cout << "countLevel1 : " << countLevel1(Tr.root) << endl;
+
+    // （7）求任意二叉树中第一条最长的路径长度，并输出此路径上各结点的值。
+    getLongestPath(Tr.root);
 
     return 0;
 }
