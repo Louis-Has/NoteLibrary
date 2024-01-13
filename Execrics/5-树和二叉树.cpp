@@ -41,13 +41,13 @@ private:
         return current;
     };
 
-    void InorderTraversal(TreeNode *current)
+    void InorderTraversal(TreeNode *current, bool isLast = true)
     {
         if (current != nullptr)
         {
-            cout << current->data << " -> ";
-            InorderTraversal(current->left);
-            InorderTraversal(current->right);
+            cout << current->data << isLast << (!current->left && !current->right && isLast ? "" : " -> ");
+            InorderTraversal(current->left, isLast && !(current->left && current->right));
+            InorderTraversal(current->right, isLast);
         }
     };
 
@@ -68,8 +68,10 @@ public:
         }
         else
         {
+            cout << "Tree : ";
             InorderTraversal(root);
-            cout << endl;
+            cout << endl
+                 << endl;
         }
     };
 
@@ -326,6 +328,50 @@ void getLongestPath(TreeNode *root)
     cout << endl;
 };
 
+// （8）输出二叉树中从每个叶子结点到根结点的路径。
+// [题目分析]采用先序遍历的递归方法，当找到叶子结点*b时，由于*b叶子结点尚未添加到path中，
+// 因此在输出路径时还需输出b->data值。
+
+void AllPath(TreeNode *root, SElemType arr[], int idx)
+{
+    if (root == nullptr)
+    {
+        return;
+    }
+
+    // arr.push(root->data);
+    arr[idx++] = root->data;
+
+    if (!root->left && !root->right)
+    {
+        // print
+        printf("Path %d : ", idx);
+        for (size_t i = 0; i < idx; i++)
+        {
+            cout << arr[i];
+            if (i + 1 < idx)
+            {
+                cout << " -> ";
+            }
+        }
+        cout << endl;
+    }
+
+    AllPath(root->left, arr, idx);
+    AllPath(root->right, arr, idx);
+
+    return;
+};
+
+void printAllPath(TreeNode *root)
+{
+    int size = 10;
+    SElemType arrDate[10];
+
+    AllPath(root, arrDate, 0);
+    return;
+};
+
 int main()
 {
     Tree Tr;
@@ -368,7 +414,10 @@ int main()
     // cout << "countLevel1 : " << countLevel1(Tr.root) << endl;
 
     // （7）求任意二叉树中第一条最长的路径长度，并输出此路径上各结点的值。
-    getLongestPath(Tr.root);
+    // getLongestPath(Tr.root);
+
+    // （8）输出二叉树中从每个叶子结点到根结点的路径。
+    printAllPath(Tr.root);
 
     return 0;
 }
