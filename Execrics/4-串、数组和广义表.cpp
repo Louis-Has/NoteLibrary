@@ -171,8 +171,8 @@ int main()
 
     // []()
     // {
-        // string str[] = {"asd456ghjk123"};
-        // cout << "InvertStore : " << InvertStore(str[0]);
+    // string str[] = {"asd456ghjk123"};
+    // cout << "InvertStore : " << InvertStore(str[0]);
     // };
 
     // []()
@@ -192,11 +192,11 @@ int main()
     //     printf("Format result :\n s1 %s \n s2 %s \n s3 %s \n nLen %d \n", s1, s2, s3, nLen);
     // };
 
-    // []()
-    // {
+    []
+    {
         int arr[] = {-2, 3, 55, -12, 1, 23, -8, -6, 10};
         Arrange(arr, sizeof(arr) / sizeof(arr[0]));
-    // };
+    }();
 
     return 0;
 }
