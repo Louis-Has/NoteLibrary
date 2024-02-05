@@ -62,17 +62,37 @@ void checkBST(BTree tr)
 
     checkBST(tr->left);
 
+    printf("check point : %d ", tr->data); // print
+
     if (pre && pre->data >= tr->data)
     {
         printf("check %d >= %d \n", pre->data, tr->data);
         flag = false;
+
+        printf(" failed\n");
         return;
     }
+
+    printf(" over\n");
 
     pre = tr;
 
     checkBST(tr->right);
 };
+
+
+// （3）已知二叉排序树采用二叉链表存储结构，
+// 根结点的指针为T，链结点的结构为（lchild,data,rchild），
+// 其中lchild，rchild分别指向该结点左、右孩子的指针，data域存放结点的数据信息。
+// 请写出递归算法，从小到大输出二叉排序树中所有数据值>=x的结点的数据。
+// 要求先找到第一个满足条件的结点后，再依次输出其他满足条件的结点。
+
+// [题目分析]本题算法之一是如上题一样，中序遍历二叉树，
+// 在“访问根结点”处判断结点值是否≥x，如是则输出，并记住第一个≥x值结点的指针。
+// 这里给出另一个算法，利用二叉排序树的性质，如果根结点的值>=x,则除左分枝中可能有<x的结点外都应输出。
+// 所以从根结点开始查找，找到结点值<x的结点后，将其与双亲断开输出整棵二叉排序树。
+// 如果根结点的值<x,则沿右子树查找第一个≥x的结点，找到后，与上面同样处理。
+
 
 int main()
 {
@@ -87,7 +107,22 @@ int main()
 
     []
     {
-        BTree root = new Node{2, new Node{1, nullptr, nullptr}, new Node{3, nullptr, nullptr}};
+        BTree root = new Node{45,
+                              new Node{12,
+                                       new Node{3, nullptr, nullptr},
+                                       new Node{37,
+                                                new Node{24, nullptr, nullptr},
+                                                nullptr}},
+                              new Node{53,
+                                       nullptr,
+                                       new Node{100,
+                                                new Node{61,
+                                                         nullptr,
+                                                         new Node{90,
+                                                                  new Node{78, nullptr, nullptr},
+                                                                  nullptr}},
+                                                nullptr}}};
+
         checkBST(root);
 
         printf("CheckBTree : %s \n", flag ? "true" : "false");
