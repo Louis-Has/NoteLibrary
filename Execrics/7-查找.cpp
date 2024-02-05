@@ -25,14 +25,14 @@ int BinSearch(int arr[], int val, int st, int en)
 
     if (val < arr[mid])
     {
-        // printf("find in %d - %d ,try : %d is < %d\n", st, en, val, arr[mid]);
+        printf("find in %d - %d ,try : %d is  %d\n", st, en, mid, arr[mid]);
 
         return BinSearch(arr, val, 0, mid - 1);
     }
 
     if (val > arr[mid])
     {
-        // printf("find in %d - %d ,try : %d is > %d\n", st, en, val, arr[mid]);
+        printf("find in %d - %d ,try : %d is  %d\n", st, en, mid, arr[mid]);
 
         return BinSearch(arr, val, mid + 1, en);
     }
@@ -42,10 +42,11 @@ int BinSearch(int arr[], int val, int st, int en)
 
 int main()
 {
-    int arr[] = {1, 2, 4, 7, 8, 9, 12, 14, 16, 19};
+    int arr[] = {3, 4, 5, 7, 24, 30, 42, 54, 63, 72, 87, 95};
+    int len = sizeof(arr) / sizeof(arr[0]);
 
-    int val = 8;
-    printf("BinSearch : find %d -> %d\n", val, BinSearch(arr, val, 0, sizeof(arr) / sizeof(arr[0])));
+    int val = 24;
+    printf("BinSearch : find %d -> %d\n", val, BinSearch(arr, val, 0, len - 1));
 
     return 0;
 }
