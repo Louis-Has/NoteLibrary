@@ -1,14 +1,13 @@
 #include <iostream>
 
 using namespace std;
-
 typedef int SElemType;
 
 typedef struct Node
 {
     SElemType data;
     struct Node *left, *right;
-} *BTree;
+} *Tree;
 
 // （1）试写出折半查找的递归算法。
 
@@ -53,7 +52,7 @@ int BinSearch(int arr[], int val, int st, int en)
 Node *pre = nullptr;
 bool flag = true;
 
-void checkBST(BTree tr)
+void checkBST(Tree tr)
 {
     if (!tr || !flag)
     {
@@ -80,8 +79,8 @@ void checkBST(BTree tr)
     checkBST(tr->right);
 };
 
-
 // （3）已知二叉排序树采用二叉链表存储结构，
+
 // 根结点的指针为T，链结点的结构为（lchild,data,rchild），
 // 其中lchild，rchild分别指向该结点左、右孩子的指针，data域存放结点的数据信息。
 // 请写出递归算法，从小到大输出二叉排序树中所有数据值>=x的结点的数据。
@@ -93,9 +92,34 @@ void checkBST(BTree tr)
 // 所以从根结点开始查找，找到结点值<x的结点后，将其与双亲断开输出整棵二叉排序树。
 // 如果根结点的值<x,则沿右子树查找第一个≥x的结点，找到后，与上面同样处理。
 
+void FindAboveVal(Tree tr, int limit)
+{
+    if (!tr)
+    {
+        return;
+    }
+
+    if (tr->data >= limit)
+    {
+        FindAboveVal(tr->left, limit);
+    }
+
+    if (tr->data > limit)
+    {
+        printf("find : %d \n", tr->data);
+    }
+    else
+    {
+        printf("find failed : %d \n", tr->data);
+    }
+
+    FindAboveVal(tr->right, limit);
+};
 
 int main()
 {
+
+    // （1）试写出折半查找的递归算法。
     []
     {
         int arr[] = {3, 4, 5, 7, 24, 30, 42, 54, 63, 72, 87, 95};
@@ -105,27 +129,34 @@ int main()
         printf("BinSearch : find %d -> %d\n", val, BinSearch(arr, val, 0, len - 1));
     };
 
-    []
-    {
-        BTree root = new Node{45,
-                              new Node{12,
-                                       new Node{3, nullptr, nullptr},
-                                       new Node{37,
-                                                new Node{24, nullptr, nullptr},
-                                                nullptr}},
-                              new Node{53,
-                                       nullptr,
-                                       new Node{100,
-                                                new Node{61,
-                                                         nullptr,
-                                                         new Node{90,
-                                                                  new Node{78, nullptr, nullptr},
-                                                                  nullptr}},
-                                                nullptr}}};
+    Tree root = new Node{45,
+                         new Node{12,
+                                  new Node{3, nullptr, nullptr},
+                                  new Node{37,
+                                           new Node{24, nullptr, nullptr},
+                                           nullptr}},
+                         new Node{53,
+                                  nullptr,
+                                  new Node{100,
+                                           new Node{61,
+                                                    nullptr,
+                                                    new Node{90,
+                                                             new Node{78, nullptr, nullptr},
+                                                             nullptr}},
+                                           nullptr}}};
 
+    // （2）试写一个判别给定二叉树是否为二叉排序树的算法。
+    [root]
+    {
         checkBST(root);
 
         printf("CheckBTree : %s \n", flag ? "true" : "false");
+    };
+
+    // （3）已知二叉排序树采用二叉链表存储结构，
+    [root]
+    {
+        FindAboveVal(root, 40);
     }();
 
     return 0;
