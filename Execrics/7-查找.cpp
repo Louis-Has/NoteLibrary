@@ -80,7 +80,6 @@ void checkBST(Tree tr)
 };
 
 // （3）已知二叉排序树采用二叉链表存储结构，
-
 // 根结点的指针为T，链结点的结构为（lchild,data,rchild），
 // 其中lchild，rchild分别指向该结点左、右孩子的指针，data域存放结点的数据信息。
 // 请写出递归算法，从小到大输出二叉排序树中所有数据值>=x的结点的数据。
@@ -114,6 +113,77 @@ void FindAboveVal(Tree tr, int limit)
     }
 
     FindAboveVal(tr->right, limit);
+};
+
+// （4）已知二叉树T的结点形式为（lling,data,count,rlink），
+// 在树中查找值为X的结点，若找到，则记数（count）加1，
+// 否则，作为一个新结点插入树中，插入后仍为二叉排序树，写出其非递归算法。
+
+typedef struct CNode
+{
+    SElemType data;
+    int count = 1;
+    struct CNode *left = nullptr,
+                 *right = nullptr;
+} *CTree;
+
+void CTreeAdd(CTree &ct, SElemType val)
+{
+    cout << "add " << val << endl;
+
+    if (!ct)
+    {
+        ct = new CNode{val};
+        return;
+    }
+
+    CNode *temp = ct;
+    while (temp)
+    {
+        if (val > temp->data)
+        {
+            if (temp->right)
+            {
+                temp = temp->right;
+            }
+            else
+            {
+                temp->right = new CNode{val};
+                return;
+            }
+        }
+        else if (val < temp->data)
+        {
+            if (temp->left)
+            {
+                temp = temp->left;
+            }
+            else
+            {
+                temp->left = new CNode{val};
+                return;
+            }
+        }
+        else
+        {
+            temp->count++;
+            printf("sample val : %d \n", ct->data);
+            return;
+        }
+    }
+};
+
+void CTreePrint(CTree ct)
+{
+    if (!ct)
+    {
+        return;
+    }
+    CTreePrint(ct->left);
+
+    printf("CT : %d - %d \n", ct->data, ct->count);
+
+    CTreePrint(ct->right);
 };
 
 int main()
@@ -153,10 +223,26 @@ int main()
         printf("CheckBTree : %s \n", flag ? "true" : "false");
     };
 
-    // （3）已知二叉排序树采用二叉链表存储结构，
+    // （3）
     [root]
     {
         FindAboveVal(root, 40);
+    };
+
+    // （4）
+    []
+    {
+        CTree CT = nullptr;
+
+        int arr[] = {45, 12, 3, 37, 24, 53, 100, 61, 90, 78, 12, 78};
+        int len = sizeof(arr) / sizeof(arr[0]);
+
+        for (size_t i = 0; i < len; i++)
+        {
+            CTreeAdd(CT, arr[i]);
+        }
+
+        CTreePrint(CT);
     }();
 
     return 0;
